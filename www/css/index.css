@@ -1,0 +1,196 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/* Imports Raleway font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+
+/* Imports Cubao Font from 'www/font/Cubao.otf' in codebase */
+@font-face {
+	font-family: "Cubao";
+	src: url("../font/Cubao.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(
+		0,
+		0,
+		0,
+		0
+	); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+	--body-color: #e4e4e4;
+	--primary-color: #32a6e8;
+	--secondary-color: #ff5f11;
+	--shade-of-blue: #056bb1;
+	/* border: 1px solid red; */
+}
+
+body {
+	-webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+	-webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+	-webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+	background-color: var(--body-color);
+	font-family: system-ui, -apple-system, -apple-system-font, "Raleway",
+		"Segoe UI", "Roboto", sans-serif;
+	font-size: 12px;
+	height: 100vh;
+	margin: 0px;
+	padding: 0px;
+	/* Padding to avoid the "unsafe" areas behind notches in the screen */
+	padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+		env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+	width: 100%;
+}
+
+/* Portrait layout (default) */
+
+.app {
+	font-family: "Raleway", sans-serif;
+	background: url(../img/appLogo.png) no-repeat center top / 170px 200px; /* 170px x 200px */
+	position: absolute; /* position in the center of the screen */
+	left: 50%;
+	top: 50%;
+	height: 50px; /* text area height */
+	width: 225px; /* text area width */
+	text-align: center;
+	padding: 180px 0px 0px 0px; /* image height is 200px (bottom 20px are overlapped with text) */
+	margin: -115px 0px 0px -112px; /* offset vertical: half of image height and text area height */
+	/* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px) {
+	.app {
+		background-position: left center;
+		padding: 75px 0px 75px 170px; /* padding-top + padding-bottom + text area = image height */
+		margin: -90px 0px 0px -198px; /* offset vertical: half of image height */
+		/* offset horizontal: half of image width and text area width */
+	}
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: normal;
+	margin: 0px;
+	overflow: visible;
+	padding: 0px;
+	text-align: center;
+}
+
+.event {
+	border-radius: 4px;
+	color: #ffffff;
+	font-size: 12px;
+	margin: 0px 30px;
+	padding: 2px 0px;
+}
+
+.event.listening {
+	background-color: var(--primary-color);
+	display: block;
+}
+
+.event.received {
+	background-color: var(--secondary-color);
+	display: none;
+}
+
+#deviceready.ready .event.listening {
+	display: none;
+}
+#deviceready.ready .event.received {
+	display: block;
+}
+
+@keyframes fade {
+	from {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.blink {
+	animation: fade 3000ms infinite;
+	-webkit-animation: fade 3000ms infinite;
+}
+
+/* @media screen and (prefers-color-scheme: dark) {
+    body {
+        background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
+    }
+} */
+
+/***************** CUSTOM CSS *****************/
+
+/***************** HOME *****************/
+#home-container {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	font-family: "Raleway", sans-serif;
+}
+
+.logo {
+	margin-top: 11.125rem;
+}
+
+.logo img {
+	width: 15rem;
+	margin-bottom: 0rem;
+}
+
+.description {
+	text-align: center;
+	max-width: 15rem;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 1rem;
+	color: var(--secondary-color);
+}
+
+.buttons {
+	margin-bottom: 7.8rem;
+}
+
+.buttons button i {
+	margin-right: 1rem;
+}
+
+.play-button,
+.learn-button,
+.settings-button {
+	display: block;
+	width: 15rem;
+	min-height: 3rem;
+	max-height: max-content;
+	margin-bottom: 1rem;
+	font-family: "Cubao", sans-serif;
+	text-transform: uppercase;
+	font-size: 1.5rem;
+	background-color: var(--shade-of-blue);
+	border-radius: 0.5rem;
+}
