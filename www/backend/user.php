@@ -6,7 +6,6 @@
 class User
 {
     private $db;
-    private $db_table = "users";
     public $username;
 
     public function __construct($db)
@@ -17,15 +16,26 @@ class User
     public function createUser()
     {
         $this->username = htmlspecialchars(strip_tags($this->username));
-        $sqlQuery = 
-            "INSERT INTO". $this->db_table .
-            " SET username = '".$this->username."'";
-        $this->db->query($sqlQuery);
-        if($this->db->affected_rows > 0)
-        {
-            return true;
-        }
-            return false;
+
+        $query = "INSERT INTO users SET username = '".$this->username."'";
+
+        $this->db->query($query);
+
+        if($this->db->affected_rows > 0) return true;
+        else return false;
+    }
+
+
+    public function checkUser()
+    {
+        $this->username = htmlspecialchars(strip_tags($this->username));
+        
+        $query = "SELECT * FROM users WHERE username = '".$this->username."'";
+
+        $record = $this->db->query($query);
+
+        if ($record->num_rows >= 1) return true;
+        else  return false;
     }
 }
 ?>
