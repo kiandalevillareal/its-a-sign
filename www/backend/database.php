@@ -11,9 +11,9 @@ class Database {
 	try{
 		$this->db = new mysqli(
 			'localhost',
-			'id20944386_admin',
+			'id20944531_admin',
 			'Adminadmin1!',
-			'id20944386_mobile_dev_062023');
+			'id20944531_mobiledev_062023');
 	}catch(Exception $e){
 		echo "Database could not be connected: " . $e->getMessage();
 	}
