@@ -1,0 +1,6 @@
+GMAIL
+	schoolprojs111@gmail.com
+	APRIL292001
+PHPMYADMIN
+	id20944386_admin
+	Adminadmin1!
