@@ -16,10 +16,10 @@ class User
 
     public function createUser()
     {
-        $this->username = htmlspecialchars(strip_tags($this->name));
+        $this->username = htmlspecialchars(strip_tags($this->username));
         $sqlQuery = 
             "INSERT INTO". $this->db_table .
-            " SET username = '".$this->name."'";
+            " SET username = '".$this->username."'";
         $this->db->query($sqlQuery);
         if($this->db->affected_rows > 0)
         {

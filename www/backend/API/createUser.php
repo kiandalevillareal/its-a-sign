@@ -16,25 +16,17 @@ include_once '../user.php';
 $database = new Database();
 $db = $database->getConnection();
 $item = new User($db);
-$item->username = isset($_POST['username']) ? $_POST['username'] : die();
-$item->createUser();
+// $item->username = isset($_POST['username']) ? $_POST['username'] : die();
+$item->username = $_POST['username'];
 
-if($item->username != null)
+if($item->createUser())
 {
-    if(strval($item->role) == "true")
-    {
-        http_response_code(200);
-        echo json_encode(strval($item->role));
-    }
-    else
-    {
-        http_response_code(200);
-        echo json_encode("user not created");
-    }
+    http_response_code(200);
+    echo json_encode("user created");
 }
 else
 {
     http_response_code(404);
-    echo json_encode("something error");
+    echo json_encode("user not created");
 }
 ?>
