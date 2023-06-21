@@ -18,12 +18,19 @@ $item = new User($db);
 // $item->username = isset($_POST['username']) ? $_POST['username'] : die();
 $item->username = $_POST['username'];
 
-if($item->createUser())
+if($item->checkUser())
 {
-    echo json_encode("user created");
+    echo json_encode("username has taken");
 }
 else
 {
-    echo json_encode("user not created");
+    if($item->createUser())
+    {
+        echo json_encode("user created");
+    }
+    else
+    {
+        echo json_encode("user not created");
+    }
 }
 ?>
