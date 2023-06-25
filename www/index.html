@@ -18,9 +18,9 @@
     under the License.
 -->
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<!--
+  <head>
+    <meta charset="utf-8" />
+    <!--
         Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
             https://cordova.apache.org/docs/en/latest/
         Some notes:
@@ -28,83 +28,360 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-		<!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
-		<meta name="format-detection" content="telephone=no" />
-		<meta name="msapplication-tap-highlight" content="no" />
-		<meta
-			name="viewport"
-			content="initial-scale=1, width=device-width, viewport-fit=cover" />
-		<meta name="color-scheme" content="light dark" />
-		<link rel="stylesheet" href="css/index.css" />
+    <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, width=device-width, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/index.css" />
 
-		<!-- FONT AWESOME ICONS -->
-		<script
-			src="https://kit.fontawesome.com/f7a107f42a.js"
-			crossorigin="anonymous"></script>
+    <!-- FONT AWESOME ICONS -->
+    <script
+      src="https://kit.fontawesome.com/f7a107f42a.js"
+      crossorigin="anonymous"
+    ></script>
 
-		<title>It's a sign</title>
-	</head>
+    <title>It's a sign</title>
+  </head>
 
-	<body>
-		<!-- <div class="app">
-            <h1>PLEASE HOLD ON</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">CONNECTING TO DEVICE</p>
-                <p class="event received">Device is Ready - OK</p>
-            </div>
-        </div> -->
+  <body>
+    <!---HOME SECTION-->
+    <div id="home-container">
+      <div>
+        <div class="logo">
+          <img src="img/appLogo-noPad.png" alt="Logo" />
+        </div>
+        <div class="description">
+          <p>
+            This is your sign to learn Filipino Sign Language in an engaging and
+            fun way!
+          </p>
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="play-button" class="play-button">
+          <i class="fa-solid fa-play"></i>
+          Play Game
+        </button>
+        <a href="vocab.html">
+          <button class="learn-button">
+            <i class="fa-solid fa-book"></i>
+            Learn FSL Vocabulary
+          </button>
+        </a>
+        <button class="settings-button">
+          <i class="fa-solid fa-gears"></i>
+          Settings
+        </button>
+      </div>
+    </div>
 
-		<!---HOME SECTION-->
-		<div id="home-container">
-			<div>
-				<div class="logo">
-					<img src="img/appLogo-noPad.png" alt="Logo" />
-				</div>
-				<div class="description">
-					<p>
-						This is your sign to learn Filipino Sign Language in an engaging and
-						fun way!
-					</p>
-				</div>
-			</div>
-			<div class="buttons">
-				<button id="play-button" class="play-button">
-					<i class="fa-solid fa-play"></i>
-					Play Game
-				</button>
-				<a href="vocab.html">
-					<button class="learn-button">
-						<i class="fa-solid fa-book"></i>
-						Learn FSL Vocabulary
-					</button>
-				</a>
-				<button class="settings-button">
-					<i class="fa-solid fa-gears"></i>
-					Settings
-				</button>
-			</div>
-		</div>
-		<!----Difficulties--->
-		<div id="difficulties-container" hidden>
-			<div class="modal-content">
-				<button class="back-button">
-					<i class="fa-solid fa-arrow-left"></i>
-				</button>
-				<h2>CHOOSE YOUR DIFFICULTY</h2>
+    <!--DIFFICULTIES-->
+    <div id="difficulties-container" hidden>
+      <div class="modal-content">
+        <button class="back-button">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <h2>CHOOSE YOUR DIFFICULTY</h2>
 
-				<button class="difficulty-button">Easy</button>
-				<button class="difficulty-button">Intermediate</button>
-				<button class="difficulty-button">Hard</button>
-				<!-- <button class="difficulty-button">Expert</button>
+        <button id="easy-button" class="difficulty-button">Easy</button>
+        <button id="intermediate-button" class="difficulty-button">
+          Intermediate
+        </button>
+        <button id="hard-button" class="difficulty-button">Hard</button>
+        <!-- <button class="difficulty-button">Expert</button>
 				<button class="difficulty-button">Extreme</button> -->
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<!-- CORDOVA -->
-		<script src="cordova.js"></script>
+    <!-- EASY DIFFICULTY -->
+    <div class="container easy-container" id="easy-container">
+      <!-- HEADER -->
+      <div class="header">
+        <div class="points">
+          <i class="fa-solid fa-star"></i> <span id="pointsValue">11</span>
+        </div>
+        <div class="round">
+          <span id="roundValue">1</span>
+        </div>
+        <div class="timer">
+          <i class="fa-solid fa-hourglass-start"></i>
+          <span id="timerValue">1:11</span>
+        </div>
+      </div>
 
-		<!-- CUSTOM JS -->
-		<script src="js/index.js"></script>
-		<script src="js/controller/loginCon.js"></script>
-	</body>
+      <!-- PHRASE TO GUESS -->
+      <div class="phrase">
+        <h3>ANO PANGALAN IKAW</h3>
+      </div>
+
+      <!-- CARDS -->
+      <div class="card-container">
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POWERUP BUTTONS -->
+      <div class="power-up">
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-lightbulb"></i>
+          </button>
+          <span>Hint</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <span>Reveal</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-clock"></i>
+          </button>
+          <span>Freeze</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERMEDIATE DIFFICULTY -->
+    <div class="container intermediate-container" id="intermediate-container">
+      <!-- HEADER -->
+      <div class="header">
+        <div class="points">
+          <i class="fa-solid fa-star"></i> <span id="pointsValue">11</span>
+        </div>
+        <div class="round">
+          <span id="roundValue">1</span>
+        </div>
+        <div class="timer">
+          <i class="fa-solid fa-hourglass-start"></i>
+          <span id="timerValue">1:11</span>
+        </div>
+      </div>
+
+      <!-- PHRASE TO GUESS -->
+      <div class="phrase">
+        <h3>ANO PANGALAN IKAW</h3>
+      </div>
+
+      <!-- CARDS -->
+      <div class="card-container">
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POWERUP BUTTONS -->
+      <div class="power-up">
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-lightbulb"></i>
+          </button>
+          <span>Hint</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <span>Reveal</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-clock"></i>
+          </button>
+          <span>Freeze</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HARD DIFFICULTY -->
+    <div class="container hard-container" id="hard-container">
+      <!-- HEADER -->
+      <div class="header">
+        <div class="points">
+          <i class="fa-solid fa-star"></i> <span id="pointsValue">11</span>
+        </div>
+        <div class="round">
+          <span id="roundValue">1</span>
+        </div>
+        <div class="timer">
+          <i class="fa-solid fa-hourglass-start"></i>
+          <span id="timerValue">1:11</span>
+        </div>
+      </div>
+
+      <!-- PHRASE TO GUESS -->
+      <div class="phrase">
+        <h3>ANO PANGALAN IKAW</h3>
+      </div>
+
+      <!-- CARDS -->
+      <div class="card-container">
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POWERUP BUTTONS -->
+      <div class="power-up">
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-lightbulb"></i>
+          </button>
+          <span>Hint</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <span>Reveal</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-clock"></i>
+          </button>
+          <span>Freeze</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CORDOVA -->
+    <script src="cordova.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="js/index.js"></script>
+    <script src="js/controller/loginCon.js"></script>
+  </body>
 </html>
