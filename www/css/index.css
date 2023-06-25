@@ -385,7 +385,9 @@ h1 {
 }
 
 .flip-card-back {
-	background-color: var(--secondary-color);
+	background-image: url(../gifs/almusal.gif);
+	background-size: cover;
+	background-position: center;
 	color: white;
 	transform: rotateY(180deg);
 	display: flex;
