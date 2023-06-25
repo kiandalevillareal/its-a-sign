@@ -18,10 +18,9 @@
     under the License.
 -->
 <html>
-
-<head>
-	<meta charset="utf-8" />
-	<!--
+	<head>
+		<meta charset="utf-8" />
+		<!--
         Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
             https://cordova.apache.org/docs/en/latest/
         Some notes:
@@ -65,7 +64,7 @@
 			</div>
 		</div>
 		<div class="buttons">
-			<button class="play-button">
+			<button id="play-button" class="play-button">
 				<i class="fa-solid fa-play"></i>
 				Play Game
 			</button>
@@ -81,49 +80,24 @@
 			</button>
 		</div>
 	</div>
-	<!---VOCABULARY SECTION--->
-	<!-- <div id="vocabulary-container">
-			<div class="onehand-signs">
-				<div class="navbar">
-					<button class="list">
-						<i class="fa-solid fa-list"></i>
-					</button>
-					<ul>
-						<li><a href="#">Ako</a></li>
-						<li><a href="#">Almusal</a></li>
-						<li><a href="#">Ano</a></li>
-						<li><a href="#">Bahay</a></li>
-						<li><a href="#">Bakit</a></li>
-						<li><a href="#">Bingi</a></li>
-					</ul>
-				</div>
+	<!----Difficulties--->
+	<div id="difficulties-container" hidden>
+			<div class="modal-content">
+				<button class="back-button" >
+					<i class="fa-solid fa-arrow-left"></i>
+				</button>
+				<h2>CHOOSE YOUR DIFFICULTY</h2>
+			
+				<button class="difficulty-button">Easy</button>
+				<button class="difficulty-button">Intermediate</button>
+				<button class="difficulty-button">Hard</button>
+				<!-- <button class="difficulty-button">Expert</button>
+				<button class="difficulty-button">Extreme</button> -->
 			</div>
 		</div> -->
 
-	<!-- Create account modal -->
-	<!-- <div id="create-acc-bg">
-		<div id="create-acc-modal">
-			<div class="item">
-				<h2>Create Account</h2>
-			</div>
-			<div class="item">
-				<label for="logger" id="logger"> </label>
-			</div>
-			<div class="item">
-				<form id="login-form">
-					<div class="item">
-						<label for="username">Username: </label>
-						<input type="text" id="username-input" name="username">
-					</div>
-					<div class="item">
-						<button id="continue-button" type="submit">Continue</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div> -->
-	<!-- CORDOVA -->
-	<script src="cordova.js"></script>
+		<!-- CORDOVA -->
+		<script src="cordova.js"></script>
 
 	<!-- CUSTOM JS -->
 	<script src="js/index.js"></script>

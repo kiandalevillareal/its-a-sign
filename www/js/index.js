@@ -63,3 +63,27 @@ function updateTimer(value) {
   
   timerElement.textContent = `${formattedMinutes}:${formattedSeconds}`;
 }
+/// for difficulties section
+const playButton = document.getElementById("play-button");
+const homeContainer = document.getElementById("home-container");
+const difficultiesContainer = document.getElementById("difficulties-container");
+
+playButton.addEventListener("click", function() {
+  // Hide the home section
+  homeContainer.style.display = "none";
+  
+  // Show the difficulties section
+  difficultiesContainer.style.display = "flex";
+});
+
+//back button
+const backButton = document.querySelector('.back-button');
+
+backButton.addEventListener('click', () => {
+  // Show the home container and hide the difficulties container
+  const homeContainer = document.getElementById('home-container');
+  const difficultiesContainer = document.getElementById('difficulties-container');
+  
+  homeContainer.style.display = 'flex';
+  difficultiesContainer.style.display = 'none';
+});
