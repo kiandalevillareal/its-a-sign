@@ -206,7 +206,7 @@ h1 {
 	font-family: "Raleway", sans-serif;
 }
 
-/*reusable code (HEADERRR)*/
+/***************** GAME HEADER - REUSABLE *****************/
 .header {
 	margin-top: 3rem;
 	position: fixed;
@@ -317,7 +317,9 @@ h1 {
 	font-family: "Cubao", sans-serif;
 	font-size: 1.2rem;
 }
-/*end of reusable code (HEADERRR)*/
+
+
+/***************** WORD TO GUESS *****************/
 .phrase {
 	margin-top: 9rem;
 	position: fixed;
@@ -330,7 +332,8 @@ h1 {
 	color: var(--secondary-color);
 	letter-spacing: 0.1rem;
 }
-/**---cards---**/
+
+/***************** CARDS *****************/
 .card-container{
 	margin-top: 15rem;
 }
@@ -392,7 +395,7 @@ h1 {
 	border-radius: .5rem;
 }
 
-/*****----POWER UPS----***/
+/***************** POWER UPS *****************/
 .power-up{
 	display: flex;
 	justify-content: center;
