@@ -33,29 +33,80 @@ const pointsElement = document.getElementById('pointsValue');
 const roundElement = document.getElementById('roundValue');
 const timerElement = document.getElementById('timerValue');
 
-// Set initial values
+
+// CONTAINERS
+const homeContainer = document.getElementById("home-container");
+const difficultiesContainer = document.getElementById("difficulties-container");
+const easyContainer = document.getElementById('easy-container');
+const intermediateContainer = document.getElementById('intermediate-container');
+const hardContainer = document.getElementById('hard-container');
+
+
+// BUTTONS
+const playButton = document.getElementById("play-button");
+const backButton = document.querySelector('.back-button');
+const easyButton = document.getElementById('easy-button');
+const intermediateButton = document.getElementById('intermediate-button');
+const hardButton = document.getElementById('hard-button');
+
+
+// SHOWS DIFFICULTY SECTION, HIDES HOME SECTION
+playButton.addEventListener("click", function() {
+  homeContainer.style.display = "none";
+  difficultiesContainer.style.display = "flex";
+});
+
+
+// SHOWS HOME SECTION, HIDES DIFFICULTY SECTION
+backButton.addEventListener('click', () => {
+  homeContainer.style.display = 'flex';
+  difficultiesContainer.style.display = 'none';
+});
+
+
+// SHOWS EASY CONTAINER, HIDES DIFFICULTY CONTAINER
+easyButton.addEventListener("click", function(){
+  easyContainer.style.display = "flex";
+  difficultiesContainer.style.display = "none";
+});
+
+
+// SHOWS INTERMEDIATE CONTAINER, HIDES DIFFICULTY CONTAINER
+intermediateButton.addEventListener("click", function(){
+  intermediateContainer.style.display = "flex";
+  difficultiesContainer.style.display = "none";
+});
+
+
+// SHOWS HARD CONTAINER, HIDES DIFFICULTY CONTAINER
+hardButton.addEventListener("click", function(){
+  hardContainer.style.display = "flex";
+  difficultiesContainer.style.display = "none";
+});
+
+// SET INITIAL VALUES
 let points = 0;
 let round = 1;
 let timeLeft = 60;
 
-// Update the points display
+// UPDATE THE POINTS DISPLAY
 function updatePoints(value) {
   points = value;
   pointsElement.textContent = points;
 }
 
-// Update the round display
+// UPDATE THE ROUND DISPLAY 
 function updateRound(value) {
   round = value;
   roundElement.textContent = round;
 }
 
-// Update the timer display
+// UPDATE THE TIMER DISPLAY 
 function updateTimer(value) {
   timeLeft = value;
   
-  const minutes = Math.floor(timeLeft / 60); // Calculate minutes
-  const seconds = timeLeft % 60; // Calculate seconds
+  const minutes = Math.floor(timeLeft / 60); // CALCULATE MINUTES
+  const seconds = timeLeft % 60; // CALCULATE SECONDS
   
   // Format the minutes and seconds with leading zeros if necessary
   const formattedMinutes = String(minutes).padStart(1, '0');
@@ -63,27 +114,3 @@ function updateTimer(value) {
   
   timerElement.textContent = `${formattedMinutes}:${formattedSeconds}`;
 }
-/// for difficulties section
-const playButton = document.getElementById("play-button");
-const homeContainer = document.getElementById("home-container");
-const difficultiesContainer = document.getElementById("difficulties-container");
-
-playButton.addEventListener("click", function() {
-  // Hide the home section
-  homeContainer.style.display = "none";
-  
-  // Show the difficulties section
-  difficultiesContainer.style.display = "flex";
-});
-
-//back button
-const backButton = document.querySelector('.back-button');
-
-backButton.addEventListener('click', () => {
-  // Show the home container and hide the difficulties container
-  const homeContainer = document.getElementById('home-container');
-  const difficultiesContainer = document.getElementById('difficulties-container');
-  
-  homeContainer.style.display = 'flex';
-  difficultiesContainer.style.display = 'none';
-});

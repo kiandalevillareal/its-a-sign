@@ -18,117 +18,197 @@
     under the License.
 -->
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <!--
-        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
-            https://cordova.apache.org/docs/en/latest/
-        Some notes:
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
+            Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+                https://cordova.apache.org/docs/en/latest/
+            Some notes:
+                * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+                * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                    * Enable inline JS: add 'unsafe-inline' to default-src
+            -->
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, width=device-width, viewport-fit=cover"
+    />
     <meta name="color-scheme" content="light dark" />
     <link rel="stylesheet" href="css/index.css" />
     <!-- FONT AWESOME ICONS -->
-    <script src="https://kit.fontawesome.com/f7a107f42a.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/f7a107f42a.js"
+      crossorigin="anonymous"
+    ></script>
     <title>It's a sign</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="easy-container">
-        <div class="header">
-            <div class="points">
-                <i class="fa-solid fa-star"></i> <span id="pointsValue">11</span>
-            </div>
-            <div class="round">
-                <span id="roundValue">1</span>
-            </div>
-            <div class="timer">
-                <i class="fa-solid fa-hourglass-start"></i> <span id="timerValue">1:11</span>
-            </div>
+      <div class="header">
+        <div>
+          <a id="switch-button" href="#intermediate-container">Intermediate</a>
         </div>
-        <div class="phrase">
-            <h3>ANO PANGALAN IKAW</h3>
+        <div class="points">
+          <i class="fa-solid fa-star"></i> <span id="pointsValue">11</span>
         </div>
-        <div class="card-container">
-            <div class="card-row">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                           
-                        </div>
-                        <div class="flip-card-back">
-                            
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            
-                        </div>
-                        <div class="flip-card-back">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-row">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                    
-                        </div>
-                        <div class="flip-card-back">
-                            
-                        </div>
-                    </div>
-                </div>
-            
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                        
-                        </div>
-                        <div class="flip-card-back">
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="round">
+          <span id="roundValue">1</span>
         </div>
-        <div class="power-up">
-            <div class="power-up-button">
-                <button>
-                    <i class="fa-solid fa-lightbulb"></i>
-                </button>
-                <span>Hint</span>
-            </div>
-            <div class="power-up-button">
-                <button>
-                    <i class="fa-solid fa-eye"></i>
-                </button>
-                <span>Reveal</span>
-            </div>
-            <div class="power-up-button">
-                <button>
-                    <i class="fa-solid fa-clock"></i>
-                </button>
-                <span>Freeze</span>
-            </div>
+        <div class="timer">
+          <i class="fa-solid fa-hourglass-start"></i>
+          <span id="timerValue">1:11</span>
         </div>
+      </div>
+      <div class="phrase">
+        <h3>ANO PANGALAN IKAW</h3>
+      </div>
+      <div class="card-container">
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="power-up">
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-lightbulb"></i>
+          </button>
+          <span>Hint</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <span>Reveal</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-clock"></i>
+          </button>
+          <span>Freeze</span>
+        </div>
+      </div>
     </div>
+
+    <div id="intermediate-container">
+      <div class="header">
+        <div class="points">
+          <i class="fa-solid fa-star"></i> <span id="pointsValue">11</span>
+        </div>
+        <div class="round">
+          <span id="roundValue">1</span>
+        </div>
+        <div class="timer">
+          <i class="fa-solid fa-hourglass-start"></i>
+          <span id="timerValue">1:11</span>
+        </div>
+      </div>
+
+      <div class="phrase">
+        <h3>ANO PANGALAN IKAW</h3>
+      </div>
+
+      <div class="card-container">
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front"></div>
+              <div class="flip-card-back"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="power-up">
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-lightbulb"></i>
+          </button>
+          <span>Hint</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <span>Reveal</span>
+        </div>
+        <div class="power-up-button">
+          <button>
+            <i class="fa-solid fa-clock"></i>
+          </button>
+          <span>Freeze</span>
+        </div>
+      </div>
+    </div>
+
     <!-- CORDOVA -->
     <script src="cordova.js"></script>
 
     <!-- CUSTOM JS -->
     <script src="js/index.js"></script>
-</body>
-
+  </body>
 </html>
