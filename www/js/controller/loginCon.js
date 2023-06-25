@@ -41,7 +41,4 @@ function handleLogin(event)
     // Reset the form after submission
     loginForm.reset();
     usernameInput.focus();
-
-
-    //test
 }
