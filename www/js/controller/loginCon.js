@@ -11,10 +11,7 @@ const loadingAnimationCreateAcc =
 loginForm.addEventListener("submit", createAccount);
 window.addEventListener("load", checkUsername);
 
-function consoleLogger(content)
-{
-    console.log(content);
-}
+
 // Define the createAccount function
 function createAccount(event)
 {
@@ -84,7 +81,7 @@ function checkUsername()
                         const reader = new FileReader();
                         reader.onloadend = function ()
                         {
-                            consoleLogger(
+                            console.log(
                                 "Stored Username: " + reader.result);
                             accessAuthorized(reader.result);
                         };
@@ -93,14 +90,14 @@ function checkUsername()
                 },
                 function ()
                 {
-                    consoleLogger("Data not found in persistent path");
+                    console.log("Data not found in persistent path");
                     unAccessAuthorized();
                 }
             );
         },
         function ()
         {
-            consoleLogger("Failed to access persistent path");
+            console.log("Failed to access persistent path");
         }
     );
 }
@@ -122,12 +119,12 @@ function writeFileUsername(fileData)
                         {
                             fileWriter.onwriteend = function ()
                             {
-                                consoleLogger(
+                                console.log(
                                     "Data written to path");
                             };
                             fileWriter.onerror = function (e)
                             {
-                                consoleLogger(
+                                console.log(
                                     "Failed to write data to path: " + e);
                             };
                             const blob = new Blob(
@@ -136,19 +133,19 @@ function writeFileUsername(fileData)
                         },
                         function ()
                         {
-                            consoleLogger("Failed to create file writer");
+                            console.log("Failed to create file writer");
                         }
                     );
                 },
                 function ()
                 {
-                    consoleLogger("Failed to access the username file");
+                    console.log("Failed to access the username file");
                 }
             );
         },
         function ()
         {
-            consoleLogger("Failed to access the path");
+            console.log("Failed to access the path");
         }
     );
 }
