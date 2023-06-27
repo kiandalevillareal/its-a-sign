@@ -12,7 +12,7 @@ profileButton.addEventListener('click', () =>
     else profileContainer.style.display = "none";
 });
 
-// Set the username on load. Called from  LoginCon
+// Set the username on load. Called from LoginCon
 function setUsernameInProfile(username) 
 {
     usernameProfile.textContent = username;
