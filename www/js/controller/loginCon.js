@@ -4,14 +4,18 @@ const logger = document.getElementById("logger");
 const usernameInput = document.getElementById("username-input");
 const createAccBg = document.getElementById("create-acc-bg");
 const continueButton = document.getElementById("continue-button");
-const loadingAnimation = document.getElementById("loading-animation");
+const loadingAnimation = document.getElementById("loading-animation-1");
 
 // Add event listener to the form submission
-loginForm.addEventListener("submit", handleLogin);
+loginForm.addEventListener("submit", createAccount);
 window.addEventListener("load", checkUsername);
 
-// Define the handleLogin function
-function handleLogin(event)
+function consoleLogger(content)
+{
+    console.log(content);
+}
+// Define the createAccount function
+function createAccount(event)
 {
     event.preventDefault(); // Prevent default form submission
 
@@ -19,9 +23,12 @@ function handleLogin(event)
 
     const username = usernameInput.value.trim();
 
-    if (username.length < 8 || username.length > 16 || username.includes("\n"))
+    if (username.length < 8 ||
+        username.length > 16 ||
+        username.includes("\n"))
     {
-        logger.textContent = "Username must have 8 to 16 characters and be one line only.";
+        logger.textContent =
+            "Username must have 8 to 16 characters and be one line only.";
         return;
     }
 
@@ -38,7 +45,7 @@ function handleLogin(event)
         .then(response => response.json())
         .then(data =>
         {
-            if (data == "user created") accessAuthorized();
+            if (data == "user created") accessAuthorized(username);
             // Handle the response data
             logger.textContent = JSON.stringify(data);
             // Store data in persistent data path
@@ -48,7 +55,9 @@ function handleLogin(event)
         .catch(error =>
         {
             // Handle any errors
-            logger.textContent = 'Error: ' + error.message;
+            // logger.textContent = 'Error: ' + error.message;
+            logger.textContent =
+                "Something went wrong. Please try again.";
         })
         .finally(() =>
         {
@@ -57,8 +66,8 @@ function handleLogin(event)
         });
 
     // Reset the form after submission
-    loginForm.reset();
-    usernameInput.focus();
+    // loginForm.reset();
+    // usernameInput.focus();
 }
 
 function checkUsername()
@@ -78,22 +87,23 @@ function checkUsername()
                         const reader = new FileReader();
                         reader.onloadend = function ()
                         {
-                            console.log("Stored Data:", reader.result);
-                            accessAuthorized();
+                            consoleLogger(
+                                "Stored Username: " + reader.result);
+                            accessAuthorized(reader.result);
                         };
                         reader.readAsText(file);
                     });
                 },
                 function ()
                 {
-                    console.log("Data not found in persistent path");
+                    consoleLogger("Data not found in persistent path");
                     unAccessAuthorized();
                 }
             );
         },
         function ()
         {
-            console.log("Failed to access persistent path");
+            consoleLogger("Failed to access persistent path");
         }
     );
 }
@@ -115,35 +125,39 @@ function writeFileUsername(fileData)
                         {
                             fileWriter.onwriteend = function ()
                             {
-                                console.log("Data written to persistent path");
+                                consoleLogger(
+                                    "Data written to path");
                             };
                             fileWriter.onerror = function (e)
                             {
-                                console.log("Failed to write data to persistent path:", e);
+                                consoleLogger(
+                                    "Failed to write data to path: " + e);
                             };
-                            const blob = new Blob([fileData], { type: "text/plain" });
+                            const blob = new Blob(
+                                [fileData], { type: "text/plain" });
                             fileWriter.write(blob);
                         },
                         function ()
                         {
-                            console.log("Failed to create file writer");
+                            consoleLogger("Failed to create file writer");
                         }
                     );
                 },
                 function ()
                 {
-                    console.log("Failed to access file in persistent path");
+                    consoleLogger("Failed to access the username file");
                 }
             );
         },
         function ()
         {
-            console.log("Failed to access persistent path");
+            consoleLogger("Failed to access the path");
         }
     );
 }
-function accessAuthorized()
+function accessAuthorized(_username)
 {
+    setUsernameInProfile(_username);
     //Dont show modal
     createAccBg.style.display = "none";
 }
