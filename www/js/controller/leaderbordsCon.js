@@ -17,7 +17,7 @@ gameoverButton.addEventListener('click', () =>
 
 function submitHighscore(event)
 {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Prevent default form  submission
 
     const formData = new FormData(highscoreForm);
 

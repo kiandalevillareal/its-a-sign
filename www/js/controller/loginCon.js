@@ -28,7 +28,7 @@ function createAccount(event)
         username.includes("\n"))
     {
         logger.textContent =
-            "Username must have 8 to 16 characters and be one line only.";
+            "Username must have 8 to 16 characters and be one line only. ";
         return;
     }
 
