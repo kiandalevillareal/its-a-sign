@@ -4,7 +4,8 @@ const logger = document.getElementById("logger");
 const usernameInput = document.getElementById("username-input");
 const createAccBg = document.getElementById("create-acc-bg");
 const continueButton = document.getElementById("continue-button");
-const loadingAnimation = document.getElementById("loading-animation-1");
+const loadingAnimationCreateAcc =
+    document.getElementById("loading-animation-createacc");
 
 // Add event listener to the form submission
 loginForm.addEventListener("submit", createAccount);
@@ -33,7 +34,7 @@ function createAccount(event)
     }
 
     continueButton.style.display = "none";
-    loadingAnimation.style.display = "inline-block";
+    loadingAnimationCreateAcc.style.display = "inline-block";
 
     const formData = new FormData(loginForm);
 
@@ -62,12 +63,8 @@ function createAccount(event)
         .finally(() =>
         {
             continueButton.style.display = "inline-block";
-            loadingAnimation.style.display = "none";
+            loadingAnimationCreateAcc.style.display = "none";
         });
-
-    // Reset the form after submission
-    // loginForm.reset();
-    // usernameInput.focus();
 }
 
 function checkUsername()
