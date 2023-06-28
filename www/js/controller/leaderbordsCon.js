@@ -1,9 +1,7 @@
 const gameoverButton = document.getElementById('gameover-button');
 const sendScoreButton = document.getElementById('send-highscore-button');
 const refreshScoreButton = document.getElementById('refresh-leaderboard-button');
-const avatarButton = document.getElementById('avatar-button');
 
-const avatarsContainer = document.getElementById('user-avatar-bg');
 const gameoverContainer = document.getElementById('gameover-container-bg');
 const currentPositionGroup = document.getElementById('current-position-group');
 const highscoreForm = document.getElementById("send-highscore-form");
@@ -48,11 +46,6 @@ let sentence_test = "ano ikaw tao ba";
 
 // Add event listener to the form submission
 highscoreForm.addEventListener("submit", submitHighscore);
-avatarButton.addEventListener('click', function ()
-{
-    event.preventDefault();
-    avatarsContainer.style.display = "flex";
-});
 
 refreshScoreButton.addEventListener('click', function ()
 {

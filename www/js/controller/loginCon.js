@@ -2,15 +2,46 @@
 const loginForm = document.getElementById("login-form");
 const logger = document.getElementById("logger");
 const usernameInput = document.getElementById("username-input");
-const createAccBg = document.getElementById("create-acc-bg");
+const createAccBg = document.getElementById("create-account-bg");
 const continueButton = document.getElementById("continue-button");
 const loadingAnimationCreateAcc =
     document.getElementById("loading-animation-createacc");
+const avatarButton = document.getElementById('avatar-button');
+const avatarsContainer = document.getElementById('user-avatar-bg');
+const userAvatar = document.getElementById('user-avatar');
+
+let userAvatarID = 1;
 
 // Add event listener to the form submission
 loginForm.addEventListener("submit", createAccount);
 window.addEventListener("load", checkUsername);
 
+avatarButton.addEventListener('click', function ()
+{
+    event.preventDefault();
+    avatarsContainer.style.display = "flex";
+});
+
+function selectAvatar(element, avatar)
+{
+    userAvatarID = avatar;
+    userAvatar.setAttribute('src', "avatars/" + avatar + ".png");
+
+    // Remove the green background from all items
+    var items = document.getElementsByClassName("item");
+    for (var i = 0; i < items.length; i++)
+    {
+        items[i].style.backgroundColor = "";
+    }
+
+    // Add the green background to the selected item
+    var selectedItem = element.parentElement;
+    selectedItem.style.backgroundColor = "green";
+    setTimeout(function ()
+    {
+        avatarsContainer.style.display = "none";
+    }, 400);
+}
 
 // Define the createAccount function
 function createAccount(event)
@@ -35,6 +66,8 @@ function createAccount(event)
 
     const formData = new FormData(loginForm);
 
+    formData.append('avatar_id', userAvatarID);
+
     // Make a POST request with the form data
     fetch('https://itsasign.000webhostapp.com/API/createUser.php', {
         method: 'POST',
@@ -48,7 +81,7 @@ function createAccount(event)
             logger.textContent = JSON.stringify(data);
             // Store data in persistent data path
             const fileData = JSON.stringify(data);
-            writeFileUsername(username);
+            writeFileUsername(userAvatarID);
         })
         .catch(error =>
         {
@@ -72,7 +105,7 @@ function checkUsername()
         function (fileSystem)
         {
             fileSystem.root.getFile(
-                "usernameData5.txt",
+                "1112.txt",
                 { create: false },
                 function (fileEntry)
                 {
@@ -110,7 +143,7 @@ function writeFileUsername(fileData)
         function (fileSystem)
         {
             fileSystem.root.getFile(
-                "usernameData5.txt",
+                "1112.txt",
                 { create: true },
                 function (fileEntry)
                 {
@@ -120,7 +153,7 @@ function writeFileUsername(fileData)
                             fileWriter.onwriteend = function ()
                             {
                                 console.log(
-                                    "Data written to path");
+                                    "Data written to path: ", fileData);
                             };
                             fileWriter.onerror = function (e)
                             {
@@ -154,6 +187,10 @@ function accessAuthorized(_username)
     setUsernameInProfile(_username);
     //Dont show modal
     createAccBg.style.display = "none";
+
+    //Initialize profile button
+    profileButton.style.display = "flex";
+    profileButton.setAttribute('src', "avatars/" + userAvatarID + ".png");
 }
 function unAccessAuthorized()
 {
