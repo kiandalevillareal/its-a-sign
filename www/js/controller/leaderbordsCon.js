@@ -1,7 +1,9 @@
 const gameoverButton = document.getElementById('gameover-button');
 const sendScoreButton = document.getElementById('send-highscore-button');
 const refreshScoreButton = document.getElementById('refresh-leaderboard-button');
+const avatarButton = document.getElementById('avatar-button');
 
+const avatarsContainer = document.getElementById('user-avatar-bg');
 const gameoverContainer = document.getElementById('gameover-container-bg');
 const currentPositionGroup = document.getElementById('current-position-group');
 const highscoreForm = document.getElementById("send-highscore-form");
@@ -28,6 +30,8 @@ const currentScoreText = document.getElementById("current-place-score");
 const currentSentenceText = document.getElementById("current-place-sentence");
 const currentPositionText = document.getElementById("current-position");
 
+const difficultyDropdown = document.getElementById("difficulty-dropdown");
+
 const loadingAnimationLeaderBoardRefresh =
     document.getElementById("loading-animation-leaderboard-refresh");
 const loadingAnimationLeaderBoardSend =
@@ -37,17 +41,22 @@ const loadingAnimationLeaderBoardSend =
 let isGameOverOn = false;
 
 // Test Case
-let user_id_test = 8;
+let user_id_test = 41;
 let difficulty_test = 'easy';
 let score_test = 3.23;
 let sentence_test = "ano ikaw tao ba";
 
 // Add event listener to the form submission
 highscoreForm.addEventListener("submit", submitHighscore);
+avatarButton.addEventListener('click', function ()
+{
+    event.preventDefault();
+    avatarsContainer.style.display = "flex";
+});
 
 refreshScoreButton.addEventListener('click', function ()
 {
-    event.preventDefault(); // Prevent default form  submission
+    event.preventDefault();
 
     refreshScoreButton.style.display = "none";
     loadingAnimationLeaderBoardRefresh.style.display = "inline-block";
@@ -55,7 +64,7 @@ refreshScoreButton.addEventListener('click', function ()
     const formData = new FormData(highscoreForm);
 
     formData.append('user_id', user_id_test);
-    formData.append('difficulty', difficulty_test);
+    formData.append('difficulty', difficultyDropdown.value);
 
     console.log("sending request");
 
@@ -130,7 +139,7 @@ function gameIsOver()
 
 function submitHighscore(event)
 {
-    event.preventDefault(); // Prevent default form  submission
+    event.preventDefault();
 
     sendScoreButton.style.display = "none";
     loadingAnimationLeaderBoardSend.style.display = "inline-block";
