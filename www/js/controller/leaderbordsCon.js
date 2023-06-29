@@ -3,9 +3,12 @@ const sendScoreButton = document.getElementById('send-highscore-button');
 const refreshScoreButton = document.getElementById('refresh-leaderboard-button');
 
 const gameoverContainer = document.getElementById('gameover-container-bg');
-const currentPositionGroup = document.getElementById('current-position-group');
 const highscoreForm = document.getElementById("send-highscore-form");
 const leaderboadCon = document.getElementById("leaderboard-container");
+const leaderboadGroup1 = document.getElementById("leaderboard-avatar-group-1");
+const leaderboadGroup2 = document.getElementById("leaderboard-avatar-group-2");
+const leaderboadGroup3 = document.getElementById("leaderboard-avatar-group-3");
+const leaderboadGroupCurrent = document.getElementById("leaderboard-avatar-group-current");
 
 const usernameText = document.getElementById("username-text");
 const difficultyText = document.getElementById("difficulty-text");
@@ -30,7 +33,7 @@ const thirdAvatar = document.getElementById("third-place-avatar");
 const currentUsernameText = document.getElementById("current-place-username");
 const currentScoreText = document.getElementById("current-place-score");
 const currentSentenceText = document.getElementById("current-place-sentence");
-const currentPositionText = document.getElementById("current-position");
+const currentPositionText = document.getElementById("current-place-position");
 const currentAvatar = document.getElementById("current-place-avatar");
 
 const difficultyDropdown = document.getElementById("difficulty-dropdown");
@@ -44,9 +47,8 @@ const loadingAnimationLeaderBoardSend =
 let isGameOverOn = false;
 
 // Test Case
-let user_id_test = 41;
 let difficulty_test = 'easy';
-let score_test = 3.23;
+let score_test = 5.34;
 let sentence_test = "ano ikaw tao ba";
 
 // Add event listener to the form submission
@@ -61,10 +63,9 @@ refreshScoreButton.addEventListener('click', function ()
 
     const formData = new FormData(highscoreForm);
 
-    formData.append('user_id', user_id_test);
+    formData.append('user_id', jsonUserData.user_id);
     formData.append('difficulty', difficultyDropdown.value);
 
-    let success = false;
     let dataLB = null;
 
     // Make a POST request with the form data
@@ -79,33 +80,45 @@ refreshScoreButton.addEventListener('click', function ()
 
             resetLeaderboards();
             leaderboadCon.style.display = "inline-block";
+            leaderboadGroup1.style.display = "none";
+            leaderboadGroup2.style.display = "none";
+            leaderboadGroup3.style.display = "none";
+            leaderboadGroupCurrent.style.display = "none";
 
             firstUsernameText.textContent = dataLB[0].username;
             firstScoreText.textContent = dataLB[0].score;
-            firstSentenceText.textContent = dataLB[0].sentence;
+            // firstSentenceText.textContent = dataLB[0].sentence;
             firstAvatar.setAttribute('src', "avatars/" + dataLB[0].avatar_id + ".png");
+            leaderboadGroup1.style.display = "block";
+
+            if (parseInt(dataLB[1].position) < 2) return;
 
             secondUsernameText.textContent = dataLB[1].username;
             secondScoreText.textContent = dataLB[1].score;
-            secondSentenceText.textContent = dataLB[1].sentence;
+            // secondSentenceText.textContent = dataLB[1].sentence;
             secondAvatar.setAttribute('src', "avatars/" + dataLB[1].avatar_id + ".png");
+            leaderboadGroup2.style.display = "block";
+
+            if (parseInt(dataLB[2].position) < 3) return;
 
             thirdUsernameText.textContent = dataLB[2].username;
             thirdScoreText.textContent = dataLB[2].score;
-            thirdSentenceText.textContent = dataLB[2].sentence;
+            // thirdSentenceText.textContent = dataLB[2].sentence;
             thirdAvatar.setAttribute('src', "avatars/" + dataLB[2].avatar_id + ".png");
+            leaderboadGroup3.style.display = "block";
 
-            currentPositionGroup.style.display = "none";
-
+            // If no 4th data
             if (dataLB[3] == null) return;
-            if (parseInt(dataLB[3].position) < 4) return;
-            currentPositionGroup.style.display = "flex";
 
-            currentPositionText.textContent = dataLB[3].position;
+            // If 4th data exist before 4th data
+            if (parseInt(dataLB[3].position) < 4) return;
+
+            currentPositionText.textContent = dataLB[3].position.toString() + 'th';
             currentUsernameText.textContent = dataLB[3].username;
             currentScoreText.textContent = dataLB[3].score;
-            currentSentenceText.textContent = dataLB[3].sentence;
+            // currentSentenceText.textContent = dataLB[3].sentence;
             currentAvatar.setAttribute('src', "avatars/" + dataLB[3].avatar_id + ".png");
+            leaderboadGroupCurrent.style.display = "flex";
 
         })
         .catch(error =>
@@ -125,20 +138,11 @@ gameoverButton.addEventListener('click', () =>
     if (isGameOverOn)
     {
         gameoverContainer.style.display = "flex";
-        gameIsOver();
     } else
     {
         gameoverContainer.style.display = "none";
     }
 });
-
-function gameIsOver()
-{
-    usernameText.textContent = user_id_test;
-    difficultyText.textContent = difficulty_test;
-    scoreText.textContent = score_test;
-    sentenceText.textContent = sentence_test;
-}
 
 
 function submitHighscore(event)
@@ -150,7 +154,7 @@ function submitHighscore(event)
 
     const formData = new FormData(highscoreForm);
 
-    formData.append('user_id', user_id_test);
+    formData.append('user_id', jsonUserData.user_id);
     formData.append('difficulty', difficulty_test);
     formData.append('score', score_test);
     formData.append('word', sentence_test);
@@ -182,14 +186,18 @@ function resetLeaderboards()
 {
     firstUsernameText.textContent = "";
     firstScoreText.textContent = "";
-    firstSentenceText.textContent = "";
-    firstAvatar.setAttribute('src', "avatars/1.png");
+    firstAvatar.setAttribute('src', "avatars/default.png");
 
     secondUsernameText.textContent = "";
     secondScoreText.textContent = "";
-    firstAvatar.setAttribute('src', "avatars/1.png");
+    firstAvatar.setAttribute('src', "avatars/default.png");
 
     thirdUsernameText.textContent = "";
     thirdScoreText.textContent = "";
-    firstAvatar.setAttribute('src', "avatars/1.png");
+    firstAvatar.setAttribute('src', "avatars/default.png");
+
+    currentUsernameText.textContent = "";
+    currentScoreText.textContent = "";
+    currentPositionText.textContent = "";
+    currentAvatar.setAttribute('src', "avatars/default.png");
 }
