@@ -4,46 +4,22 @@ const logger = document.getElementById("logger");
 const usernameInput = document.getElementById("username-input");
 const createAccBg = document.getElementById("create-account-bg");
 const continueButton = document.getElementById("continue-button");
-const loadingAnimationCreateAcc =
-    document.getElementById("loading-animation-createacc");
+const loadingAnimationCreateAcc = document.getElementById("loading-animation-createacc");
 const avatarButton = document.getElementById('avatar-button');
 const avatarsContainer = document.getElementById('user-avatar-bg');
 const userAvatar = document.getElementById('user-avatar');
 
-let userAvatarID = 1;
+let jsonUserData = {
+    user_id: '',
+    username: '',
+    avatar_id: '1'
+};
 
 // Add event listener to the form submission
 loginForm.addEventListener("submit", createAccount);
-window.addEventListener("load", checkUsername);
+window.addEventListener("load", checkStoredAccount);
 
-avatarButton.addEventListener('click', function ()
-{
-    event.preventDefault();
-    avatarsContainer.style.display = "flex";
-});
-
-function selectAvatar(element, avatar)
-{
-    userAvatarID = avatar;
-    userAvatar.setAttribute('src', "avatars/" + avatar + ".png");
-
-    // Remove the green background from all items
-    var items = document.getElementsByClassName("item");
-    for (var i = 0; i < items.length; i++)
-    {
-        items[i].style.backgroundColor = "";
-    }
-
-    // Add the green background to the selected item
-    var selectedItem = element.parentElement;
-    selectedItem.style.backgroundColor = "green";
-    setTimeout(function ()
-    {
-        avatarsContainer.style.display = "none";
-    }, 400);
-}
-
-// Define the createAccount function
+// Create account event function
 function createAccount(event)
 {
     event.preventDefault(); // Prevent default form submission
@@ -66,7 +42,7 @@ function createAccount(event)
 
     const formData = new FormData(loginForm);
 
-    formData.append('avatar_id', userAvatarID);
+    formData.append('avatar_id', jsonUserData.avatar_id);
 
     // Make a POST request with the form data
     fetch('https://itsasign.000webhostapp.com/API/createUser.php', {
@@ -76,12 +52,23 @@ function createAccount(event)
         .then(response => response.json())
         .then(data =>
         {
-            if (data == "user created") accessAuthorized(username);
-            // Handle the response data
-            logger.textContent = JSON.stringify(data);
-            // Store data in persistent data path
-            const fileData = JSON.stringify(data);
-            writeFileUsername(userAvatarID);
+            if (data == "user not created") 
+            {
+                logger.textContent =
+                    "User not created. Please try again.";
+            }
+            else if (data == "username has taken") 
+            {
+                logger.textContent =
+                    "Username has taken. Please try again.";
+            }
+            else
+            {
+                logger.textContent =
+                    "User created.";
+                storeUsernameData(data);
+            }
+
         })
         .catch(error =>
         {
@@ -97,103 +84,82 @@ function createAccount(event)
         });
 }
 
-function checkUsername()
+// Authorized access to start the game
+function accessAuthorized()
 {
-    window.webkitRequestFileSystem(
-        window.PERSISTENT,
-        5 * 1024 * 1024, // 5MB storage space (change as needed)
-        function (fileSystem)
-        {
-            fileSystem.root.getFile(
-                "1112.txt",
-                { create: false },
-                function (fileEntry)
-                {
-                    fileEntry.file(function (file)
-                    {
-                        const reader = new FileReader();
-                        reader.onloadend = function ()
-                        {
-                            console.log(
-                                "Stored Username: " + reader.result);
-                            accessAuthorized(reader.result);
-                        };
-                        reader.readAsText(file);
-                    });
-                },
-                function ()
-                {
-                    console.log("Data not found in persistent path");
-                    unAccessAuthorized();
-                }
-            );
-        },
-        function ()
-        {
-            console.log("Failed to access persistent path");
-        }
-    );
-}
-
-function writeFileUsername(fileData)
-{
-    window.webkitRequestFileSystem(
-        window.PERSISTENT,
-        5 * 1024 * 1024, // 5MB storage space (change as needed)
-        function (fileSystem)
-        {
-            fileSystem.root.getFile(
-                "1112.txt",
-                { create: true },
-                function (fileEntry)
-                {
-                    fileEntry.createWriter(
-                        function (fileWriter)
-                        {
-                            fileWriter.onwriteend = function ()
-                            {
-                                console.log(
-                                    "Data written to path: ", fileData);
-                            };
-                            fileWriter.onerror = function (e)
-                            {
-                                console.log(
-                                    "Failed to write data to path: " + e);
-                            };
-                            const blob = new Blob(
-                                [fileData], { type: "text/plain" });
-                            fileWriter.write(blob);
-                        },
-                        function ()
-                        {
-                            console.log("Failed to create file writer");
-                        }
-                    );
-                },
-                function ()
-                {
-                    console.log("Failed to access the username file");
-                }
-            );
-        },
-        function ()
-        {
-            console.log("Failed to access the path");
-        }
-    );
-}
-function accessAuthorized(_username)
-{
-    setUsernameInProfile(_username);
-    //Dont show modal
     createAccBg.style.display = "none";
 
-    //Initialize profile button
     profileButton.style.display = "flex";
-    profileButton.setAttribute('src', "avatars/" + userAvatarID + ".png");
+    profileButton.setAttribute('src', "avatars/" + jsonUserData.avatar_id + ".png");
 }
-function unAccessAuthorized()
+
+// Checks if the user has already created and store an account in the device
+function checkStoredAccount()
+{
+    // Reading the JSON file contents
+    readJSONFile()
+        .then(jsonData =>
+        {
+            console.log("Contents of JSON file:", jsonData);
+            jsonUserData = jsonData;
+            accessAuthorized();
+        })
+        .catch(error =>
+        {
+            console.log("Failed to read JSON file:", error);
+            createNewAccount();
+        });
+}
+
+// Creates new account by showing the form
+function createNewAccount()
 {
     //Show modal
     createAccBg.style.display = "flex";
 }
+
+// Stores the created account to the persistent data path
+function storeUsernameData(data)
+{
+    jsonUserData = data;
+    // Writing JSON data to file
+    writeJSONToFile(jsonUserData)
+        .then(success =>
+        {
+            console.log("Writing JSON data to file:", success);
+            checkStoredAccount();
+        })
+        .catch(error =>
+        {
+            console.log("Failed to write JSON data to file:", error);
+        });
+}
+
+// Avatar selection
+function selectAvatar(element, avatar)
+{
+    jsonUserData.avatar_id = avatar;
+    userAvatar.setAttribute('src', "avatars/" + avatar + ".png");
+
+    // Remove the green background from all items
+    var items = document.getElementsByClassName("item");
+    for (var i = 0; i < items.length; i++)
+    {
+        items[i].style.backgroundColor = "";
+    }
+
+    // Add the green background to the selected item
+    var selectedItem = element.parentElement;
+    selectedItem.style.backgroundColor = "green";
+    setTimeout(function ()
+    {
+        avatarsContainer.style.display = "none";
+    }, 400);
+}
+
+// User profile
+avatarButton.addEventListener('click', function ()
+{
+    event.preventDefault();
+    avatarsContainer.style.display = "flex";
+});
