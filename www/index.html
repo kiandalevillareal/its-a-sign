@@ -72,6 +72,11 @@
 				Settings
 			</button>
 		</div>
+
+		<!-- THIS IS A TEMPORARY BUTTON FOR PROFILE -->
+		<img src="avatars/1.png" id="profile-button" alt="">
+		<!-- THIS IS A TEMPORARY BUTTON FOR GAMEOVER -->
+		<button id="gameover-button">Toggle Game Over</button>
 	</div>
 
 	<!--DIFFICULTIES-->
@@ -371,35 +376,186 @@
 			</div>
 		</div>
 	</div>
-	<!-- create account modal -->
-	<div id="create-acc-bg">
-		<div id="create-acc-modal">
-			<div class="create-acc-modal-item">
+
+	<!-- Create account modal -->
+	<div id="create-account-bg">
+		<div id="create-account-modal">
+			<div class="item">
 				<h2>Create Account</h2>
 			</div>
-			<div class="create-acc-modal-item">
-				<label for="logger" id="logger"> </label>
+			<div class="item">
+				<div class="border">
+					<img src="avatars/1.png" id="user-avatar" alt="">
+				</div>
+				<button id="avatar-button" type="submit">Edit</button>
 			</div>
-			<div class="create-acc-modal-item">
+			<div class="item">
+				<label for="logger" id="logger"> Log</label>
+			</div>
+			<div class="item">
 				<form id="login-form">
-					<div class="create-acc-modal-item">
+					<div class="item">
 						<label for="username">Username: </label>
 						<input type="text" id="username-input" name="username" maxlength="16">
 					</div>
-					<div class="create-acc-modal-item">
+					<div class="item">
 						<button id="continue-button" type="submit">Continue</button>
-						<div id="loading-animation" class="loading-animation"></div>
+						<div id="loading-animation-createacc" class="loading-animation"></div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+
+	<div id="user-avatar-bg">
+		<div id="user-avatar-modal">
+			<div class="user-avatar-header">
+				<h2>Select Avatar</h2>
+			</div>
+			<div id="user-avatar-group">
+				<div class="item">
+					<img src="avatars/1.png" alt="" onclick="selectAvatar(this, 1)">
+				</div>
+				<div class="item">
+					<img src="avatars/2.png" alt="" onclick="selectAvatar(this, 2)">
+				</div>
+				<div class="item">
+					<img src="avatars/3.png" alt="" onclick="selectAvatar(this, 3)">
+				</div>
+				<div class="item">
+					<img src="avatars/4.png" alt="" onclick="selectAvatar(this, 4)">
+				</div>
+				<div class="item">
+					<img src="avatars/5.png" alt="" onclick="selectAvatar(this, 5)">
+				</div>
+				<div class="item">
+					<img src="avatars/6.png" alt="" onclick="selectAvatar(this, 6)">
+				</div>
+				<div class="item">
+					<img src="avatars/7.png" alt="" onclick="selectAvatar(this, 7)">
+				</div>
+				<div class="item">
+					<img src="avatars/8.png" alt="" onclick="selectAvatar(this, 8)">
+				</div>
+				<div class="item">
+					<img src="avatars/9.png" alt="" onclick="selectAvatar(this, 9)">
+				</div>
+				<div class="item">
+					<img src="avatars/10.png" alt="" onclick="selectAvatar(this, 10)">
+				</div>
+				<div class="item">
+					<img src="avatars/11.png" alt="" onclick="selectAvatar(this, 11)">
+				</div>
+				<div class="item">
+					<img src="avatars/12.png" alt="" onclick="selectAvatar(this, 12)">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- User Profile -->
+	<div id="profile-container-bg">
+		<div class="modal">
+			<div class="modal-item">
+				<h3>Username</h3>
+				<p id="username-profile">johndoe</p>
+			</div>
+			<div class="modal-item">
+				<h4>Highest Score</h4>
+				<p id="high-score-profile">5000</p>
+			</div>
+			<div class="modal-item">
+				<h4>Best Words</h4>
+				<p>Ano</p>
+				<p>Ano</p>
+				<p>Ano</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Game Over -->
+	<div id="gameover-container-bg">
+		<div class="modal">
+			<div class="modal-item">
+				<h3>Game Is Over</h3>
+			</div>
+
+			<!-- COLAPSE WHEN NOT IN 4TH ROUND -->
+			<div id="leaderboard-container" class="modal-item">
+				<div id="leaderboard-avatar-group-1">
+					<img id="first-place-crown" class="place-crown" src="avatars/crown.png" alt="">
+					<img id="first-place-avatar" class="place-avatar" src="avatars/1.png" alt="">
+					<p id="first-place-username" class="place-username">test</p>
+					<p id="first-place-score" class="place-score">12</p>
+					<p id="first-place-sentence" class="place-sentence"></p>
+				</div>
+				<div id="leaderboard-avatar-group-2">
+					<img id="second-place-crown" class="place-crown" src="avatars/crown2.png" alt="">
+					<img id="second-place-avatar" class="place-avatar" src="avatars/1.png" alt="">
+					<p id="second-place-username" class="place-username">test</p>
+					<p id="second-place-score" class="place-score">12</p>
+					<p id="second-place-sentence" class="place-sentence"></p>
+				</div>
+				<div id="leaderboard-avatar-group-3">
+					<img id="third-place-crown" class="place-crown" src="avatars/crown3.png" alt="">
+					<img id="third-place-avatar" class="place-avatar" src="avatars/1.png" alt="">
+					<p id="third-place-username" class="place-username">test</p>
+					<p id="third-place-score" class="place-score">12</p>
+					<p id="third-place-sentence" class="place-sentence"></p>
+				</div>
+				<div id="leaderboard-avatar-group-current">
+					<img id="current-place-avatar" class="item flex-in" src="avatars/1.png" alt="">
+					<div class="item flex-in">
+						<p id="current-place-position" class="">12</p>
+					</div>
+					<div class="item flex-1">
+						<p id="current-place-username" class="">test</p>
+					</div>
+					<div class="item flex-in">
+						<p id="current-place-score" class="">12</p>
+					</div>
+					<!-- <p id="current-place-sentence" class=""></p> -->
+				</div>
+			</div>
+
+			<div class="leaderboard-group-row mt20">
+				<div class="">
+					<button id="refresh-leaderboard-button" class="">Show Leaderboards</button>
+					<div id="loading-animation-leaderboard-refresh" class="loading-animation"></div>
+				</div>
+				<div class="">
+					<select id="difficulty-dropdown">
+						<option value="easy">Easy</option>
+						<option value="intermediate">Intermediate</option>
+						<option value="hard">Hard</option>
+					</select>
+				</div>
+			</div>
+			<div class="leaderboard-group-row">
+				<h2>Your Score: </h2>
+			</div>
+			<div class="leaderboard-group-row">
+				<form id="send-highscore-form" action="POST">
+					<button id="send-highscore-button" type="submit">Send Score</button>
+					<div id="loading-animation-leaderboard-send" class="loading-animation"></div>
+				</form>
+				<button id="play-again-button">Play Again</button>
+				<button id="home-button">Home</button>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
 	<!-- CORDOVA -->
 	<script src="cordova.js"></script>
 
 	<!-- CUSTOM JS -->
 	<script src="js/index.js"></script>
 	<script src="js/controller/loginCon.js"></script>
+	<script src="js/controller/leaderbordsCon.js"></script>
+	<script src="js/utilities/fileManager.js"></script>
+	<script src="js/view/profileView.js"></script>
 </body>
 
 </html>
