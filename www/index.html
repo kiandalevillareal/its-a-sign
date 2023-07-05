@@ -98,12 +98,12 @@
 	</div>
 
 	<!-- INSTRUCTION -->
-    <div id="instruction-main-container">
+	<div id="instruction-main-container">
 		<div class="instruction-container active">
 			<div class="instruction">
 				<div class="instruction-header">Choose Your Level of Difficulty</div>
 				<div class="image-container">
-				<img src="../www/img/1.png" alt="" />
+					<img src="../www/img/1.png" alt="" />
 				</div>
 				<div class="instruction-content">
 					<p><span>Easy: </span>Guess the phrase by flipping 2 cards</p>
@@ -129,7 +129,7 @@
 					</p>
 				</div>
 				<div class="image-container">
-				<img src="../www/img/2.png" alt="" />
+					<img src="../www/img/2.png" alt="" />
 				</div>
 			</div>
 			<div class="buttons-container">
@@ -150,7 +150,7 @@
 					</p>
 				</div>
 				<div class="image-container">
-				<img src="../www/img/3.png" alt="" />
+					<img src="../www/img/3.png" alt="" />
 				</div>
 			</div>
 			<div class="buttons-container">
@@ -183,8 +183,8 @@
 				<div class="instruction-header">Earn Stars</div>
 				<div class="instruction-content">
 					<p>
-					After each completed round, you will earn stars based on the
-					difficulty level:
+						After each completed round, you will earn stars based on the
+						difficulty level:
 					</p>
 					<p><span>Easy: </span>1 star</p>
 					<p><span>Intermediate: </span>2 stars</p>
@@ -208,7 +208,7 @@
 						You can use the stars you've earned to buy power-ups that can
 						assist you during the game:
 					</p>
-		
+
 					<div class="image-container">
 						<img src="../www/img/6.png" alt="" />
 					</div>
@@ -261,11 +261,11 @@
 					Send Your Score to the Leaderboards
 				</div>
 				<div class="instruction-content">
-				<p>
-					After finishing a difficulty level, you can check your score and
-					submit it to the leaderboards. See how you stack up against other
-					players!
-				</p>
+					<p>
+						After finishing a difficulty level, you can check your score and
+						submit it to the leaderboards. See how you stack up against other
+						players!
+					</p>
 				</div>
 			</div>
 			<div class="buttons-container">
@@ -273,7 +273,7 @@
 				<button class="next-button">NEXT</button>
 			</div>
 		</div>
-	</div>  
+	</div>
 
 	<!-- EASY DIFFICULTY -->
 	<div class="container easy-container" id="easy-container">
@@ -300,7 +300,7 @@
 
 		<!-- CARDS -->
 		<div class="card-container" id="easy-card-container">
-			
+
 		</div>
 
 		<!-- POWERUP BUTTONS -->
@@ -351,7 +351,7 @@
 
 		<!-- CARDS -->
 		<div class="card-container" id="intermediate-card-container">
-			
+
 		</div>
 
 		<!-- POWERUP BUTTONS -->
@@ -402,7 +402,7 @@
 
 		<!-- CARDS -->
 		<div class="card-container" id="hard-card-container">
-			
+
 		</div>
 
 		<!-- POWERUP BUTTONS -->
@@ -524,15 +524,16 @@
 		</div>
 	</div>
 
+
 	<!-- Game Over -->
 	<div id="gameover-container-bg">
 		<div class="modal">
-			<div class="modal-item">
+			<div id="leaderboard-title-1">
 				<h3>Game Is Over</h3>
 			</div>
 
 			<!-- COLAPSE WHEN NOT IN 4TH ROUND -->
-			<div id="leaderboard-container" class="modal-item">
+			<div id="leaderboard-container">
 				<div id="leaderboard-avatar-group-1">
 					<img id="first-place-crown" class="place-crown" src="avatars/crown.png" alt="">
 					<img id="first-place-avatar" class="place-avatar" src="avatars/1.png" alt="">
@@ -569,7 +570,7 @@
 				</div>
 			</div>
 
-			<div class="leaderboard-group-row mt20">
+			<div class="leaderboard-group-row">
 				<div class="">
 					<button id="refresh-leaderboard-button" class="">Show Leaderboards</button>
 					<div id="loading-animation-leaderboard-refresh" class="loading-animation"></div>
@@ -590,8 +591,12 @@
 					<button id="send-highscore-button" type="submit">Send Score</button>
 					<div id="loading-animation-leaderboard-send" class="loading-animation"></div>
 				</form>
-				<button id="play-again-button">Play Again</button>
-				<button id="home-button">Home</button>
+				<div>
+					<button id="play-again-button">Play Again</button>
+				</div>
+				<div>
+					<button id="home-button">Home</button>
+				</div>
 			</div>
 		</div>
 	</div>
