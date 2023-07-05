@@ -405,16 +405,38 @@ h1 {
 
 /***************** WORD TO GUESS *****************/
 .phrase {
-	margin-top: 9rem;
+	margin-top: 10rem;
+	width: 20rem;
+	height: 5rem;
+	padding: 0 0.2rem;
+	/* border: 1px solid var(--secondary-color); */
 	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.phrase .words {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
 }
 
 .phrase h3 {
-	font-size: 1.8rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	font-size: 1.5rem;
 	font-weight: bold;
-	font-family: "Cubao", sans-serif;
+	font-family: "Raleway", sans-serif;
 	color: var(--secondary-color);
 	letter-spacing: 0.1rem;
+	flex: 0 0 auto;
+	margin: 0;
 }
 
 /***************** CARDS *****************/
@@ -460,7 +482,7 @@ h1 {
 	transition: transform 0.6s;
 }
 
-.flip-card:hover .flip-card-inner {
+.flip-card.flipped .flip-card-inner {
 	transform: rotateY(180deg);
 }
 
