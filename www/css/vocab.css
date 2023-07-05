@@ -1,0 +1,839 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/* Imports Raleway font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+
+/* Imports Cubao Font from 'www/font/Cubao.otf' in codebase */
+@font-face {
+    font-family: "Cubao";
+    src: url("../font/Cubao.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,
+            0,
+            0,
+            0);
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    --body-color: #e4e4e4;
+    --custom-white: #fff;
+    --primary-color: #32a6e8;
+    --shade-of-orange: #FF803A;
+    --secondary-color: #ff5f11;
+    --shade-of-blue: #056bb1;
+    /*border: 1px solid red;*/
+}
+
+body {
+    -webkit-touch-callout: none;
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;
+    /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+    /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: var(--body-color);
+    font-family: system-ui, -apple-system, -apple-system-font, "Raleway",
+        "Segoe UI", "Roboto", sans-serif;
+    font-size: 12px;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    /* Padding to avoid the "unsafe" areas behind notches in the screen */
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    width: 100%;
+}
+
+/* Portrait layout (default) */
+
+.app {
+    font-family: "Raleway", sans-serif;
+    background: url(../img/appLogo.png) no-repeat center top / 170px 200px;
+    /* 170px x 200px */
+    position: absolute;
+    /* position in the center of the screen */
+    left: 50%;
+    top: 50%;
+    height: 50px;
+    /* text area height */
+    width: 225px;
+    /* text area width */
+    text-align: center;
+    padding: 180px 0px 0px 0px;
+    /* image height is 200px (bottom 20px are overlapped with text) */
+    margin: -115px 0px 0px -112px;
+    /* offset vertical: half of image height and text area height */
+    /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width: 400px) {
+    .app {
+        background-position: left center;
+        padding: 75px 0px 75px 170px;
+        /* padding-top + padding-bottom + text area = image height */
+        margin: -90px 0px 0px -198px;
+        /* offset vertical: half of image height */
+        /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0px;
+    overflow: visible;
+    padding: 0px;
+    text-align: center;
+}
+
+.event {
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 12px;
+    margin: 0px 30px;
+    padding: 2px 0px;
+}
+
+.event.listening {
+    background-color: var(--primary-color);
+    display: block;
+}
+
+.event.received {
+    background-color: var(--secondary-color);
+    display: none;
+}
+
+#deviceready.ready .event.listening {
+    display: none;
+}
+
+#deviceready.ready .event.received {
+    display: block;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.blink {
+    animation: fade 3000ms infinite;
+    -webkit-animation: fade 3000ms infinite;
+}
+
+/***************** VOCABULARY *****************/
+
+.vocabulary-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Raleway", sans-serif;
+    margin: 5rem;
+}
+
+.word-container {
+    margin: 0;
+    background: var(--custom-white);
+    height: 100%;
+    width: 100%;
+    border-radius: 1.25rem;
+}
+
+.vocab-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    margin-top: 2rem;
+}
+
+.home-button,
+.list-button {
+    display: flex;
+    align-items: center;
+    color: var(--shade-of-blue);
+}
+
+.home-button {
+    margin-left: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.list-button {
+    margin-right: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-family: "Cubao", sans-serif;
+    letter-spacing: .1rem;
+    color: var(--secondary-color);
+    font-size: 2rem;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 30rem;
+    height: 2.5rem;
+    background-color: var(--secondary-color);
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 62%;
+    border: .5rem solid var(--secondary-color);
+    background-color: var(--shade-of-orange);
+    transition: transform 0.3s ease-in-out;
+    border-radius: 1.5rem;
+}
+
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch input[type="checkbox"]:checked+.toggle-slider {
+    transform: translateX(87%);
+    color: var(--body-color);
+}
+
+.toggle-label-left,
+.toggle-label-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--body-color);
+    white-space: nowrap;
+    text-align: center;
+    font-family: "Cubao", sans-serif;
+    letter-spacing: .1rem;
+}
+
+.toggle-label-left {
+    left: 0.5rem;
+    right: 50%;
+}
+
+.toggle-label-right {
+    left: 50%;
+    right: 0.5rem;
+}
+
+/*One-hand signs container */
+.one-hand-container,
+.two-hand-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    position: relative;
+    height: 25rem;
+}
+
+.word, .word1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    height: 20rem;
+    padding: 1rem;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.word-content {
+    display: flex;
+    border: none;
+}
+
+.definition-container {
+    flex: 2;
+    padding: 1rem;
+    background-color: var(--shade-of-blue);
+    border-radius: 1rem 0 0 1rem;
+}
+
+.definition-container h4 {
+    font-size: 2rem;
+    margin-left: 1rem;
+    line-height: 2rem;
+}
+
+.definition{
+    height: 3.6rem;
+    width: 100%;
+}
+
+.definition-container p {
+    margin-left: 1rem;
+    font-size: 1rem;
+    margin-top: -1rem;
+}
+.reminder {
+    margin-top: 2.7rem;
+    margin-left: 1rem;
+    border-radius: .5rem;
+    background-color: var(--primary-color);
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reminder p {
+    font-size: .8rem;
+    margin: 0;
+}
+
+.video-container {
+    flex: 1;
+    padding: 1rem;
+    background-color: var(--shade-of-blue);
+    border-radius: 0 1rem 1rem 0;
+    display: flex;
+    justify-content: center;
+    /* Center the content horizontally */
+    align-items: center;
+    /* Center the content vertically */
+}
+
+.video-container img {
+    border-radius: 0.8rem;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    margin-top: 0;
+    /* Remove the negative margin-top */
+}
+
+.previous-button,
+.next-button {
+    margin: 0 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-family: "Cubao", sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 10rem;
+    letter-spacing: .1rem;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+}
+.previous-button:hover,
+.next-button:hover {
+    background-color: var(--shade-of-orange);
+}
+
+
+
+/* Media queries for tablet and phone devices */
+@media (max-width: 1024px) {
+    .vocabulary-container {
+        margin: 0rem;
+        height: 100vh;
+    }
+
+    .word-container{
+        border-radius: 1rem;
+        height: auto;
+    }
+
+    .vocab-header{
+        margin-top: 3rem;
+    }
+
+    .home-button{
+        margin-left: 3rem;
+    }
+
+    .list-button{
+        margin-right: 3rem;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .toggle-switch {
+        width: 30rem;
+        margin-top: 2rem;
+    }
+
+    .one-hand-container, .two-hand-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .word, .word1{
+        height: auto;
+    }
+
+    .word-content {
+        flex-direction: column-reverse;
+    }
+    
+    .definition-container {
+        border-radius: 1rem;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .definition {
+        height: 5rem;
+        width: 40rem;
+    }
+    .definition-container h4 {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .definition-container p {
+        font-size: 0.8rem;
+    }
+
+    .reminder {
+        margin-top: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .reminder p {
+        font-size: 0.7rem;
+    }
+
+    .video-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+    }
+
+    .video-container img {
+        width: 100%;
+        height: 100%;
+        border-radius: .8rem;
+        border: .5rem solid var(--primary-color);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+        margin-top: 3rem;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 844px) {
+    .vocabulary-container {
+        margin: 0rem;
+        height: 100vh;
+    }
+
+    .word-container {
+        border-radius: 1rem;
+        height: auto;
+    }
+
+    .vocab-header {
+        margin-top: 3rem;
+    }
+
+    .home-button {
+        margin-left: 3rem;
+    }
+
+    .list-button {
+        margin-right: 3rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .toggle-switch {
+        width: 25rem;
+        margin-top: 2rem;
+    }
+
+    .one-hand-container,
+    .two-hand-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        /* background-color: var(--custom-white); */
+    }
+
+    .word,
+    .word1 {
+        height: auto;
+    }
+
+    .word-content {
+        flex-direction: column-reverse;
+    }
+
+    .definition-container {
+        border-radius: 1rem;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .definition {
+        height: 5rem;
+        width: 25rem;
+    }
+
+    .definition-container h4 {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .definition-container p {
+        font-size: 0.8rem;
+    }
+
+    .reminder {
+        margin-top: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .reminder p {
+        font-size: 0.7rem;
+    }
+
+    .video-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+    }
+
+    .video-container img {
+        width: 100%;
+        height: 100%;
+        border-radius: .8rem;
+        border: .5rem solid var(--primary-color);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+        margin-top: 3rem;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 700px) {
+    .vocabulary-container {
+        margin: 0rem;
+        height: 100vh;
+    }
+
+    .word-container {
+        border-radius: 1rem;
+        height: auto;
+    }
+
+    .vocab-header {
+        margin-top: 3rem;
+    }
+
+    .home-button {
+        margin-left: 3rem;
+    }
+
+    .list-button {
+        margin-right: 3rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .toggle-switch {
+        width: 25rem;
+        margin-top: 2rem;
+    }
+
+    .one-hand-container, .two-hand-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .word, .word1 {
+        height: auto;
+    }
+
+    .word-content {
+        flex-direction: column-reverse;
+    }
+
+    .definition-container {
+        border-radius: 1rem;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .definition {
+        height: 5rem;
+        width: 25rem;
+    }
+
+    .definition-container h4 {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .definition-container p {
+        font-size: 0.8rem;
+    }
+
+    .reminder {
+        margin-top: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .reminder p {
+        font-size: 0.7rem;
+    }
+
+    .video-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+    }
+
+    .video-container img {
+        width: 100%;
+        height: 100%;
+        border-radius: .8rem;
+        border: .5rem solid var(--primary-color);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+        margin-top: 3rem;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 390px) {
+    .vocabulary-container {
+        margin: 0rem;
+        height: 100vh;
+    }
+    
+    .vocab-header {
+        margin-top: 3rem;
+    }
+
+    .home-button {
+        margin-left: 1.5rem;
+    }
+
+    .list-button {
+        margin-right: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .toggle-switch {
+        width: 20rem;
+        margin-top: 1rem;
+    }
+
+    .toggle-label-left,
+    .toggle-label-right{
+        font-size: .8rem;
+    }
+
+        .toggle-switch input[type="checkbox"]:checked+.toggle-slider {
+            transform: translateX(82%);
+            color: var(--body-color);
+        }
+    .one-hand-container, .two-hand-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin-top: -1rem;
+    }
+
+    .word, .word1{
+        height: auto;
+    }
+
+    .word-content {
+        flex-direction: column-reverse;
+    }
+
+    .definition-container {
+        border-radius: 1rem;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+    }
+
+    .definition {
+        height: 5rem;
+        width: 16rem;
+    }
+
+    .definition-container h4 {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .definition-container p {
+        font-size: 0.8rem;
+    }
+
+    .reminder {
+        margin-top: 1rem;
+        margin-right: 1rem;
+    }
+
+    .reminder p {
+        font-size: 0.6rem;
+    }
+
+    .video-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+    }
+
+    .video-container img {
+        width: 100%;
+        height: 100%;
+        border-radius: .8rem;
+        border: .5rem solid var(--primary-color);
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+        margin-top: 6rem;
+        z-index: 1;
+        width: 88%;
+    }
+        @media (orientation: landscape) {
+            .vocabulary-container {
+                margin: 0;
+                height: 100vh;
+            }
+            
+            .word-container{
+                height: auto;
+            }
+            .vocab-header {
+                margin-top: 3rem;
+            }
+    
+            .home-button {
+                margin-left: 1.5rem;
+            }
+    
+            .list-button {
+                margin-right: 1.5rem;
+            }
+    
+            .title {
+                font-size: 1.5rem;
+            }
+    
+            .toggle-switch {
+                width: 20rem;
+                margin-top: 1rem;
+            }
+            .one-hand-container,
+            .two-hand-container {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                margin-top: -1rem;
+            }
+        }
+}
