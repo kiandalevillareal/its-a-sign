@@ -194,7 +194,7 @@ h1 {
 
 .play-button,
 .learn-button,
-.settings-button {
+.instruction-button {
 	display: block;
 	width: 15rem;
 	min-height: 3rem;
@@ -1042,4 +1042,105 @@ h1 {
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+/* INSTRUCTION HOW TO PLAY */
+/* 
+.howto-container.active {
+	display: block;
+}
+
+.howto-container {
+	display: none;
+}
+
+.howto-container{
+	margin: 2rem;
+} */
+
+#instruction-main-container{
+	display: none;
+}
+
+.instruction-container.active{
+	display: block;
+}
+
+.instruction-container{
+	margin: 2rem; /*top leftright bottom*/
+	display: none;
+}
+
+.instruction{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	width: 100%;
+}
+
+.instruction-header{
+	font-family: "Cubao", sans-serif;
+	font-size: 2.5rem;
+	color: var(--primary-color);
+	margin: 2rem 0 1rem;
+}
+
+.instruction-content{
+	font-family: "Raleway", sans-serif;
+	font-size: 1.1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
+}
+
+.instruction-content span{
+	font-weight: bold;
+}
+
+.image-container{
+	display: flex;
+	justify-content: center;
+	border: .2rem solid var(--secondary-color);
+	padding: .5rem;
+	border-radius: .75rem;
+	width: 30%;
+}
+
+.image-container img{
+	width: 100%;
+	height: auto;
+	border-radius: .75rem;
+}
+
+/* NEXT & PREVIOUS BUTTON */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	margin: 1.5rem 0;
+}
+
+.previous-button,
+.next-button {
+    font-size: 1rem;
+    background-color: var(--shade-of-blue);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-family: "Cubao", sans-serif;
+    letter-spacing: .1rem;
+}
+.next-button {
+    padding: 1rem 2.6rem;
+}
+.previous-button{
+    padding: 1rem 1.5rem;
+    margin-right: 1rem;
+}
+
+.previous-button:hover,
+.next-button:hover {
+    background-color: var(--secondary-color);
 }

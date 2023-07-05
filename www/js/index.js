@@ -37,6 +37,7 @@ const timerElement = document.getElementById('timerValue');
 // CONTAINERS
 const homeContainer = document.getElementById("home-container");
 const difficultiesContainer = document.getElementById("difficulties-container");
+const instructionContainer = document.getElementById("instruction-main-container");
 const easyContainer = document.getElementById('easy-container');
 const intermediateContainer = document.getElementById('intermediate-container');
 const hardContainer = document.getElementById('hard-container');
@@ -45,12 +46,13 @@ const hardContainer = document.getElementById('hard-container');
 // BUTTONS
 const playButton = document.getElementById("play-button");
 const backButton = document.querySelector('.back-button');
+const instructionButton = document.getElementById('instruction-button');
 const easyButton = document.getElementById('easy-button');
 const intermediateButton = document.getElementById('intermediate-button');
 const hardButton = document.getElementById('hard-button');
 
 
-// SHOWS DIFFICULTY SECTION, HIDES HOME SECTION
+//SHOWS DIFFICULTY SECTION, HIDES HOME SECTION
 playButton.addEventListener("click", function() {
   homeContainer.style.display = "none";
   difficultiesContainer.style.display = "flex";
@@ -63,6 +65,11 @@ backButton.addEventListener('click', () => {
   difficultiesContainer.style.display = 'none';
 });
 
+//SHOWS HOW TO SECTION, HIDES HOME SECTION
+instructionButton.addEventListener("click", function(){
+  instructionContainer.style.display = 'block';
+  homeContainer.style.display = 'none';
+});
 
 // SHOWS EASY CONTAINER, HIDES DIFFICULTY CONTAINER
 easyButton.addEventListener("click", function(){
@@ -114,3 +121,65 @@ function updateTimer(value) {
   
   timerElement.textContent = `${formattedMinutes}:${formattedSeconds}`;
 }
+
+// Get all the how-to step containers
+const instructionContainers = document.querySelectorAll('.instruction-container');
+const previousButtons = document.querySelectorAll('.previous-button');
+const nextButtons = document.querySelectorAll('.next-button');
+
+var currentStep = 0;
+
+// Function to show the current step
+function showStep(stepIndex) {
+  // Hide all the step containers
+  instructionContainers.forEach((container) => {
+    container.classList.remove('active');
+  });
+
+  // Show the current step container
+  instructionContainers[stepIndex].classList.add('active');
+
+  // Disable/enable previous and next buttons based on the current step
+  if (stepIndex === 0) {
+    previousButtons.forEach((button) => {
+      button.disabled = true;
+    });
+  } else {
+    previousButtons.forEach((button) => {
+      button.disabled = false;
+    });
+  }
+
+  if (stepIndex === instructionContainers.length - 1) {
+    nextButtons.forEach((button) => {
+      button.disabled = true;
+    });
+  } else {
+    nextButtons.forEach((button) => {
+      button.disabled = false;
+    });
+  }
+}
+
+// Show the initial step
+showStep(currentStep);
+
+// Event listeners for the previous buttons
+previousButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+});
+
+// Event listeners for the next buttons
+nextButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (currentStep < instructionContainers.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  });
+});
