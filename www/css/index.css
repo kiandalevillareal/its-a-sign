@@ -461,8 +461,8 @@ h1 {
 }
 
 .intermediate-container .flip-card {
-	width: 7.5rem;
-	height: 9rem;
+	width: 7rem;
+	height: 8.5rem;
 	perspective: 62rem;
 	margin: .5rem;
 }

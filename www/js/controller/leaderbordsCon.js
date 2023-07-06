@@ -36,6 +36,8 @@ const currentSentenceText = document.getElementById("current-place-sentence");
 const currentPositionText = document.getElementById("current-place-position");
 const currentAvatar = document.getElementById("current-place-avatar");
 
+const displayScore = document.getElementById("display-score");
+
 const difficultyDropdown = document.getElementById("difficulty-dropdown");
 
 const loadingAnimationLeaderBoardRefresh =
