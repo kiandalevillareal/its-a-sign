@@ -12,7 +12,8 @@ const userAvatar = document.getElementById('user-avatar');
 let jsonUserData = {
     user_id: '',
     username: '',
-    avatar_id: '1'
+    avatar_id: '1',
+    session_id: '1',
 };
 
 // Add event listener to the form submission

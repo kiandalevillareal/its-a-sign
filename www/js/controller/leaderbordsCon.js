@@ -144,7 +144,6 @@ gameoverButton.addEventListener('click', () =>
     }
 });
 
-
 function submitHighscore(event)
 {
     event.preventDefault();
