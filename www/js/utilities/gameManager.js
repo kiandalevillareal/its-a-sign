@@ -1,5 +1,6 @@
 function gameEndedComplete()
 {
+
     endSession();
 }
 function gameEndedIncomplete()

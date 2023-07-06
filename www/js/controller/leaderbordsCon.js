@@ -156,8 +156,8 @@ function submitHighscore(event)
     const formData = new FormData(highscoreForm);
 
     formData.append('user_id', jsonUserData.user_id);
-    formData.append('difficulty', difficulty_test);
-    formData.append('score', score_test);
+    formData.append('difficulty', difficulty);
+    formData.append('score', timeLeft);
     formData.append('word', sentence_test);
 
     // Make a POST request with the form data
