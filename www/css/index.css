@@ -188,8 +188,17 @@ h1 {
 	margin-bottom: 7.8rem;
 }
 
-.buttons button i {
-	margin-right: 1rem;
+.buttons button{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	padding: 0 1.5rem;
+}
+
+.buttons i{
+	margin-right: 1.5rem;
+	width: 20px;
+	height: 20px;
 }
 
 .play-button,
@@ -205,6 +214,10 @@ h1 {
 	font-size: 1.5rem;
 	background-color: var(--shade-of-blue);
 	border-radius: 0.5rem;
+}
+
+a{
+	text-decoration: none;
 }
 
 /***--- Difficulty modal----***/
@@ -809,21 +822,27 @@ h1 {
 	margin: 2rem;
 } */
 
-#instruction-main-container {
+#instruction-main-container{
 	display: none;
 }
 
-.instruction-container.active {
-	display: block;
+.instruction-container.active{
+	display: flex;
+	flex-direction: column;
 }
 
-.instruction-container {
-	margin: 2rem;
-	/*top leftright bottom*/
+.instruction-container{
+	margin: 2rem; /*top leftright bottom*/
 	display: none;
 }
 
-.instruction {
+.home-button{
+	font-size: 1.5rem;
+	color: var(--shade-of-blue);
+	cursor: pointer;
+}
+
+.instruction{
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -831,72 +850,78 @@ h1 {
 	width: 100%;
 }
 
-.instruction-header {
+.instruction-header{
 	font-family: "Cubao", sans-serif;
-	font-size: 2.5rem;
+	font-size: 2rem;
 	color: var(--primary-color);
-	margin: 2rem 0 1rem;
+	margin: 1rem -1rem 0rem;
 }
 
-.instruction-content {
+.instruction-content{
 	font-family: "Raleway", sans-serif;
 	font-size: 1.1rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 }
 
-.instruction-content span {
+.instruction-content span{
 	font-weight: bold;
 }
 
-.image-container {
+.image-container{
 	display: flex;
 	justify-content: center;
+}
+
+.image-container img{
 	border: .2rem solid var(--secondary-color);
 	padding: .5rem;
 	border-radius: .75rem;
-	width: 30%;
-}
-
-.image-container img {
 	width: 100%;
 	height: auto;
-	border-radius: .75rem;
+}
+
+.image-container > .img-big{
+	height: 30rem;
 }
 
 /* NEXT & PREVIOUS BUTTON */
 .buttons-container {
+	position: fixed;
+	bottom: -2%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 1.5rem 0;
+	justify-content: space-between;
+  	width: 250px; /* Adjust the width as needed */
+	margin: 2rem auto;
 }
 
 .previous-button,
 .next-button {
-	font-size: 1rem;
-	background-color: var(--shade-of-blue);
-	border: none;
-	border-radius: 0.25rem;
-	cursor: pointer;
-	font-family: "Cubao", sans-serif;
-	letter-spacing: .1rem;
+    font-size: 1rem;
+    background-color: var(--shade-of-blue);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-family: "Cubao", sans-serif;
+    letter-spacing: .1rem;
 }
-
 .next-button {
-	padding: 1rem 2.6rem;
+    padding: 1rem 2.6rem;
 }
-
-.previous-button {
-	padding: 1rem 1.5rem;
-	margin-right: 1rem;
+.previous-button{
+    padding: 1rem 1.5rem;
+    margin-right: 1rem;
 }
 
 .previous-button:hover,
 .next-button:hover {
-	background-color: var(--secondary-color);
+    background-color: var(--secondary-color);
+}
+
+@media (max-width: 1400px) {
+	.image-container > .img-big{
+		height: 22rem;
+	}
 }
 
 /* #endregion INSTRUCTION HOW TO PLAY */

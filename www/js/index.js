@@ -1218,3 +1218,12 @@ nextButtons.forEach((button) => {
 		}
 	});
 });
+
+const homeButtons = document.querySelectorAll('.home-button');
+
+homeButtons.forEach(function(homeButton) {
+  homeButton.addEventListener("click", function() {
+    instructionContainer.style.display = 'none';
+    homeContainer.style.display = 'flex';
+  });
+});
