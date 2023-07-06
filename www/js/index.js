@@ -72,6 +72,7 @@ let totalGameTime = 0;
 let roundTime = 0;
 let roundTimes = []; // Array to store round information
 let timerInterval;
+let difficulty;
 
 //SHOWS DIFFICULTY SECTION, HIDES HOME SECTION
 playButton.addEventListener("click", function () {
@@ -93,6 +94,7 @@ instructionButton.addEventListener("click", function () {
 
 // SHOWS EASY CONTAINER, HIDES DIFFICULTY CONTAINER
 easyButton.addEventListener("click", function () {
+	difficulty = "easy";
 	isEasyClicked = true;
 	easyContainer.style.display = "flex";
 	difficultiesContainer.style.display = "none";
@@ -104,6 +106,7 @@ easyButton.addEventListener("click", function () {
 
 // SHOWS INTERMEDIATE CONTAINER, HIDES DIFFICULTY CONTAINER
 intermediateButton.addEventListener("click", function () {
+	difficulty = "intermediate";
 	isIntermediateClicked = true;
 	intermediateContainer.style.display = "flex";
 	difficultiesContainer.style.display = "none";
@@ -115,6 +118,7 @@ intermediateButton.addEventListener("click", function () {
 
 // SHOWS HARD CONTAINER, HIDES DIFFICULTY CONTAINER
 hardButton.addEventListener("click", function () {
+	difficulty = "hard";
 	isHardClicked = true;
 	hardContainer.style.display = "flex";
 	difficultiesContainer.style.display = "none";
@@ -180,8 +184,6 @@ function updateRound(value) {
 	round = value;
 
 	roundContainer.forEach(function (roundContainerElement) {
-		console.log(roundContainerElement);
-		
 		var fadeDuration = 1000; // Duration of each fade in milliseconds
 
 		function fadeIn() {
