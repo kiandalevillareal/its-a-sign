@@ -158,7 +158,8 @@ h1 {
     justify-content: space-between;
     align-items: center;
     font-family: "Raleway", sans-serif;
-    margin: 5rem;
+    margin: 2.5rem;
+    position: relative;
 }
 
 .word-container {
@@ -167,6 +168,7 @@ h1 {
     height: 100%;
     width: 100%;
     border-radius: 1.25rem;
+    position: relative;
 }
 
 .vocab-header {
@@ -193,15 +195,80 @@ h1 {
 .list-button {
     margin-right: 1.5rem;
     font-size: 1.5rem;
+    z-index: 10;
+}
+
+.list-button:hover,
+.home-button:hover {
+    color: var(--secondary-color);
 }
 
 .title {
     text-align: center;
     font-weight: bold;
     font-family: "Cubao", sans-serif;
-    letter-spacing: .1rem;
+    letter-spacing: 0.1rem;
     color: var(--secondary-color);
     font-size: 2rem;
+}
+
+.list-section,
+.list-section1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    bottom: 0;
+        /* Change from `height: 100%` to `bottom: 0` */
+    /* Adjust the width as needed */
+    height: 100%;
+    background-color: var(--primary-color);
+    display: none;
+    /* Add any other styling for the list section */
+    z-index: 2;
+    border-radius: .25rem 1.25rem 1.25rem .25rem;
+    justify-content: space-between;
+}
+
+.list-section1{
+    overflow-y: auto;
+}
+
+.list-section1::-webkit-scrollbar {
+    display: none;
+    /* Hide the scrollbar */
+}
+.list-section h4,
+.list-section1 h4{
+    font-size: 1rem;
+}
+.list-section ul, .list-section1 ul {
+    margin-top: 1.2rem;
+    margin-left: 2rem;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.list-section li,
+.list-section1 li{
+    font-size: 1rem;
+}
+
+.list-section li:focus,
+.list-section1 li:focus {
+    color: var(--shade-of-blue);
+    /* Add any other styling for the selected list item */
+}
+
+.list-section ul .selected,
+.list-section1 ul .selected {
+    color: var(--shade-of-blue);
+    font-weight: bolder;
 }
 
 .toggle-container {
@@ -487,7 +554,7 @@ h1 {
 }
 
 @media (max-width: 844px) {
-    .vocabulary-container {
+    /* .vocabulary-container {
         margin: 0rem;
         height: 100vh;
     }
@@ -495,7 +562,7 @@ h1 {
     .word-container {
         border-radius: 1rem;
         height: auto;
-    }
+    } */
 
     .vocab-header {
         margin-top: 3rem;
@@ -513,6 +580,78 @@ h1 {
         font-size: 1.5rem;
     }
 
+        .vocabulary-container {
+            margin: 0;
+            height: 100vh;
+            overflow: scroll;
+        }
+    
+        .word-container {
+            height: auto;
+        }
+    
+        .vocab-header {
+            margin-top: 3rem;
+        }
+    
+        .home-button {
+            margin-left: 1.5rem;
+        }
+    
+        .list-button {
+            margin-right: 1.5rem;
+        }
+    
+        .title {
+            font-size: 1.5rem;
+        }
+    
+        .toggle-switch {
+            width: 20rem;
+            margin-top: 1rem;
+        }
+    
+        .one-hand-container,
+        .two-hand-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: -1rem;
+        }
+    
+        .list-section,
+        .list-section1 {
+            border-radius: .25rem 0 0 .25rem;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            /* Adjust the width as needed */
+            background-color: var(--primary-color);
+            display: none;
+            z-index: 2;
+            overflow-y: auto;
+        }
+    
+        .list-section h4,
+        .list-section1 h4 {
+            font-size: 1.2rem;
+        }
+    
+        .list-section ul,
+        .list-section1 ul {
+            margin-top: 1.5rem;
+            margin-left: 2rem;
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 1rem;
+            font-weight: 400;
+            height: calc(100% - 2.2rem);
+        }
     .toggle-switch {
         width: 25rem;
         margin-top: 2rem;
@@ -699,6 +838,9 @@ h1 {
         height: 100vh;
     }
     
+    .word-container{
+        height: 100%;
+    }
     .vocab-header {
         margin-top: 3rem;
     }
@@ -710,6 +852,29 @@ h1 {
     .list-button {
         margin-right: 1.5rem;
     }
+
+    .list-section, .list-section1{
+        border-radius: .25rem 0 0 .25rem;
+    }
+
+        .list-section h4,
+        .list-section1 h4{
+            font-size: 1.5rem;
+        }
+
+        .list-section ul,
+        .list-section1 ul {
+            margin-top: 1rem;
+            margin-left: 2rem;
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 1rem;
+            font-weight: 400;
+            width: 80%;
+        }
 
     .title {
         font-size: 1.5rem;
@@ -790,6 +955,10 @@ h1 {
         border-radius: .8rem;
         border: .5rem solid var(--primary-color);
     }
+    .list-button:hover{
+        color: var(--shade-of-blue);
+    }
+
 
     .button-container {
         display: flex;
@@ -799,41 +968,78 @@ h1 {
         z-index: 1;
         width: 88%;
     }
-        @media (orientation: landscape) {
-            .vocabulary-container {
-                margin: 0;
-                height: 100vh;
-            }
-            
-            .word-container{
-                height: auto;
-            }
-            .vocab-header {
-                margin-top: 3rem;
-            }
-    
-            .home-button {
-                margin-left: 1.5rem;
-            }
-    
-            .list-button {
-                margin-right: 1.5rem;
-            }
-    
-            .title {
-                font-size: 1.5rem;
-            }
-    
-            .toggle-switch {
-                width: 20rem;
-                margin-top: 1rem;
-            }
-            .one-hand-container,
-            .two-hand-container {
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                margin-top: -1rem;
-            }
-        }
+                                @media (orientation: landscape) {
+                                    .vocabulary-container {
+                                        margin: 0;
+                                        height: 100vh;
+                                        overflow: scroll;
+                                    }
+                
+                                    .word-container {
+                                        height: auto;
+                                    }
+                
+                                    .vocab-header {
+                                        margin-top: 3rem;
+                                    }
+                
+                                    .home-button {
+                                        margin-left: 1.5rem;
+                                    }
+                
+                                    .list-button {
+                                        margin-right: 1.5rem;
+                                    }
+                
+                                    .title {
+                                        font-size: 1.5rem;
+                                    }
+                
+                                    .toggle-switch {
+                                        width: 20rem;
+                                        margin-top: 1rem;
+                                    }
+                
+                                    .one-hand-container,
+                                    .two-hand-container {
+                                        height: 100%;
+                                        display: flex;
+                                        flex-direction: column;
+                                        margin-top: -1rem;
+                                    }
+                
+                                    .list-section,
+                                    .list-section1 {
+                                        border-radius: .25rem 0 0 .25rem;
+                                        height: 100%;
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        width: 300px;
+                                        /* Adjust the width as needed */
+                                        background-color: var(--primary-color);
+                                        display: none;
+                                        z-index: 2;
+                                        overflow-y: auto;
+                                    }
+                
+                                    .list-section h4,
+                                    .list-section1 h4 {
+                                        font-size: 1.5rem;
+                                    }
+                
+                                    .list-section ul,
+                                    .list-section1 ul {
+                                        margin-top: 2rem;
+                                        margin-left: 2rem;
+                                        list-style: none;
+                                        padding: 0;
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: .6rem;
+                                        font-size: .8rem;
+                                        font-weight: 400;
+                                        height: calc(100% - 2.2rem);
+                                    }
+                                }
 }

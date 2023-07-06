@@ -44,16 +44,64 @@
     <div class="vocabulary-container">
         <div class="word-container">
             <div class="vocab-header">
-                <div class="home-button">
-                    <i class="fa-solid fa-house"></i>
-                </div>
+                <a href="index.html">
+                    <div class="home-button">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                </a>
+
                 <div class="title">
                     FSL Vocabulary
                 </div>
-                <div class="list-button">
+                <div class="list-button" onclick="toggleList()">
                     <i class="fas fa-list"></i>
                 </div>
             </div>
+
+            <div class="list-section" style="display: none;">
+                <ul>
+                    <h4>One-hand Signs</h4>
+                    <li id="ako" class="selected">Ako</li>
+                    <li id="almusal">Almusal</li>
+                    <li id="bukas">Bukas</li>
+                    <li id="emergency">Emergency</li>
+                    <li id="hapunan">Hapunan</li>
+                    <li id="hello">Hello</li>
+                    <li id="ikaw">Ikaw</li>
+                    <li id="inom">Inom</li>
+                    <li id="lola">Lola</li>
+                    <li id="lolo">Lolo</li>
+                    <li id="naiintindihan">Naiintindihan</li>
+                    <li id="pakiusap">Pakiusap</li>
+                    <li id="patawad">Patawad</li>
+                    <li id="welcome">Welcome</li>
+                </ul>
+            </div>
+
+            <div class="list-section1" style="display: none;">
+                <ul>
+                    <h4>Two-hand Signs</h4>
+                    <li id="bahay" class="selected">Bahay</li>
+                    <li id="excuseme">Excuse me</li>
+                    <li id="gamot">Gamot</li>
+                    <li id="kumusta">Kumusta</li>
+                    <li id="magandanggabi">Magandang gabi</li>
+                    <li id="magandanghapon">Magandang hapon</li>
+                    <li id="magandangtanghali">Magandang tanghali</li>
+                    <li id="magandangumaga">Magandang umaga</li>
+                    <li id="mamaya">Mamaya</li>
+                    <li id="natutuhan">Natutuhan</li>
+                    <li id="ngayongaraw">Ngayong araw</li>
+                    <li id="oras">Oras</li>
+                    <li id="paaralan">Paaralan</li>
+                    <li id="pangalan">Pangalan</li>
+                    <li id="salamat">Salamat</li>
+                    <li id="signlanguage">Sign language</li>
+                    <li id="trabaho">Trabaho</li>
+                    <li id="tulong">Tulong</li>
+                </ul>
+            </div>
+
             <div class="toggle-container">
                 <label class="toggle-switch">
                     <input type="checkbox" id="toggle" onchange="handleToggle()">
@@ -766,7 +814,8 @@
                             <div class="reminder">
                                 <p>
                                     <i class="fa-solid fa-circle-exclamation"></i> 
-                                    gamit, pera, o serbisyo na ibinibigay sa nangangailangan
+                                    Ang pangungusap
+                                    ng mga bingi/pipi ay barok o walang tamang gramtika
                                 </p>
                             </div>
                         </div>

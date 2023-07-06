@@ -6,6 +6,8 @@ function handleToggle() {
   const toggleLabelRight = document.querySelector(".toggle-label-right");
   const oneHandContainer = document.querySelector(".one-hand-container");
   const twoHandContainer = document.querySelector(".two-hand-container");
+  const listSection = document.querySelector('.list-section');
+  const listSection1 = document.querySelector('.list-section1');
 
   if (toggleSwitch.checked) {
     // Show Two-hand container, hide One-hand container
@@ -20,6 +22,10 @@ function handleToggle() {
     
     // Reset currentIndex to 0 for Two-hand container
     currentIndex = 0;
+
+    // Hide list sections when toggle switch is clicked
+    listSection.style.display = 'none';
+    listSection1.style.display = 'none';
   } else {
     // Show One-hand container, hide Two-hand container
     oneHandContainer.style.display = "flex";
@@ -32,6 +38,10 @@ function handleToggle() {
     
     // Reset currentIndex to 0 for One-hand container
     currentIndex = 0;
+
+    // Hide list sections when toggle switch is clicked
+    listSection.style.display = 'none';
+    listSection1.style.display = 'none';
   }
   
   // Show the initial word section
@@ -39,29 +49,35 @@ function handleToggle() {
 }
 
 
+function toggleList() {
+  const listSection = document.querySelector('.list-section');
+  const listSection1 = document.querySelector('.list-section1');
+  const toggleSwitch = document.getElementById('toggle');
 
-// function fetchSigns() {
-//     fetch("js/data/signs.json") // Replace with the actual URL of the signs.json file
-//         .then((response) => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 throw new Error("Failed to fetch signs.json");
-//             }
-//         })
-//         .then((signsData) => {
-//             console.log(signsData);
-//         })
-//         .catch((error) => {
-//             // Handle the error
-//             console.error(error);
-//         });
-// }
+  if (toggleSwitch.checked) {
+    // Two-hand container is active, show list-section1 and hide list-section
+    if (listSection1.style.display === 'none') {
+      listSection1.style.display = 'block';
+    } else {
+      listSection1.style.display = 'none';
+    }
+    listSection.style.display = 'none';
+  } else {
+    // One-hand container is active, show list-section and hide list-section1
+    if (listSection.style.display === 'none') {
+      listSection.style.display = 'block';
+    } else {
+      listSection.style.display = 'none';
+    }
+    listSection1.style.display = 'none';
+  }
+}
 
-// fetchSigns();
+
+
 
 const words = ['ako', 'almusal', 'bukas', 'emergency', 'hapunan', 'hello', 'ikaw', 'inom', 'lola', 'lolo', 'naiintindihan', 'pakiusap', 'patawad', 'welcome'];
-const words1 = ['bahay', 'excuseme', 'gamot', 'kumusta', 'magandanggabi', 'magandanghapon', 'magandangtanghali', 'magandangumaga', 'mamaya', 'natutuhan', 'ngayongaraw', 'pangalan', 'salamat', 'signlanguage', 'trabaho', 'tulong', 'oras', 'paaralan'];
+const words1 = ['bahay', 'excuseme', 'gamot', 'kumusta', 'magandanggabi', 'magandanghapon', 'magandangtanghali', 'magandangumaga', 'mamaya', 'natutuhan', 'ngayongaraw', 'oras', 'paaralan', 'pangalan', 'salamat', 'signlanguage', 'trabaho', 'tulong'];
 let currentIndex = 0;
 
 const oneHandContainer = document.querySelector('.one-hand-container');
@@ -70,6 +86,9 @@ const previousButtonOneHand = document.querySelector('.one-hand-container .previ
 const nextButtonOneHand = document.querySelector('.one-hand-container .next-button');
 const previousButtonTwoHand = document.querySelector('.two-hand-container .previous-button');
 const nextButtonTwoHand = document.querySelector('.two-hand-container .next-button');
+const listItems = document.querySelectorAll('.list-section li');
+const listItems1 = document.querySelectorAll('.list-section1 li');
+
 
 function showWord(index) {
   const oneHandSections = document.querySelectorAll('.one-hand-container .word');
@@ -104,8 +123,6 @@ function showWord(index) {
   }
 }
 
-
-
 function navigatePrevious() {
   currentIndex = Math.max(currentIndex - 1, 0);
   showWord(currentIndex);
@@ -119,6 +136,61 @@ function navigateNext() {
   }
   showWord(currentIndex);
 }
+
+function handleListClick(event) {
+  const selectedWord = event.target.textContent.toLowerCase().replace(/\s+/g, '');
+  const wordIndex = words.findIndex((word) => word.toLowerCase().replace(/\s+/g, '') === selectedWord);
+  const wordIndex1 = words1.findIndex((word) => word.toLowerCase().replace(/\s+/g, '') === selectedWord);
+
+  const listSection = document.querySelector('.list-section');
+  const listSection1 = document.querySelector('.list-section1');
+
+  if (wordIndex !== -1) {
+    currentIndex = wordIndex;
+    showWord(currentIndex);
+
+    // Remove 'selected' class from all list items
+    listItems.forEach((item) => {
+      item.classList.remove('selected');
+    });
+
+    // Add 'selected' class to the clicked list item
+    event.target.classList.add('selected');
+
+    // Hide the list-section after selecting a word
+    listSection.style.display = 'none';
+    listSection1.style.display = 'none';
+  }
+
+  if (wordIndex1 !== -1) {
+    currentIndex = wordIndex1;
+    showWord(currentIndex);
+
+    // Remove 'selected' class from all list items
+    listItems1.forEach((item) => {
+      item.classList.remove('selected');
+    });
+
+    // Add 'selected' class to the clicked list item
+    event.target.classList.add('selected');
+
+    // Hide the list-section1 after selecting a word
+    listSection.style.display = 'none';
+    listSection1.style.display = 'none';
+  }
+}
+
+
+// Add click event listeners to list items
+const listItemsList = document.querySelectorAll('.list-section ul li');
+listItemsList.forEach((item) => {
+  item.addEventListener('click', handleListClick);
+});
+
+const listItemsList1 = document.querySelectorAll('.list-section1 ul li');
+listItemsList1.forEach((item) => {
+  item.addEventListener('click', handleListClick);
+});
 
 
 
