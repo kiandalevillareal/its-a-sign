@@ -15,13 +15,22 @@ let jsonUserData = {
 
 window.onerror = function (message, source, lineno, colno, error)
 {
-
-    mobileLogger.textContent = mobileLogger.textContent + "\n" + "TestErrrors: " + error;
+    const errorWithLine = "TestErrors at line " + lineno + ": " + error;
+    mobileLogger.textContent += "\n" + errorWithLine;
 };
 
 // Add event listener to the form submission
 loginForm.addEventListener("submit", createAccount);
-window.addEventListener("load", checkStoredAccount);
+// window.addEventListener("load", checkStoredAccount);
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady()
+{
+
+    mobileLogger.textContent += "\n" + "DEVICE READY";
+    checkStoredAccount();
+}
 
 // Create account event function
 function createAccount(event)
@@ -107,11 +116,13 @@ function checkStoredAccount()
         {
             // console.log("Contents of JSON file:", jsonData);
             jsonUserData = JSON.parse(jsonData);
+            mobileLogger.textContent = mobileLogger.textContent + "\n" + "TestErrrors: " + jsonUserData;
             accessAuthorized();
         })
         .catch(error =>
         {
             // console.log("Failed to read JSON file:", error);
+            mobileLogger.textContent = mobileLogger.textContent + "\n" + "TestErrrors: " + error;
             createNewAccount();
         });
 }
