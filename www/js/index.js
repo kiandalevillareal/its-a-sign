@@ -180,7 +180,6 @@ function updatePoints(value) {
 			pointsContainerElement.style.transition = "background-color 0.5s";
 			pointsContainerElement.style.backgroundColor = "";
 		});
-		startTimer();
 	}, 2500);
 
 	pointsContainer.forEach(function (pointsContainerElement) {
