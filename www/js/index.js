@@ -36,6 +36,7 @@ const timerElements = document.querySelectorAll(".timerValue");
 const gameOverText = document.getElementById("gameover-msg");
 const timer = document.querySelectorAll(".timer");
 const roundContainer = document.querySelectorAll(".round");
+const pointsContainer = document.querySelectorAll(".points");
 
 // CONTAINERS
 const homeContainer = document.getElementById("home-container");
@@ -172,6 +173,22 @@ homeButton.addEventListener("click", function () {
 // UPDATE THE POINTS DISPLAY
 function updatePoints(value) {
 	points = value;
+	
+	setTimeout(() => {
+		pointsContainer.forEach(function (pointsContainerElement) {
+			// Back to 0
+			pointsContainerElement.style.transition = "background-color 0.5s";
+			pointsContainerElement.style.backgroundColor = "";
+		});
+		startTimer();
+	}, 2500);
+
+	pointsContainer.forEach(function (pointsContainerElement) {
+		// Change timer background color to orange
+		pointsContainerElement.style.transition = "background-color 0.5s";
+		pointsContainerElement.style.backgroundColor = "orange";
+	});
+
 	pointsElements.forEach(function (pointsElement) {
 		pointsElement.textContent = points;
 	});
@@ -272,13 +289,17 @@ hintButtons.forEach(function (hintButton) {
 			points -= 2;
 			updatePoints(points);
 
+			hintButton.setAttribute("disabled", "true"); // Disable the button
+
 			if (flippedCards.length < 2 && isEasyClicked) {
 				var unflippedCards = easyContainer.querySelectorAll(
 					".flip-card:not(.flipped)"
 				);
 
 				if (unflippedCards.length > 0) {
-					var randomIndex = Math.floor(Math.random() * easyRandomSignToGuess.length);
+					var randomIndex = Math.floor(
+						Math.random() * easyRandomSignToGuess.length
+					);
 					var correctCard = Array.from(unflippedCards).find(function (card) {
 						var cardId = card.querySelector(".flip-card-back").dataset.id;
 						return cardId == easyRandomSignToGuess[randomIndex].id;
@@ -326,7 +347,6 @@ hintButtons.forEach(function (hintButton) {
 						return cardId == hardRandomSignToGuess[randomIndex].id;
 					});
 
-
 					if (correctCard) {
 						correctCard.classList.add("flipped");
 						setTimeout(function () {
@@ -335,6 +355,10 @@ hintButtons.forEach(function (hintButton) {
 					}
 				}
 			}
+
+			setTimeout(function () {
+				hintButton.removeAttribute("disabled"); // Enable the button after 2500ms
+			}, 2500);
 		}
 	});
 });
@@ -345,6 +369,8 @@ revealButtons.forEach(function (revealButton) {
 		if (points >= 3) {
 			points -= 2;
 			updatePoints(points);
+
+			revealButton.setAttribute("disabled", "true"); 
 
 			if (flippedCards.length < 2 && isEasyClicked) {
 				var unflippedCards = easyContainer.querySelectorAll(
@@ -421,6 +447,10 @@ revealButtons.forEach(function (revealButton) {
 					}
 				}
 			}
+
+			setTimeout(function () {
+				revealButton.removeAttribute("disabled"); // Enable the button after 2500ms
+			}, 2500);
 		}
 	});
 });
@@ -430,6 +460,8 @@ freezeButtons.forEach(function (freezeButton) {
 		if (points >= 2) {
 			points -= 2;
 			updatePoints(points);
+
+			freezeButton.setAttribute("disabled", "true");
 
 			clearInterval(timerInterval);
 			setTimeout(() => {
@@ -447,6 +479,10 @@ freezeButtons.forEach(function (freezeButton) {
 				timerElement.style.backgroundColor = "orange";
 			});
 		}
+
+		setTimeout(function () {
+			freezeButton.removeAttribute("disabled"); // Enable the button after 2500ms
+		}, 2500);
 	});
 });
 
@@ -840,6 +876,7 @@ function goToIntermediateRound(round) {
 								points += 2;
 								updatePoints(points);
 								console.log(points);
+								displayScore.textContent = timeLeft;
 
 								// clear easyRandomSignsUsed
 								intermediateRandomSignsUsed.splice(0);
@@ -1040,6 +1077,7 @@ function goToHardRound(round) {
 								points += 3;
 								updatePoints(points);
 								console.log(points);
+								displayScore.textContent = timeLeft;
 
 								// clear easyRandomSignsUsed
 								hardRandomSignsUsed.splice(0);
