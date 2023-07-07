@@ -173,7 +173,7 @@ homeButton.addEventListener("click", function () {
 // UPDATE THE POINTS DISPLAY
 function updatePoints(value) {
 	points = value;
-	
+
 	setTimeout(() => {
 		pointsContainer.forEach(function (pointsContainerElement) {
 			// Back to 0
@@ -215,7 +215,6 @@ function updateRound(value) {
 
 		fadeIn(); // Start the fade-in effect
 	});
-
 
 	roundElements.forEach(function (roundElement) {
 		roundElement.textContent = round;
@@ -358,6 +357,8 @@ hintButtons.forEach(function (hintButton) {
 			setTimeout(function () {
 				hintButton.removeAttribute("disabled"); // Enable the button after 2500ms
 			}, 2500);
+		} else {
+			navigator.vibrate(500);
 		}
 	});
 });
@@ -369,7 +370,7 @@ revealButtons.forEach(function (revealButton) {
 			points -= 2;
 			updatePoints(points);
 
-			revealButton.setAttribute("disabled", "true"); 
+			revealButton.setAttribute("disabled", "true");
 
 			if (flippedCards.length < 2 && isEasyClicked) {
 				var unflippedCards = easyContainer.querySelectorAll(
@@ -450,6 +451,8 @@ revealButtons.forEach(function (revealButton) {
 			setTimeout(function () {
 				revealButton.removeAttribute("disabled"); // Enable the button after 2500ms
 			}, 2500);
+		} else {
+			navigator.vibrate(500);
 		}
 	});
 });
@@ -477,6 +480,8 @@ freezeButtons.forEach(function (freezeButton) {
 				timerElement.style.transition = "background-color 0.5s";
 				timerElement.style.backgroundColor = "orange";
 			});
+		} else {
+			navigator.vibrate(500);
 		}
 
 		setTimeout(function () {
@@ -519,8 +524,8 @@ function fetchSigns() {
 			intermediateSigns = [
 				// natutuhan ngayong_araw paaralan
 				[signsData[20], signsData[21], signsData[23]],
-				// magandang_gabi ikaw hapunan
-				[signsData[14], signsData[9], signsData[7]],
+				// magandang_gabi hapunan bahay
+				[signsData[14], signsData[7], signsData[2]],
 				// excuse_me magandang_hapon oras
 				[signsData[5], signsData[15], signsData[22]],
 				// magandang_tanghali pangalan ikaw
@@ -531,8 +536,8 @@ function fetchSigns() {
 			hardSigns = [
 				// ako almusal bahay bukas
 				[signsData[0], signsData[1], signsData[2], signsData[3]],
-				// pakiusap tulong emergency lola
-				[signsData[24], signsData[30], signsData[4], signsData[12]],
+				// excuse me pakiusap tulong emergency
+				[signsData[5], signsData[24], signsData[30], signsData[4]],
 				// mamaya inom gamot trabaho
 				[signsData[18], signsData[10], signsData[6], signsData[29]],
 				// patawad salamat lolo lola
@@ -720,7 +725,7 @@ function goToEasyRound(round) {
 							}
 						} else {
 							console.log("Wrong");
-							navigator.vibrate(1500);
+							navigator.vibrate(500);
 							setTimeout(function () {
 								flippedCards.forEach(function (card) {
 									card.classList.remove("flipped");
@@ -911,7 +916,7 @@ function goToIntermediateRound(round) {
 							}
 						} else {
 							console.log("Wrong");
-							navigator.vibrate(1500);
+							navigator.vibrate(500);
 							setTimeout(function () {
 								flippedCards.forEach(function (card) {
 									card.classList.remove("flipped");
@@ -1112,7 +1117,7 @@ function goToHardRound(round) {
 							}
 						} else {
 							console.log("Wrong");
-							navigator.vibrate(1500);
+							navigator.vibrate(500);
 							setTimeout(function () {
 								flippedCards.forEach(function (card) {
 									card.classList.remove("flipped");
@@ -1256,11 +1261,11 @@ nextButtons.forEach((button) => {
 	});
 });
 
-const homeButtons = document.querySelectorAll('.home-button');
+const homeButtons = document.querySelectorAll(".home-button");
 
-homeButtons.forEach(function(homeButton) {
-  homeButton.addEventListener("click", function() {
-    instructionContainer.style.display = 'none';
-    homeContainer.style.display = 'flex';
-  });
+homeButtons.forEach(function (homeButton) {
+	homeButton.addEventListener("click", function () {
+		instructionContainer.style.display = "none";
+		homeContainer.style.display = "flex";
+	});
 });
