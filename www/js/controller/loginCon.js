@@ -10,10 +10,13 @@ const avatarsContainer = document.getElementById('user-avatar-bg');
 const userAvatar = document.getElementById('user-avatar');
 
 let jsonUserData = {
-    user_id: '',
-    username: '',
-    avatar_id: '1',
-    session_id: '1',
+    avatar_id: '1'
+};
+
+window.onerror = function (message, source, lineno, colno, error)
+{
+
+    mobileLogger.textContent = mobileLogger.textContent + "\n" + "TestErrrors: " + error;
 };
 
 // Add event listener to the form submission
@@ -88,6 +91,7 @@ function createAccount(event)
 // Authorized access to start the game
 function accessAuthorized()
 {
+    mobileLogger.textContent = mobileLogger.textContent + "\n" + "access auth";
     createAccBg.style.display = "none";
 
     profileButton.style.display = "flex";
@@ -101,15 +105,13 @@ function checkStoredAccount()
     readJSONFile()
         .then(jsonData =>
         {
-            console.log("Contents of JSON file:", jsonData);
-            logger.textContent = "READ SUCCESS";
-            jsonUserData = jsonData;
+            // console.log("Contents of JSON file:", jsonData);
+            jsonUserData = JSON.parse(jsonData);
             accessAuthorized();
         })
         .catch(error =>
         {
-            console.log("Failed to read JSON file:", error);
-            logger.textContent = "READ FAILED";
+            // console.log("Failed to read JSON file:", error);
             createNewAccount();
         });
 }
@@ -129,14 +131,12 @@ function storeUsernameData(data)
     writeJSONToFile(jsonUserData)
         .then(success =>
         {
-            console.log("Writing JSON data to file:", success);
-            logger.textContent = "WRITE SUCCESS";
+            // console.log("Writing JSON data to file:", success);
             checkStoredAccount();
         })
         .catch(error =>
         {
-            console.log("Failed to write JSON data to file:", error);
-            logger.textContent = "WRITE FAILED";
+            // console.log("Failed to write JSON data to file:", error);
         });
 }
 

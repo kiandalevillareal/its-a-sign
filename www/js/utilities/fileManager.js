@@ -2,26 +2,24 @@
 
 
 const mobileLogger = document.getElementById("mobile-logger");
-const filenameToRetrieve = "account17.json";
+const filenameToRetrieve = "account24.json";
 
 function writeJSONToFile(data)
 {
     const jsonData = JSON.stringify(data);
-    const isAndroid = isCordova() && device.platform.toLowerCase() === "android";
 
-    if (isAndroid)
+    if (isPlatformAndroid())
     {
-        // Write to Android persistent data path using cordova-plugin-file
-        console.log('using android');
-        mobileLogger.textContent = mobileLogger.textContent + "\n" + "writing in android";
         return writeJSONToFileToAndroid(jsonData);
     } else
     {
-        // Write to web environment persistent storage
-        console.log('using browser');
-        mobileLogger.textContent = mobileLogger.textContent + "\n" + "writing in browser";
         return writeJSONToFileToBrowser(jsonData);
     }
+}
+
+function isPlatformAndroid()
+{
+    return /android/i.test(navigator.userAgent);
 }
 
 // Function to check if running in Cordova environment
@@ -33,6 +31,7 @@ function isCordova()
 
 function writeJSONToFileToAndroid(data)
 {
+    mobileLogger.textContent = mobileLogger.textContent + "\n" + "WA";
     const jsonData = JSON.stringify(data);
     const fileData = cordova.file.dataDirectory; // Persistent data path
 
@@ -56,7 +55,6 @@ function writeJSONToFileToAndroid(data)
                                 };
                                 fileWriter.onerror = function (error)
                                 {
-                                    mobileLogger.textContent = mobileLogger.textContent + "\n" + "WA1: " + error;
                                     reject(false);
                                 };
                                 const blob = new Blob([jsonData], { type: "application/json" });
@@ -64,7 +62,6 @@ function writeJSONToFileToAndroid(data)
                             },
                             function (error)
                             {
-                                mobileLogger.textContent = mobileLogger.textContent + "\n" + "WA2: " + error;
                                 reject(false);
                             }
                         );
@@ -84,6 +81,7 @@ function writeJSONToFileToAndroid(data)
 }
 function writeJSONToFileToBrowser(data)
 {
+    mobileLogger.textContent = mobileLogger.textContent + "\n" + "WB";
     const jsonData = JSON.stringify(data);
 
     return new Promise((resolve, reject) =>
@@ -107,7 +105,6 @@ function writeJSONToFileToBrowser(data)
                                 };
                                 fileWriter.onerror = function (error)
                                 {
-                                    mobileLogger.textContent = mobileLogger.textContent + "\n" + "WB1: " + error;
                                     reject(false);
                                 };
                                 const blob = new Blob([jsonData], { type: "application/json" });
@@ -115,7 +112,6 @@ function writeJSONToFileToBrowser(data)
                             },
                             function (error)
                             {
-                                mobileLogger.textContent = mobileLogger.textContent + "\n" + "WB2: " + error;
                                 reject(false);
                             }
                         );
@@ -136,29 +132,19 @@ function writeJSONToFileToBrowser(data)
 
 function readJSONFile()
 {
-    const isAndroid = isCordova() && device.platform.toLowerCase() === "android";
-
-    if (isAndroid)
+    if (isPlatformAndroid())
     {
-        mobileLogger.textContent = mobileLogger.textContent + "\n" + "reading in android";
         return readJSONFromFileAndroid();
     } else
     {
-        // Read from web environment persistent storage
-        mobileLogger.textContent = mobileLogger.textContent + "\n" + "reading in browser";
         return readJSONFromFileWeb();
     }
-}
-
-// Function to check if running in Cordova environment
-function isCordova()
-{
-    return typeof cordova !== "undefined";
 }
 
 // Function to read JSON data from Android persistent data path
 function readJSONFromFileAndroid()
 {
+    mobileLogger.textContent = mobileLogger.textContent + "\n" + "RA";
     return new Promise((resolve, reject) =>
     {
         window.resolveLocalFileSystemURL(
@@ -183,15 +169,12 @@ function readJSONFromFileAndroid()
                     },
                     function (error)
                     {
-
-                        mobileLogger.textContent = mobileLogger.textContent + "\n" + "RA1: " + error;
                         reject(false);
                     }
                 );
             },
             function ()
             {
-                mobileLogger.textContent = mobileLogger.textContent + "\n" + "RA2: " + error;
                 reject(false);
             }
         );
@@ -200,6 +183,7 @@ function readJSONFromFileAndroid()
 
 function readJSONFromFileWeb()
 {
+    mobileLogger.textContent = mobileLogger.textContent + "\n" + "RB";
     return new Promise((resolve, reject) =>
     {
         window.webkitRequestFileSystem(
@@ -225,14 +209,12 @@ function readJSONFromFileWeb()
                     },
                     function (error)
                     {
-                        mobileLogger.textContent = mobileLogger.textContent + "\n" + "RB1: " + error;
                         reject(false);
                     }
                 );
             },
             function (error)
             {
-                mobileLogger.textContent = mobileLogger.textContent + "\n" + "RB2: " + error;
                 reject(false);
             }
         );
