@@ -2,7 +2,7 @@
 
 
 const mobileLogger = document.getElementById("mobile-logger");
-const filenameToRetrieve = "account24.json";
+const filenameToRetrieve = "account25.json";
 
 function writeJSONToFile(data)
 {
@@ -56,6 +56,7 @@ function writeJSONToFileToAndroid(data)
                                 fileWriter.onerror = function (error)
                                 {
                                     reject(false);
+
                                 };
                                 const blob = new Blob([jsonData], { type: "application/json" });
                                 fileWriter.write(blob);
@@ -63,18 +64,21 @@ function writeJSONToFileToAndroid(data)
                             function (error)
                             {
                                 reject(false);
+
                             }
                         );
                     },
                     function ()
                     {
                         reject(false);
+
                     }
                 );
             },
             function ()
             {
                 reject(false);
+
             }
         );
     });
@@ -106,6 +110,7 @@ function writeJSONToFileToBrowser(data)
                                 fileWriter.onerror = function (error)
                                 {
                                     reject(false);
+
                                 };
                                 const blob = new Blob([jsonData], { type: "application/json" });
                                 fileWriter.write(blob);
@@ -113,18 +118,21 @@ function writeJSONToFileToBrowser(data)
                             function (error)
                             {
                                 reject(false);
+
                             }
                         );
                     },
-                    function ()
+                    function (error)
                     {
                         reject(false);
+
                     }
                 );
             },
-            function ()
+            function (error)
             {
                 reject(false);
+
             }
         );
     });
@@ -144,7 +152,7 @@ function readJSONFile()
 // Function to read JSON data from Android persistent data path
 function readJSONFromFileAndroid()
 {
-    mobileLogger.textContent = mobileLogger.textContent + "\n" + "RA";
+    mobileLogger.textContent = mobileLogger.textContent + "\n" + "RA_";
     return new Promise((resolve, reject) =>
     {
         window.resolveLocalFileSystemURL(
@@ -162,6 +170,7 @@ function readJSONFromFileAndroid()
                             reader.onloadend = function ()
                             {
                                 const jsonData = JSON.parse(reader.result);
+                                mobileLogger.textContent = mobileLogger.textContent + "\n RA1" + jsonData;
                                 resolve(jsonData);
                             };
                             reader.readAsText(file);
@@ -170,12 +179,14 @@ function readJSONFromFileAndroid()
                     function (error)
                     {
                         reject(false);
+                        mobileLogger.textContent = mobileLogger.textContent + "\n RA2" + error;
                     }
                 );
             },
             function ()
             {
                 reject(false);
+                mobileLogger.textContent = mobileLogger.textContent + "\n RA3" + error;
             }
         );
     });
@@ -210,12 +221,14 @@ function readJSONFromFileWeb()
                     function (error)
                     {
                         reject(false);
+
                     }
                 );
             },
             function (error)
             {
                 reject(false);
+
             }
         );
     });
