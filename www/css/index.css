@@ -838,7 +838,7 @@ a {
 	display: none;
 }
 
-.home-button{
+.home-button {
 	font-size: 1.5rem;
 	color: var(--shade-of-blue);
 	cursor: pointer;
@@ -847,7 +847,7 @@ a {
 	top: 5%;
 }
 
-.home-button:hover{
+.home-button:hover {
 	color: var(--secondary-color);
 }
 
@@ -902,7 +902,8 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  	width: 200px; /* Adjust the width as needed */
+	width: 200px;
+	/* Adjust the width as needed */
 	margin: 2rem auto;
 }
 
@@ -940,6 +941,19 @@ a {
 /* #endregion INSTRUCTION HOW TO PLAY */
 
 /* #region LEADERBOARD */
+
+#mobile-logger {
+	height: 30vw;
+	width: 100vw;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	color: #000000;
+	padding: 5%;
+	background: rgb(255, 255, 255);
+	z-index: 5;
+}
+
 #gameover-container-bg {
 	position: fixed;
 	width: 100%;
