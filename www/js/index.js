@@ -675,7 +675,7 @@ function goToEasyRound(round) {
 							const roundInfo = {
 								sign1: easyRandomSignToGuess[0]["sign-name"],
 								sign2: easyRandomSignToGuess[1]["sign-name"],
-								time: roundTime, // May 2.5 something difference ito due to card staying animation when guessing
+								time: roundTime.toFixed(2), // May 2.5 something difference ito due to card staying animation when guessing
 							};
 							roundTimes.push(roundInfo);
 							console.log("ROUND INFO:", roundInfo);
@@ -709,7 +709,7 @@ function goToEasyRound(round) {
 
 								// Find the round with the fastest time
 								fastestRound = roundTimes.find(
-									(info) => info.time === fastestTime
+									(info) => info.time == fastestTime
 								);
 								console.log("Fastest Round:", fastestRound);
 
@@ -866,7 +866,7 @@ function goToIntermediateRound(round) {
 								sign1: intermediateRandomSignToGuess[0]["sign-name"],
 								sign2: intermediateRandomSignToGuess[1]["sign-name"],
 								sign3: intermediateRandomSignToGuess[2]["sign-name"],
-								time: roundTime, // May 2.5 something difference ito due to card staying animation when guessing
+								time: roundTime.toFixed(2), // May 2.5 something difference ito due to card staying animation when guessing
 							};
 							roundTimes.push(roundInfo);
 							console.log("ROUND INFO:", roundInfo);
@@ -900,7 +900,7 @@ function goToIntermediateRound(round) {
 
 								// Find the round with the fastest time
 								fastestRound = roundTimes.find(
-									(info) => info.time === fastestTime
+									(info) => info.time == fastestTime
 								);
 								console.log("Fastest Round:", fastestRound);
 
@@ -1067,7 +1067,7 @@ function goToHardRound(round) {
 								sign2: hardRandomSignToGuess[1]["sign-name"],
 								sign3: hardRandomSignToGuess[2]["sign-name"],
 								sign4: hardRandomSignToGuess[3]["sign-name"],
-								time: roundTime, // May 2.5 something difference ito due to card staying animation when guessing
+								time: roundTime.toFixed(2), // May 2.5 something difference ito due to card staying animation when guessing
 							};
 							roundTimes.push(roundInfo);
 							console.log("ROUND INFO:", roundInfo);
@@ -1101,7 +1101,7 @@ function goToHardRound(round) {
 
 								// Find the round with the fastest time
 								fastestRound = roundTimes.find(
-									(info) => info.time === fastestTime
+									(info) => info.time == fastestTime
 								);
 								console.log("Fastest Round:", fastestRound);
 
