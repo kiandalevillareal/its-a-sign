@@ -1,4 +1,4 @@
-const gameoverButton = document.getElementById('gameover-button');
+
 const sendScoreButton = document.getElementById('send-highscore-button');
 const refreshScoreButton = document.getElementById('refresh-leaderboard-button');
 
@@ -137,17 +137,6 @@ function refreshLeaderboard()
         });
 }
 
-gameoverButton.addEventListener('click', () =>
-{
-    isGameOverOn = !isGameOverOn;
-    if (isGameOverOn)
-    {
-        gameoverContainer.style.display = "flex";
-    } else
-    {
-        gameoverContainer.style.display = "none";
-    }
-});
 
 function submitHighscore(event)
 {

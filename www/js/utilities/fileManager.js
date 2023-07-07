@@ -1,6 +1,8 @@
 
 
-const filenameToRetrieve = "account14.json";
+
+const mobileLogger = document.getElementById("mobile-logger");
+const filenameToRetrieve = "account16.json";
 
 function writeJSONToFile(data)
 {
@@ -11,11 +13,13 @@ function writeJSONToFile(data)
     {
         // Write to Android persistent data path using cordova-plugin-file
         console.log('using android');
+        mobileLogger.textContent = mobileLogger.textContent + "\n" + "writing in android";
         return writeJSONToFileToAndroid(jsonData);
     } else
     {
         // Write to web environment persistent storage
         console.log('using browser');
+        mobileLogger.textContent = mobileLogger.textContent + "\n" + "writing in browser";
         return writeJSONToFileToBrowser(jsonData);
     }
 }
@@ -50,15 +54,17 @@ function writeJSONToFileToAndroid(data)
                                 {
                                     resolve(true);
                                 };
-                                fileWriter.onerror = function (e)
+                                fileWriter.onerror = function (error)
                                 {
+                                    mobileLogger.textContent = mobileLogger.textContent + "\n" + "WA1: " + error;
                                     reject(false);
                                 };
                                 const blob = new Blob([jsonData], { type: "application/json" });
                                 fileWriter.write(blob);
                             },
-                            function ()
+                            function (error)
                             {
+                                mobileLogger.textContent = mobileLogger.textContent + "\n" + "WA2: " + error;
                                 reject(false);
                             }
                         );
@@ -99,15 +105,17 @@ function writeJSONToFileToBrowser(data)
                                 {
                                     resolve(true);
                                 };
-                                fileWriter.onerror = function (e)
+                                fileWriter.onerror = function (error)
                                 {
+                                    mobileLogger.textContent = mobileLogger.textContent + "\n" + "WB1: " + error;
                                     reject(false);
                                 };
                                 const blob = new Blob([jsonData], { type: "application/json" });
                                 fileWriter.write(blob);
                             },
-                            function ()
+                            function (error)
                             {
+                                mobileLogger.textContent = mobileLogger.textContent + "\n" + "WB2: " + error;
                                 reject(false);
                             }
                         );
@@ -125,7 +133,72 @@ function writeJSONToFileToBrowser(data)
         );
     });
 }
+
 function readJSONFile()
+{
+    const isAndroid = isCordova() && device.platform.toLowerCase() === "android";
+
+    if (isAndroid)
+    {
+        mobileLogger.textContent = mobileLogger.textContent + "\n" + "reading in android";
+        return readJSONFromFileAndroid();
+    } else
+    {
+        // Read from web environment persistent storage
+        mobileLogger.textContent = mobileLogger.textContent + "\n" + "reading in browser";
+        return readJSONFromFileWeb();
+    }
+}
+
+// Function to check if running in Cordova environment
+function isCordova()
+{
+    return typeof cordova !== "undefined";
+}
+
+// Function to read JSON data from Android persistent data path
+function readJSONFromFileAndroid()
+{
+    return new Promise((resolve, reject) =>
+    {
+        window.resolveLocalFileSystemURL(
+            cordova.file.dataDirectory,
+            function (dirEntry)
+            {
+                dirEntry.getFile(
+                    filenameToRetrieve,
+                    { create: false },
+                    function (fileEntry)
+                    {
+                        fileEntry.file(function (file)
+                        {
+                            const reader = new FileReader();
+                            reader.onloadend = function ()
+                            {
+                                const jsonData = JSON.parse(reader.result);
+                                resolve(jsonData);
+                            };
+                            reader.readAsText(file);
+                        });
+                    },
+                    function (error)
+                    {
+
+                        mobileLogger.textContent = mobileLogger.textContent + "\n" + "RA1: " + error;
+                        reject(false);
+                    }
+                );
+            },
+            function ()
+            {
+                mobileLogger.textContent = mobileLogger.textContent + "\n" + "RA2: " + error;
+                reject(false);
+            }
+        );
+    });
+}
+
+function readJSONFromFileWeb()
 {
     return new Promise((resolve, reject) =>
     {
@@ -150,14 +223,16 @@ function readJSONFile()
                             reader.readAsText(file);
                         });
                     },
-                    function ()
+                    function (error)
                     {
+                        mobileLogger.textContent = mobileLogger.textContent + "\n" + "RB1: " + error;
                         reject(false);
                     }
                 );
             },
-            function ()
+            function (error)
             {
+                mobileLogger.textContent = mobileLogger.textContent + "\n" + "RB2: " + error;
                 reject(false);
             }
         );
@@ -165,7 +240,6 @@ function readJSONFile()
 }
 
 
-// const filenameToRetrieve = "account13.json";
 
 // function writeJSONToFile(data)
 // {
