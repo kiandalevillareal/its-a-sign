@@ -312,7 +312,7 @@ h1 {
 
 .toggle-switch input[type="checkbox"]:checked+.toggle-slider {
     transform: translateX(87%);
-    color: var(--body-color);
+    color: var(--custom-white);
 }
 
 .toggle-label-left,
@@ -321,7 +321,7 @@ h1 {
     top: 50%;
     transform: translateY(-50%);
     font-size: 1rem;
-    color: var(--body-color);
+    color: var(--custom-white);
     white-space: nowrap;
     text-align: center;
     font-family: "Cubao", sans-serif;
@@ -517,6 +517,7 @@ h1 {
     .definition-container h4 {
         font-size: 1.5rem;
         margin-right: 1rem;
+        margin-top: -.1rem;
     }
 
     .definition-container p {
@@ -660,6 +661,7 @@ h1 {
     .definition-container{
         margin-top: 0rem;
     }
+
     .definition {
         height: 3rem;
         width: 16rem;
@@ -751,5 +753,6 @@ h1 {
             font-weight: 400;
             height: calc(100% - 2.2rem);
         }
+    
     }
 }
