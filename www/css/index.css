@@ -836,6 +836,7 @@ a {
 	margin: 2rem;
 	/*top leftright bottom*/
 	display: none;
+	color: #202020;
 }
 
 .home-button {
