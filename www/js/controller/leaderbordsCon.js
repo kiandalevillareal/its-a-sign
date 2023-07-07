@@ -56,7 +56,10 @@ let sentence_test = "ano ikaw tao ba";
 // Add event listener to the form submission
 highscoreForm.addEventListener("submit", submitHighscore);
 
-refreshScoreButton.addEventListener('click', function ()
+refreshScoreButton.addEventListener('click', refreshLeaderboard);
+
+
+function refreshLeaderboard()
 {
     event.preventDefault();
 
@@ -132,7 +135,7 @@ refreshScoreButton.addEventListener('click', function ()
             refreshScoreButton.style.display = "inline-block";
             loadingAnimationLeaderBoardRefresh.style.display = "none";
         });
-});
+}
 
 gameoverButton.addEventListener('click', () =>
 {

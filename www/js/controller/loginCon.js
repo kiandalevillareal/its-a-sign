@@ -102,12 +102,14 @@ function checkStoredAccount()
         .then(jsonData =>
         {
             console.log("Contents of JSON file:", jsonData);
+            logger.textContent = "READ SUCCESS";
             jsonUserData = jsonData;
             accessAuthorized();
         })
         .catch(error =>
         {
             console.log("Failed to read JSON file:", error);
+            logger.textContent = "READ FAILED";
             createNewAccount();
         });
 }
@@ -128,11 +130,13 @@ function storeUsernameData(data)
         .then(success =>
         {
             console.log("Writing JSON data to file:", success);
+            logger.textContent = "WRITE SUCCESS";
             checkStoredAccount();
         })
         .catch(error =>
         {
             console.log("Failed to write JSON data to file:", error);
+            logger.textContent = "WRITE FAILED";
         });
 }
 
