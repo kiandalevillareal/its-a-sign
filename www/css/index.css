@@ -188,14 +188,14 @@ h1 {
 	margin-bottom: 7.8rem;
 }
 
-.buttons button{
+.buttons button {
 	display: flex;
 	justify-content: left;
 	align-items: center;
 	padding: 0 1.5rem;
 }
 
-.buttons i{
+.buttons i {
 	margin-right: 1.5rem;
 	width: 20px;
 	height: 20px;
@@ -216,7 +216,7 @@ h1 {
 	border-radius: 0.5rem;
 }
 
-a{
+a {
 	text-decoration: none;
 }
 
@@ -712,7 +712,7 @@ a{
 #username-label {
 	position: absolute;
 	left: 9%;
-	top: 15%;
+	top: 16.5%;
 	color: #0684d8;
 	font-weight: bold;
 }
@@ -728,6 +728,7 @@ a{
 	border: 3px solid #0684d8;
 	padding-left: 2%;
 	padding-right: 2%;
+	background-color: whitesmoke;
 }
 
 #continue-button {
@@ -822,27 +823,28 @@ a{
 	margin: 2rem;
 } */
 
-#instruction-main-container{
+#instruction-main-container {
 	display: none;
 }
 
-.instruction-container.active{
+.instruction-container.active {
 	display: flex;
 	flex-direction: column;
 }
 
-.instruction-container{
-	margin: 2rem; /*top leftright bottom*/
+.instruction-container {
+	margin: 2rem;
+	/*top leftright bottom*/
 	display: none;
 }
 
-.home-button{
+.home-button {
 	font-size: 1.5rem;
 	color: var(--shade-of-blue);
 	cursor: pointer;
 }
 
-.instruction{
+.instruction {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -850,28 +852,28 @@ a{
 	width: 100%;
 }
 
-.instruction-header{
+.instruction-header {
 	font-family: "Cubao", sans-serif;
 	font-size: 2rem;
 	color: var(--primary-color);
 	margin: 1rem -1rem 0rem;
 }
 
-.instruction-content{
+.instruction-content {
 	font-family: "Raleway", sans-serif;
 	font-size: 1.1rem;
 }
 
-.instruction-content span{
+.instruction-content span {
 	font-weight: bold;
 }
 
-.image-container{
+.image-container {
 	display: flex;
 	justify-content: center;
 }
 
-.image-container img{
+.image-container img {
 	border: .2rem solid var(--secondary-color);
 	padding: .5rem;
 	border-radius: .75rem;
@@ -879,7 +881,7 @@ a{
 	height: auto;
 }
 
-.image-container > .img-big{
+.image-container>.img-big {
 	height: 30rem;
 }
 
@@ -891,35 +893,38 @@ a{
 	transform: translate(-50%, -50%);
 	display: flex;
 	justify-content: space-between;
-  	width: 250px; /* Adjust the width as needed */
+	width: 250px;
+	/* Adjust the width as needed */
 	margin: 2rem auto;
 }
 
 .previous-button,
 .next-button {
-    font-size: 1rem;
-    background-color: var(--shade-of-blue);
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    font-family: "Cubao", sans-serif;
-    letter-spacing: .1rem;
+	font-size: 1rem;
+	background-color: var(--shade-of-blue);
+	border: none;
+	border-radius: 0.25rem;
+	cursor: pointer;
+	font-family: "Cubao", sans-serif;
+	letter-spacing: .1rem;
 }
+
 .next-button {
-    padding: 1rem 2.6rem;
+	padding: 1rem 2.6rem;
 }
-.previous-button{
-    padding: 1rem 1.5rem;
-    margin-right: 1rem;
+
+.previous-button {
+	padding: 1rem 1.5rem;
+	margin-right: 1rem;
 }
 
 .previous-button:hover,
 .next-button:hover {
-    background-color: var(--secondary-color);
+	background-color: var(--secondary-color);
 }
 
 @media (max-width: 1400px) {
-	.image-container > .img-big{
+	.image-container>.img-big {
 		height: 22rem;
 	}
 }
@@ -1214,6 +1219,14 @@ a{
 	border-radius: 50%;
 	animation: spin 1s linear infinite;
 }
+
+#gameover-msg,
+#display-score,
+#display-sentence {
+	color: #056bb1;
+	margin: 1%;
+}
+
 
 /* #endregion LEADERBOARD */
 
