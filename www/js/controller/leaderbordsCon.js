@@ -3,7 +3,6 @@ const sendScoreButton = document.getElementById('send-highscore-button');
 const refreshScoreButton = document.getElementById('refresh-leaderboard-button');
 
 const gameoverContainer = document.getElementById('gameover-container-bg');
-const highscoreForm = document.getElementById("send-highscore-form");
 const leaderboadCon = document.getElementById("leaderboard-container");
 const leaderboadGroup1 = document.getElementById("leaderboard-avatar-group-1");
 const leaderboadGroup2 = document.getElementById("leaderboard-avatar-group-2");
@@ -54,7 +53,7 @@ let score_test = 5.34;
 let sentence_test = "ano ikaw tao ba";
 
 // Add event listener to the form submission
-highscoreForm.addEventListener("submit", submitHighscore);
+sendScoreButton.addEventListener("click", submitHighscore);
 
 refreshScoreButton.addEventListener('click', refreshLeaderboard);
 
@@ -66,12 +65,13 @@ function refreshLeaderboard()
     refreshScoreButton.style.display = "none";
     loadingAnimationLeaderBoardRefresh.style.display = "inline-block";
 
-    const formData = new FormData(highscoreForm);
+    const formData = new FormData();
 
     formData.append('user_id', jsonUserData.user_id);
     formData.append('difficulty', difficultyDropdown.value);
-    // formData.append('user_id', 147);
+    // formData.append('user_id', 41);
     // formData.append('difficulty', difficultyDropdown.value);
+    console.log(jsonUserData.user_id);
 
     let dataLB = null;
 
@@ -147,12 +147,12 @@ function submitHighscore(event)
     sendScoreButton.style.display = "none";
     loadingAnimationLeaderBoardSend.style.display = "inline-block";
 
-    const formData = new FormData(highscoreForm);
+    const formData = new FormData();
 
     formData.append('user_id', jsonUserData.user_id);
-    formData.append('difficulty', difficulty);
+    formData.append('difficulty', currentDifficulty);
     formData.append('score', timeLeft);
-    formData.append('word', sentence_test);
+    formData.append('sentence', fastestRound);
 
     // Make a POST request with the form data
     fetch('https://itsasign.000webhostapp.com/API/addScore.php', {
