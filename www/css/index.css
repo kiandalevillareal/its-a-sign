@@ -48,7 +48,7 @@ body {
 	/* prevent webkit from resizing text to fit */
 	-webkit-user-select: none;
 	/* prevent copy paste, to allow, change 'none' to 'text' */
-	background-color: var(--body-color);
+	background-color: white;
 	font-family: system-ui, -apple-system, -apple-system-font, "Raleway",
 		"Segoe UI", "Roboto", sans-serif;
 	font-size: 12px;
@@ -229,7 +229,7 @@ a {
 	align-items: center;
 	font-family: "Raleway", sans-serif;
 	display: none;
-	background-color: var(--body-color);
+	background-color: white;
 	padding: 2rem;
 }
 
@@ -838,10 +838,17 @@ a {
 	display: none;
 }
 
-.home-button {
+.home-button{
 	font-size: 1.5rem;
 	color: var(--shade-of-blue);
 	cursor: pointer;
+	position: absolute;
+	left: 5%;
+	top: 5%;
+}
+
+.home-button:hover{
+	color: var(--secondary-color);
 }
 
 .instruction {
@@ -850,6 +857,7 @@ a {
 	text-align: center;
 	align-items: center;
 	width: 100%;
+	margin-top: 2rem;
 }
 
 .instruction-header {
@@ -892,9 +900,9 @@ a {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	display: flex;
-	justify-content: space-between;
-	width: 250px;
-	/* Adjust the width as needed */
+	justify-content: center;
+	align-items: center;
+  	width: 200px; /* Adjust the width as needed */
 	margin: 2rem auto;
 }
 
