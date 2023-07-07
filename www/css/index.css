@@ -455,7 +455,7 @@ a {
 /***************** CARDS *****************/
 .card-container {
 	position: relative;
-} 
+}
 
 .card-row {
 	display: flex;
@@ -720,7 +720,7 @@ a {
 }
 
 #username-input {
-	border-radius: 100px;
+	border-radius: 5px;
 	position: absolute;
 	left: 35%;
 	top: 15%;
@@ -739,7 +739,7 @@ a {
 	right: 25%;
 	width: 50%;
 	height: 30%;
-	border-radius: 100px;
+	border-radius: 5px;
 	color: whitesmoke;
 	background-color: #0684d8;
 	border: 3px solid #0684d8;
@@ -800,27 +800,27 @@ a {
 	padding: 2rem 0;
 }
 
-.modal-item{
+.modal-item {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin: .1rem 0;
 }
 
-.modal-item div{
+.modal-item div {
 	margin-top: 1rem;
 }
 
-.modal-item .value{
+.modal-item .value {
 	margin: 0;
 }
 
-.modal select{
+.modal select {
 	padding: .5rem;
 	border-radius: .5rem;
 }
 
-.modal-item img{
+.modal-item img {
 	width: 25%;
 	border: .5rem solid var(--secondary-color);
 	border-radius: 50%;
@@ -973,6 +973,7 @@ a {
 /* #region LEADERBOARD */
 
 #mobile-logger {
+	display: none;
 	height: 30vw;
 	width: 100vw;
 	position: fixed;
@@ -999,7 +1000,8 @@ a {
 
 #gameover-container-bg .modal {
 	background-color: rgb(231, 231, 231);
-	border-radius: 20px;
+	border-radius: .5rem;
+	padding: 1rem 0;
 
 	display: flex;
 	align-items: center;
@@ -1213,7 +1215,7 @@ a {
 .leaderboard-group-row #refresh-leaderboard-button {
 	height: 100%;
 	width: 100%;
-	border-radius: 100px;
+	border-radius: 5px;
 	color: whitesmoke;
 	background-color: #0684d8;
 	border: 3px solid #0684d8;
@@ -1222,7 +1224,7 @@ a {
 .leaderboard-group-row #difficulty-dropdown {
 	height: 100%;
 	width: 100%;
-	border-radius: 100px;
+	border-radius: 5px;
 	color: #0684d8;
 	margin: 10%;
 	border: 3px solid #0684d8;
@@ -1231,21 +1233,21 @@ a {
 .leaderboard-group-row #send-highscore-button {
 	background-color: #0684d8;
 	height: 100%;
-	border-radius: 100px;
+	border-radius: 5px;
 	color: whitesmoke;
 }
 
 .leaderboard-group-row #play-again-button {
 	background-color: #0684d8;
 	height: 100%;
-	border-radius: 100px;
+	border-radius: 5px;
 	color: whitesmoke;
 }
 
 .leaderboard-group-row #home-button {
 	background-color: #0684d8;
 	height: 100%;
-	border-radius: 100px;
+	border-radius: 5px;
 	color: whitesmoke;
 }
 
@@ -1284,7 +1286,7 @@ a {
 
 @media screen and (orientation: portrait) {
 
-	.container{
+	.container {
 		overflow: hidden;
 	}
 

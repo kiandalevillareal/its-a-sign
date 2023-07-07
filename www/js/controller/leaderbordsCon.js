@@ -70,6 +70,8 @@ function refreshLeaderboard()
 
     formData.append('user_id', jsonUserData.user_id);
     formData.append('difficulty', difficultyDropdown.value);
+    // formData.append('user_id', 147);
+    // formData.append('difficulty', difficultyDropdown.value);
 
     let dataLB = null;
 
@@ -140,7 +142,7 @@ function refreshLeaderboard()
 
 function submitHighscore(event)
 {
-    event.preventDefault();
+    // event.preventDefault();
 
     sendScoreButton.style.display = "none";
     loadingAnimationLeaderBoardSend.style.display = "inline-block";
