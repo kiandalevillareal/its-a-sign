@@ -225,14 +225,16 @@ function updateTimer(value) {
 	timeLeft = value;
 
 	const minutes = Math.floor(timeLeft / 60); // CALCULATE MINUTES
-	const seconds = timeLeft % 60; // CALCULATE SECONDS
+	const seconds = Math.floor(timeLeft % 60); // CALCULATE SECONDS
+	const milliseconds = Math.floor((timeLeft % 1) * 100); // CALCULATE MILLISECONDS
 
-	// Format the minutes and seconds with leading zeros if necessary
+	// Format the minutes, seconds, and milliseconds with leading zeros if necessary
 	const formattedMinutes = String(minutes).padStart(1, "0");
 	const formattedSeconds = String(seconds).padStart(2, "0");
+	const formattedMilliseconds = String(milliseconds).padStart(2, "0");
 
 	timerElements.forEach(function (timerElement) {
-		timerElement.textContent = `${formattedMinutes}:${formattedSeconds}`;
+		timerElement.textContent = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
 	});
 
 	if (timeLeft === 0) {
@@ -246,12 +248,12 @@ function updateTimer(value) {
 
 function startTimer() {
 	timerInterval = setInterval(() => {
-		timeLeft--;
-		totalGameTime++;
-		roundTime++;
-		console.log("TOTAL GAME TIME: ", totalGameTime);
+		timeLeft -= 0.01; // Subtract 0.01 instead of 1 to account for the 10-millisecond interval
+		totalGameTime += 0.01; // Increment by 0.01 instead of 1 to account for the 10-millisecond interval
+		roundTime += 0.01; // Increment by 0.01 instead of 1 to account for the 10-millisecond interval
+		console.log("TOTAL GAME TIME: ", totalGameTime.toFixed(2));
 		updateTimer(timeLeft);
-	}, 1000);
+	}, 10); // Set the interval to 10 milliseconds
 }
 
 const enableButtons = function (buttons) {
