@@ -15,10 +15,10 @@ function handleToggle() {
     twoHandContainer.style.display = "flex";
     
     // Update slider position and label colors
-    const sliderPosition = window.innerWidth <= 768 ? "82%" : "88%";
+    const sliderPosition = window.innerWidth <= 844 ? (window.innerWidth <= 390 ? "82%" : "85%") : "88%";
     toggleSlider.style.transform = `translateX(${sliderPosition})`;
-    toggleLabelLeft.style.color = "#e4e4e4";
-    toggleLabelRight.style.color = "#e4e4e4";
+    toggleLabelLeft.style.color = "#fff";
+    toggleLabelRight.style.color = "#fff";
     
     // Reset currentIndex to 0 for Two-hand container
     currentIndex = 0;
@@ -33,8 +33,8 @@ function handleToggle() {
     
     // Reset slider position and label colors
     toggleSlider.style.transform = "translateX(0)";
-    toggleLabelLeft.style.color = "#e4e4e4";
-    toggleLabelRight.style.color = "#e4e4e4";
+    toggleLabelLeft.style.color = "#fff";
+    toggleLabelRight.style.color = "#fff";
     
     // Reset currentIndex to 0 for One-hand container
     currentIndex = 0;
@@ -47,7 +47,6 @@ function handleToggle() {
   // Show the initial word section
   showWord(currentIndex);
 }
-
 
 function toggleList() {
   const listSection = document.querySelector('.list-section');
@@ -72,9 +71,6 @@ function toggleList() {
     listSection1.style.display = 'none';
   }
 }
-
-
-
 
 const words = ['ako', 'almusal', 'bukas', 'emergency', 'hapunan', 'hello', 'ikaw', 'inom', 'lola', 'lolo', 'naiintindihan', 'pakiusap', 'patawad', 'welcome'];
 const words1 = ['bahay', 'excuseme', 'gamot', 'kumusta', 'magandanggabi', 'magandanghapon', 'magandangtanghali', 'magandangumaga', 'mamaya', 'natutuhan', 'ngayongaraw', 'oras', 'paaralan', 'pangalan', 'salamat', 'signlanguage', 'trabaho', 'tulong'];
@@ -180,7 +176,6 @@ function handleListClick(event) {
   }
 }
 
-
 // Add click event listeners to list items
 const listItemsList = document.querySelectorAll('.list-section ul li');
 listItemsList.forEach((item) => {
@@ -191,7 +186,6 @@ const listItemsList1 = document.querySelectorAll('.list-section1 ul li');
 listItemsList1.forEach((item) => {
   item.addEventListener('click', handleListClick);
 });
-
 
 
 previousButtonOneHand.addEventListener('click', navigatePrevious);

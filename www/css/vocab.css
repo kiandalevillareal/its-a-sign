@@ -158,8 +158,8 @@ h1 {
     justify-content: space-between;
     align-items: center;
     font-family: "Raleway", sans-serif;
-    margin: 2.5rem;
     position: relative;
+    height: 100vh;
 }
 
 .word-container {
@@ -167,17 +167,17 @@ h1 {
     background: var(--custom-white);
     height: 100%;
     width: 100%;
-    border-radius: 1.25rem;
     position: relative;
+    justify-content: center;
+    align-items: center;
 }
 
 .vocab-header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     top: 0;
-    margin-top: 2rem;
+    margin: 2rem 0 0;
 }
 
 .home-button,
@@ -185,16 +185,15 @@ h1 {
     display: flex;
     align-items: center;
     color: var(--shade-of-blue);
+    font-size: 1.5rem;
 }
 
 .home-button {
     margin-left: 1.5rem;
-    font-size: 1.5rem;
 }
 
 .list-button {
     margin-right: 1.5rem;
-    font-size: 1.5rem;
     z-index: 10;
 }
 
@@ -217,32 +216,31 @@ h1 {
     position: absolute;
     top: 0;
     right: 0;
-    width: 300px;
+    width: 18.75rem;
     bottom: 0;
-        /* Change from `height: 100%` to `bottom: 0` */
-    /* Adjust the width as needed */
     height: 100%;
     background-color: var(--primary-color);
     display: none;
-    /* Add any other styling for the list section */
     z-index: 2;
-    border-radius: .25rem 1.25rem 1.25rem .25rem;
+    border-radius: .25rem 0 0 .25rem;
     justify-content: space-between;
 }
 
-.list-section1{
+.list-section1 {
     overflow-y: auto;
-}
+} 
 
 .list-section1::-webkit-scrollbar {
     display: none;
-    /* Hide the scrollbar */
 }
+
 .list-section h4,
-.list-section1 h4{
+.list-section1 h4 {
     font-size: 1rem;
 }
-.list-section ul, .list-section1 ul {
+
+.list-section ul,
+.list-section1 ul {
     margin-top: 1.2rem;
     margin-left: 2rem;
     list-style: none;
@@ -252,23 +250,29 @@ h1 {
     gap: .6rem;
     font-size: .8rem;
     font-weight: 400;
+    overflow-y: auto;
 }
 
 .list-section li,
-.list-section1 li{
+.list-section1 li {
     font-size: 1rem;
+    padding-left: 1rem;
+    margin-right: 2rem;
+    cursor: pointer;
 }
 
 .list-section li:focus,
 .list-section1 li:focus {
     color: var(--shade-of-blue);
-    /* Add any other styling for the selected list item */
 }
 
 .list-section ul .selected,
 .list-section1 ul .selected {
     color: var(--shade-of-blue);
-    font-weight: bolder;
+    background-color: var(--custom-white);
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border-radius: .2rem;
 }
 
 .toggle-container {
@@ -334,9 +338,8 @@ h1 {
     right: 0.5rem;
 }
 
-/*One-hand signs container */
 .one-hand-container,
-.two-hand-container{
+.two-hand-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -346,9 +349,11 @@ h1 {
     border-radius: 1rem;
     position: relative;
     height: 25rem;
+    margin-top: 1rem;
 }
 
-.word, .word1 {
+.word,
+.word1 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -378,9 +383,9 @@ h1 {
     line-height: 2rem;
 }
 
-.definition{
+.definition {
     height: 3.6rem;
-    width: 100%;
+    width: 32rem;
 }
 
 .definition-container p {
@@ -388,6 +393,7 @@ h1 {
     font-size: 1rem;
     margin-top: -1rem;
 }
+
 .reminder {
     margin-top: 2.7rem;
     margin-left: 1rem;
@@ -412,20 +418,18 @@ h1 {
     border-radius: 0 1rem 1rem 0;
     display: flex;
     justify-content: center;
-    /* Center the content horizontally */
     align-items: center;
-    /* Center the content vertically */
 }
 
 .video-container img {
     border-radius: 0.8rem;
 }
+
 .button-container {
     display: flex;
     justify-content: space-between;
     padding-bottom: 2rem;
-    margin-top: 0;
-    /* Remove the negative margin-top */
+    margin-top: 1rem;
 }
 
 .previous-button,
@@ -444,125 +448,18 @@ h1 {
     margin-top: .5rem;
     margin-bottom: 1rem;
 }
+
 .previous-button:hover,
 .next-button:hover {
     background-color: var(--shade-of-orange);
 }
 
 
-
 /* Media queries for tablet and phone devices */
 @media (max-width: 1024px) {
-    .vocabulary-container {
-        margin: 0rem;
-        height: 100vh;
-    }
-
-    .word-container{
-        border-radius: 1rem;
-        height: auto;
-    }
-
-    .vocab-header{
-        margin-top: 3rem;
-    }
-
-    .home-button{
-        margin-left: 3rem;
-    }
-
-    .list-button{
-        margin-right: 3rem;
-    }
-    
-    .title {
-        font-size: 1.5rem;
-    }
-
-    .toggle-switch {
-        width: 30rem;
-        margin-top: 2rem;
-    }
-
-    .one-hand-container, .two-hand-container {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .word, .word1{
-        height: auto;
-    }
-
-    .word-content {
-        flex-direction: column-reverse;
-    }
-    
-    .definition-container {
-        border-radius: 1rem;
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-
-    .definition {
-        height: 5rem;
-        width: 40rem;
-    }
-    .definition-container h4 {
-        font-size: 1.5rem;
-        margin-right: 1rem;
-    }
-
-    .definition-container p {
-        font-size: 0.8rem;
-    }
-
-    .reminder {
-        margin-top: 1.5rem;
-        margin-right: 1rem;
-    }
-
-    .reminder p {
-        font-size: 0.7rem;
-    }
-
-    .video-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-    }
-
-    .video-container img {
-        width: 100%;
-        height: 100%;
-        border-radius: .8rem;
-        border: .5rem solid var(--primary-color);
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 1rem;
-        margin-top: 3rem;
-        z-index: 1;
-    }
-}
-
-@media (max-width: 844px) {
-    /* .vocabulary-container {
-        margin: 0rem;
-        height: 100vh;
-    }
-
     .word-container {
-        border-radius: 1rem;
         height: auto;
-    } */
+    }
 
     .vocab-header {
         margin-top: 3rem;
@@ -580,80 +477,8 @@ h1 {
         font-size: 1.5rem;
     }
 
-        .vocabulary-container {
-            margin: 0;
-            height: 100vh;
-            overflow: scroll;
-        }
-    
-        .word-container {
-            height: auto;
-        }
-    
-        .vocab-header {
-            margin-top: 3rem;
-        }
-    
-        .home-button {
-            margin-left: 1.5rem;
-        }
-    
-        .list-button {
-            margin-right: 1.5rem;
-        }
-    
-        .title {
-            font-size: 1.5rem;
-        }
-    
-        .toggle-switch {
-            width: 20rem;
-            margin-top: 1rem;
-        }
-    
-        .one-hand-container,
-        .two-hand-container {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            margin-top: -1rem;
-        }
-    
-        .list-section,
-        .list-section1 {
-            border-radius: .25rem 0 0 .25rem;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            /* Adjust the width as needed */
-            background-color: var(--primary-color);
-            display: none;
-            z-index: 2;
-            overflow-y: auto;
-        }
-    
-        .list-section h4,
-        .list-section1 h4 {
-            font-size: 1.2rem;
-        }
-    
-        .list-section ul,
-        .list-section1 ul {
-            margin-top: 1.5rem;
-            margin-left: 2rem;
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            font-size: 1rem;
-            font-weight: 400;
-            height: calc(100% - 2.2rem);
-        }
     .toggle-switch {
-        width: 25rem;
+        width: 30rem;
         margin-top: 2rem;
     }
 
@@ -662,7 +487,7 @@ h1 {
         height: auto;
         display: flex;
         flex-direction: column;
-        /* background-color: var(--custom-white); */
+        margin-top: 0rem;
     }
 
     .word,
@@ -681,12 +506,12 @@ h1 {
         margin-right: auto;
         align-items: center;
         justify-content: center;
-        margin-top: 2rem;
     }
 
     .definition {
-        height: 5rem;
-        width: 25rem;
+        height: 3.5rem;
+        width: 35rem;
+        margin-right: 1rem;
     }
 
     .definition-container h4 {
@@ -708,141 +533,32 @@ h1 {
     }
 
     .video-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background-color: transparent;
     }
 
     .video-container img {
         width: 100%;
         height: 100%;
-        border-radius: .8rem;
-        border: .5rem solid var(--primary-color);
+        border-radius: 0.8rem;
+        border: 0.5rem solid var(--primary-color);
     }
 
     .button-container {
         display: flex;
         justify-content: center;
         padding-bottom: 1rem;
-        margin-top: 3rem;
+        margin-top: 1rem;
         z-index: 1;
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 844px) {
     .vocabulary-container {
-        margin: 0rem;
-        height: 100vh;
+        overflow: scroll;
     }
 
     .word-container {
-        border-radius: 1rem;
         height: auto;
-    }
-
-    .vocab-header {
-        margin-top: 3rem;
-    }
-
-    .home-button {
-        margin-left: 3rem;
-    }
-
-    .list-button {
-        margin-right: 3rem;
-    }
-
-    .title {
-        font-size: 1.5rem;
-    }
-
-    .toggle-switch {
-        width: 25rem;
-        margin-top: 2rem;
-    }
-
-    .one-hand-container, .two-hand-container {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .word, .word1 {
-        height: auto;
-    }
-
-    .word-content {
-        flex-direction: column-reverse;
-    }
-
-    .definition-container {
-        border-radius: 1rem;
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-
-    .definition {
-        height: 5rem;
-        width: 25rem;
-    }
-
-    .definition-container h4 {
-        font-size: 1.5rem;
-        margin-right: 1rem;
-    }
-
-    .definition-container p {
-        font-size: 0.8rem;
-    }
-
-    .reminder {
-        margin-top: 1.5rem;
-        margin-right: 1rem;
-    }
-
-    .reminder p {
-        font-size: 0.7rem;
-    }
-
-    .video-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-    }
-
-    .video-container img {
-        width: 100%;
-        height: 100%;
-        border-radius: .8rem;
-        border: .5rem solid var(--primary-color);
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 1rem;
-        margin-top: 3rem;
-        z-index: 1;
-    }
-}
-
-@media (max-width: 390px) {
-    .vocabulary-container {
-        margin: 0rem;
-        height: 100vh;
-    }
-    
-    .word-container{
-        height: 100%;
-    }
-    .vocab-header {
-        margin-top: 3rem;
     }
 
     .home-button {
@@ -853,55 +569,45 @@ h1 {
         margin-right: 1.5rem;
     }
 
-    .list-section, .list-section1{
-        border-radius: .25rem 0 0 .25rem;
-    }
-
-        .list-section h4,
-        .list-section1 h4{
-            font-size: 1.5rem;
-        }
-
-        .list-section ul,
-        .list-section1 ul {
-            margin-top: 1rem;
-            margin-left: 2rem;
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            font-size: 1rem;
-            font-weight: 400;
-            width: 80%;
-        }
-
     .title {
         font-size: 1.5rem;
     }
 
     .toggle-switch {
-        width: 20rem;
-        margin-top: 1rem;
+        margin-top: 0rem;
     }
 
-    .toggle-label-left,
-    .toggle-label-right{
-        font-size: .8rem;
-    }
-
-        .toggle-switch input[type="checkbox"]:checked+.toggle-slider {
-            transform: translateX(82%);
-            color: var(--body-color);
-        }
-    .one-hand-container, .two-hand-container {
-        height: auto;
-        display: flex;
-        flex-direction: column;
+    .one-hand-container,
+    .two-hand-container {
         margin-top: -1rem;
     }
 
-    .word, .word1{
+    .list-section,
+    .list-section1 {
+        border-radius: .25rem 0 0 .25rem;
+        overflow-y: auto;
+    }
+
+    .list-section h4,
+    .list-section1 h4 {
+        font-size: 1.2rem;
+    }
+
+    .list-section ul,
+    .list-section1 ul {
+        margin-top: 1.5rem;
+        gap: 1rem;
+        font-size: 1rem;
+        height: calc(100% - 2.2rem);
+    }
+
+    .toggle-switch {
+        width: 25rem;
+        margin-top: 2rem;
+    }
+
+    .word,
+    .word1 {
         height: auto;
     }
 
@@ -910,136 +616,140 @@ h1 {
     }
 
     .definition-container {
-        border-radius: 1rem;
-        width: 85%;
-        margin-left: auto;
-        margin-right: auto;
-        align-items: center;
-        justify-content: center;
-        margin-top: 0;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 390px) {
+
+    .word-container{
+        height: 100%;
+    }
+    .list-section h4,
+    .list-section1 h4 {
+        font-size: 1.5rem;
     }
 
+    .list-section,
+    .list-section1{
+        width: 18rem;
+    }
+    .list-section ul,
+    .list-section1 ul {
+        margin-top: 1rem;
+        gap: 1rem;
+        font-size: 1rem;
+        width: 70%;
+    }
+
+    .toggle-switch {
+        width: 20rem;
+        margin-top: 1rem;
+    }
+
+    .toggle-label-left,
+    .toggle-label-right {
+        font-size: .8rem;
+    }
+
+    .toggle-switch input[type="checkbox"]:checked+.toggle-slider {
+        transform: translateX(70%);
+        color: var(--body-color);
+    }
+
+    .definition-container{
+        margin-top: 0rem;
+    }
     .definition {
-        height: 5rem;
+        height: 3rem;
         width: 16rem;
     }
 
-    .definition-container h4 {
-        font-size: 1.5rem;
-        margin-right: 1rem;
-    }
-
-    .definition-container p {
-        font-size: 0.8rem;
-    }
-
-    .reminder {
-        margin-top: 1rem;
-        margin-right: 1rem;
-    }
-
-    .reminder p {
-        font-size: 0.6rem;
-    }
-
-    .video-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-    }
-
-    .video-container img {
-        width: 100%;
-        height: 100%;
-        border-radius: .8rem;
-        border: .5rem solid var(--primary-color);
-    }
-    .list-button:hover{
+    .list-button:hover {
         color: var(--shade-of-blue);
     }
-
 
     .button-container {
         display: flex;
         justify-content: center;
         padding-bottom: 1rem;
-        margin-top: 6rem;
+        margin-top: 2rem;
         z-index: 1;
         width: 88%;
     }
-                                @media (orientation: landscape) {
-                                    .vocabulary-container {
-                                        margin: 0;
-                                        height: 100vh;
-                                        overflow: scroll;
-                                    }
-                
-                                    .word-container {
-                                        height: auto;
-                                    }
-                
-                                    .vocab-header {
-                                        margin-top: 3rem;
-                                    }
-                
-                                    .home-button {
-                                        margin-left: 1.5rem;
-                                    }
-                
-                                    .list-button {
-                                        margin-right: 1.5rem;
-                                    }
-                
-                                    .title {
-                                        font-size: 1.5rem;
-                                    }
-                
-                                    .toggle-switch {
-                                        width: 20rem;
-                                        margin-top: 1rem;
-                                    }
-                
-                                    .one-hand-container,
-                                    .two-hand-container {
-                                        height: 100%;
-                                        display: flex;
-                                        flex-direction: column;
-                                        margin-top: -1rem;
-                                    }
-                
-                                    .list-section,
-                                    .list-section1 {
-                                        border-radius: .25rem 0 0 .25rem;
-                                        height: 100%;
-                                        position: absolute;
-                                        top: 0;
-                                        right: 0;
-                                        width: 300px;
-                                        /* Adjust the width as needed */
-                                        background-color: var(--primary-color);
-                                        display: none;
-                                        z-index: 2;
-                                        overflow-y: auto;
-                                    }
-                
-                                    .list-section h4,
-                                    .list-section1 h4 {
-                                        font-size: 1.5rem;
-                                    }
-                
-                                    .list-section ul,
-                                    .list-section1 ul {
-                                        margin-top: 2rem;
-                                        margin-left: 2rem;
-                                        list-style: none;
-                                        padding: 0;
-                                        display: flex;
-                                        flex-direction: column;
-                                        gap: .6rem;
-                                        font-size: .8rem;
-                                        font-weight: 400;
-                                        height: calc(100% - 2.2rem);
-                                    }
-                                }
+
+    @media (orientation: landscape) {
+        .vocabulary-container {
+            margin: 0;
+            height: 100vh;
+            overflow: scroll;
+        }
+
+        .word-container {
+            height: auto;
+        }
+
+        .vocab-header {
+            margin-top: 3rem;
+        }
+
+        .home-button {
+            margin-left: 1.5rem;
+        }
+
+        .list-button {
+            margin-right: 1.5rem;
+        }
+
+        .title {
+            font-size: 1.5rem;
+        }
+
+        .toggle-switch {
+            width: 20rem;
+            margin-top: 1rem;
+        }
+
+        .one-hand-container,
+        .two-hand-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: -1rem;
+        }
+
+        .list-section,
+        .list-section1 {
+            border-radius: .25rem 0 0 .25rem;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 18.75rem;
+            /* Adjust the width as needed */
+            background-color: var(--primary-color);
+            display: none;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        .list-section h4,
+        .list-section1 h4 {
+            font-size: 1.5rem;
+        }
+
+        .list-section ul,
+        .list-section1 ul {
+            margin-top: 2rem;
+            margin-left: 2rem;
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            font-size: .8rem;
+            font-weight: 400;
+            height: calc(100% - 2.2rem);
+        }
+    }
 }
