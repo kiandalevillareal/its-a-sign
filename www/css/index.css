@@ -35,6 +35,7 @@
 			0);
 	/* make transparent link selection, adjust last value opacity 0 to 1.0 */
 	--body-color: #e4e4e4;
+	--custom_white: #fff;
 	--primary-color: #32a6e8;
 	--secondary-color: #ff5f11;
 	--shade-of-blue: #056bb1;
