@@ -321,33 +321,33 @@ a {
 }
 
 .points {
-    order: 1;
-    margin-right: auto;
-    margin-left: 1.5rem;
-    border-radius: 0.625rem;
-    background: var(--primary-color);
-    box-shadow: 0.1875rem 0.1875rem 0.3125rem 0px rgba(0, 0, 0, 0.50) inset;
-    width: 6rem;
-    height: 2rem;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    font-size: 1rem;
-    color: var(--custom_white);
-    font-family: "Raleway", sans-serif;
+	order: 1;
+	margin-right: auto;
+	margin-left: 1.5rem;
+	border-radius: 0.625rem;
+	background: var(--primary-color);
+	box-shadow: 0.1875rem 0.1875rem 0.3125rem 0px rgba(0, 0, 0, 0.50) inset;
+	width: 6rem;
+	height: 2rem;
+	flex-shrink: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem;
+	font-size: 1rem;
+	color: var(--custom_white);
+	font-family: "Raleway", sans-serif;
 }
 
 .points i {
-    margin-left: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .points span {
-    flex-grow: 1;
-    text-align: right;
-    font-family: "Raleway", sans-serif;
-    font-size: 1.2rem;
+	flex-grow: 1;
+	text-align: right;
+	font-family: "Raleway", sans-serif;
+	font-size: 1.2rem;
 }
 
 
@@ -389,32 +389,32 @@ a {
 }
 
 .timer {
-    order: 3;
-    margin-right: 1.5rem;
-    border-radius: 0.625rem;
-    background: var(--primary-color);
-    box-shadow: 0.1875rem 0.1875rem 0.3125rem 0px rgba(0, 0, 0, 0.50) inset;
-    width: 6rem;
-    height: 2rem;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    font-size: 1rem;
-    color: var(--custom_white);
-    font-family: "Raleway", sans-serif;
+	order: 3;
+	margin-right: 1.5rem;
+	border-radius: 0.625rem;
+	background: var(--primary-color);
+	box-shadow: 0.1875rem 0.1875rem 0.3125rem 0px rgba(0, 0, 0, 0.50) inset;
+	width: 6rem;
+	height: 2rem;
+	flex-shrink: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem;
+	font-size: 1rem;
+	color: var(--custom_white);
+	font-family: "Raleway", sans-serif;
 }
 
 .timer i {
-    margin-left: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .timer span {
-    flex-grow: 1;
-    text-align: right;
-    font-family: "Raleway", sans-serif;
-    font-size: 1.2rem;
+	flex-grow: 1;
+	text-align: right;
+	font-family: "Raleway", sans-serif;
+	font-size: 1.2rem;
 }
 
 
@@ -974,7 +974,7 @@ a {
 /* #region LEADERBOARD */
 
 #mobile-logger {
-	display: none;
+	/* display: none; */
 	height: 30vw;
 	width: 100vw;
 	position: fixed;
