@@ -862,7 +862,7 @@ a {
 }
 
 .instruction-container {
-	margin: 2rem;
+	margin: 0 2rem;
 	/*top leftright bottom*/
 	display: none;
 	color: #202020;
@@ -894,7 +894,7 @@ a {
 	font-family: "Cubao", sans-serif;
 	font-size: 2rem;
 	color: var(--primary-color);
-	margin: 1rem -1rem 0rem;
+	margin: 3rem -1rem 0rem;
 }
 
 .instruction-content {
