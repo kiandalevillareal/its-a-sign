@@ -179,6 +179,3 @@ avatarButton.addEventListener('click', function ()
     event.preventDefault();
     avatarsContainer.style.display = "flex";
 });
-
-
-getSessions(171);
