@@ -21,7 +21,8 @@
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener("deviceready", onDeviceReady, false);
 
-function onDeviceReady() {
+function onDeviceReady()
+{
 	// Cordova is now initialized. Have fun!
 
 	console.log("Running cordova-" + cordova.platformId + "@" + cordova.version);
@@ -76,25 +77,29 @@ let timerInterval;
 let currentDifficulty;
 
 //SHOWS DIFFICULTY SECTION, HIDES HOME SECTION
-playButton.addEventListener("click", function () {
+playButton.addEventListener("click", function ()
+{
 	homeContainer.style.display = "none";
 	difficultiesContainer.style.display = "flex";
 });
 
 // SHOWS HOME SECTION, HIDES DIFFICULTY SECTION
-backButton.addEventListener("click", () => {
+backButton.addEventListener("click", () =>
+{
 	homeContainer.style.display = "flex";
 	difficultiesContainer.style.display = "none";
 });
 
 //SHOWS HOW TO SECTION, HIDES HOME SECTION
-instructionButton.addEventListener("click", function () {
+instructionButton.addEventListener("click", function ()
+{
 	instructionContainer.style.display = "block";
 	homeContainer.style.display = "none";
 });
 
 // SHOWS EASY CONTAINER, HIDES DIFFICULTY CONTAINER
-easyButton.addEventListener("click", function () {
+easyButton.addEventListener("click", function ()
+{
 	currentDifficulty = "easy";
 	isEasyClicked = true;
 	easyContainer.style.display = "flex";
@@ -106,7 +111,8 @@ easyButton.addEventListener("click", function () {
 });
 
 // SHOWS INTERMEDIATE CONTAINER, HIDES DIFFICULTY CONTAINER
-intermediateButton.addEventListener("click", function () {
+intermediateButton.addEventListener("click", function ()
+{
 	currentDifficulty = "intermediate";
 	isIntermediateClicked = true;
 	intermediateContainer.style.display = "flex";
@@ -118,7 +124,8 @@ intermediateButton.addEventListener("click", function () {
 });
 
 // SHOWS HARD CONTAINER, HIDES DIFFICULTY CONTAINER
-hardButton.addEventListener("click", function () {
+hardButton.addEventListener("click", function ()
+{
 	currentDifficulty = "hard";
 	isHardClicked = true;
 	hardContainer.style.display = "flex";
@@ -130,20 +137,24 @@ hardButton.addEventListener("click", function () {
 });
 
 // PLAY AGAIN
-playAgainButton.addEventListener("click", function () {
+playAgainButton.addEventListener("click", function ()
+{
 	round = 1;
 	updateRound(1);
 
 	// clear easyRandomSignsUsed
 	signsUsed.splice(0);
 
-	if (isEasyClicked) {
+	if (isEasyClicked)
+	{
 		easyCardContainer.innerHTML = "";
 		goToEasyRound(round);
-	} else if (isIntermediateClicked) {
+	} else if (isIntermediateClicked)
+	{
 		intermediateCardContainer.innerHTML = "";
 		goToIntermediateRound(round);
-	} else if (isHardClicked) {
+	} else if (isHardClicked)
+	{
 		hardCardContainer.innerHTML = "";
 		goToHardRound(round);
 	}
@@ -152,7 +163,8 @@ playAgainButton.addEventListener("click", function () {
 });
 
 // BACK TO HOME, HIDES THE GAME
-homeButton.addEventListener("click", function () {
+homeButton.addEventListener("click", function ()
+{
 	round = 1;
 	updateRound(1);
 
@@ -171,24 +183,29 @@ homeButton.addEventListener("click", function () {
 });
 
 // UPDATE THE POINTS DISPLAY
-function updatePoints(value) {
+function updatePoints(value)
+{
 	points = value;
 
-	setTimeout(() => {
-		pointsContainer.forEach(function (pointsContainerElement) {
+	setTimeout(() =>
+	{
+		pointsContainer.forEach(function (pointsContainerElement)
+		{
 			// Back to 0
 			pointsContainerElement.style.transition = "background-color 0.5s";
 			pointsContainerElement.style.backgroundColor = "";
 		});
 	}, 2500);
 
-	pointsContainer.forEach(function (pointsContainerElement) {
+	pointsContainer.forEach(function (pointsContainerElement)
+	{
 		// Change timer background color to orange
 		pointsContainerElement.style.transition = "background-color 0.5s";
 		pointsContainerElement.style.backgroundColor = "orange";
 	});
 
-	pointsElements.forEach(function (pointsElement) {
+	pointsElements.forEach(function (pointsElement)
+	{
 		pointsElement.textContent = points;
 	});
 }
@@ -196,18 +213,23 @@ function updatePoints(value) {
 updatePoints(points);
 
 // UPDATE THE ROUND DISPLAY
-function updateRound(value) {
+function updateRound(value)
+{
 	round = value;
 
-	roundContainer.forEach(function (roundContainerElement) {
+	roundContainer.forEach(function (roundContainerElement)
+	{
 		var fadeDuration = 1000; // Duration of each fade in milliseconds
 
-		function fadeIn() {
+		function fadeIn()
+		{
 			var opacity = 0;
-			var interval = setInterval(function () {
+			var interval = setInterval(function ()
+			{
 				opacity += 0.1;
 				roundContainerElement.style.opacity = opacity;
-				if (opacity >= 1) {
+				if (opacity >= 1)
+				{
 					clearInterval(interval);
 				}
 			}, fadeDuration / 10);
@@ -216,12 +238,14 @@ function updateRound(value) {
 		fadeIn(); // Start the fade-in effect
 	});
 
-	roundElements.forEach(function (roundElement) {
+	roundElements.forEach(function (roundElement)
+	{
 		roundElement.textContent = round;
 	});
 }
 
-function updateTimer(value) {
+function updateTimer(value)
+{
 	timeLeft = value.toFixed(2);
 
 	const minutes = Math.floor(timeLeft / 60); // CALCULATE MINUTES
@@ -233,11 +257,13 @@ function updateTimer(value) {
 	const formattedSeconds = String(seconds).padStart(2, "0");
 	const formattedMilliseconds = String(milliseconds).padStart(2, "0");
 
-	timerElements.forEach(function (timerElement) {
+	timerElements.forEach(function (timerElement)
+	{
 		timerElement.textContent = `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
 	});
 
-	if (timeLeft <= 0.00) {
+	if (timeLeft <= 0.00)
+	{
 		console.log("Game over");
 		gameOverText.innerHTML = "TIME IS LEFT - GAME OVER";
 		gameOverContainer.style.display = "flex";
@@ -246,8 +272,10 @@ function updateTimer(value) {
 	}
 }
 
-function startTimer() {
-	timerInterval = setInterval(() => {
+function startTimer()
+{
+	timerInterval = setInterval(() =>
+	{
 		timeLeft -= 0.01; // Subtract 0.01 instead of 1 to account for the 10-millisecond interval
 		totalGameTime += 0.01; // Increment by 0.01 instead of 1 to account for the 10-millisecond interval
 		roundTime += 0.01; // Increment by 0.01 instead of 1 to account for the 10-millisecond interval
@@ -256,131 +284,165 @@ function startTimer() {
 	}, 10); // Set the interval to 10 milliseconds
 }
 
-const enableButtons = function (buttons) {
-	buttons.forEach(function (button) {
+const enableButtons = function (buttons)
+{
+	buttons.forEach(function (button)
+	{
 		button.disabled = false;
 	});
 };
 
-const disableButtons = function (buttons) {
-	buttons.forEach(function (button) {
+const disableButtons = function (buttons)
+{
+	buttons.forEach(function (button)
+	{
 		button.disabled = true;
 	});
 };
 
-if (points >= 2) {
+if (points >= 2)
+{
 	enableButtons(hintButtons);
 	enableButtons(freezeButtons);
-	if (points >= 3) {
+	if (points >= 3)
+	{
 		enableButtons(revealButtons);
-	} else {
+	} else
+	{
 		disableButtons(revealButtons);
 	}
-} else {
+} else
+{
 	disableButtons(hintButtons);
 	disableButtons(revealButtons);
 	disableButtons(freezeButtons);
 }
 
-hintButtons.forEach(function (hintButton) {
+hintButtons.forEach(function (hintButton)
+{
 	// Add event listener to the hintButton
-	hintButton.addEventListener("click", function () {
-		if (points >= 2) {
+	hintButton.addEventListener("click", function ()
+	{
+		if (points >= 2)
+		{
 			points -= 2;
 			updatePoints(points);
 
 			hintButton.setAttribute("disabled", "true"); // Disable the button
 
-			if (flippedCards.length < 2 && isEasyClicked) {
+			if (flippedCards.length < 2 && isEasyClicked)
+			{
 				var unflippedCards = easyContainer.querySelectorAll(
 					".flip-card:not(.flipped)"
 				);
 
-				if (unflippedCards.length > 0) {
+				if (unflippedCards.length > 0)
+				{
 					var randomIndex = Math.floor(
 						Math.random() * easyRandomSignToGuess.length
 					);
-					var correctCard = Array.from(unflippedCards).find(function (card) {
+					var correctCard = Array.from(unflippedCards).find(function (card)
+					{
 						var cardId = card.querySelector(".flip-card-back").dataset.id;
 						return cardId == easyRandomSignToGuess[randomIndex].id;
 					});
 
-					if (correctCard) {
+					if (correctCard)
+					{
 						correctCard.classList.add("flipped");
-						setTimeout(function () {
+						setTimeout(function ()
+						{
 							correctCard.classList.remove("flipped");
 						}, 2500);
 					}
 				}
-			} else if (flippedCards.length < 3 && isIntermediateClicked) {
+			} else if (flippedCards.length < 3 && isIntermediateClicked)
+			{
 				var unflippedCards = intermediateContainer.querySelectorAll(
 					".flip-card:not(.flipped)"
 				);
 
-				if (unflippedCards.length > 0) {
+				if (unflippedCards.length > 0)
+				{
 					var randomIndex = Math.floor(
 						Math.random() * intermediateRandomSignToGuess.length
 					);
-					var correctCard = Array.from(unflippedCards).find(function (card) {
+					var correctCard = Array.from(unflippedCards).find(function (card)
+					{
 						var cardId = card.querySelector(".flip-card-back").dataset.id;
 						return cardId == intermediateRandomSignToGuess[randomIndex].id;
 					});
 
-					if (correctCard) {
+					if (correctCard)
+					{
 						correctCard.classList.add("flipped");
-						setTimeout(function () {
+						setTimeout(function ()
+						{
 							correctCard.classList.remove("flipped");
 						}, 2500);
 					}
 				}
-			} else if (flippedCards.length < 4 && isHardClicked) {
+			} else if (flippedCards.length < 4 && isHardClicked)
+			{
 				var unflippedCards = hardContainer.querySelectorAll(
 					".flip-card:not(.flipped)"
 				);
 
-				if (unflippedCards.length > 0) {
+				if (unflippedCards.length > 0)
+				{
 					var randomIndex = Math.floor(
 						Math.random() * hardRandomSignToGuess.length
 					);
-					var correctCard = Array.from(unflippedCards).find(function (card) {
+					var correctCard = Array.from(unflippedCards).find(function (card)
+					{
 						var cardId = card.querySelector(".flip-card-back").dataset.id;
 						return cardId == hardRandomSignToGuess[randomIndex].id;
 					});
 
-					if (correctCard) {
+					if (correctCard)
+					{
 						correctCard.classList.add("flipped");
-						setTimeout(function () {
+						setTimeout(function ()
+						{
 							correctCard.classList.remove("flipped");
 						}, 2500);
 					}
 				}
 			}
 
-			setTimeout(function () {
+			setTimeout(function ()
+			{
 				hintButton.removeAttribute("disabled"); // Enable the button after 2500ms
 			}, 2500);
-		} else {
+		} else
+		{
 			navigator.vibrate(500);
 		}
 	});
 });
 
-revealButtons.forEach(function (revealButton) {
+revealButtons.forEach(function (revealButton)
+{
 	// Add event listener to the revealButtons
-	revealButton.addEventListener("click", function () {
-		if (points >= 3) {
+	revealButton.addEventListener("click", function ()
+	{
+		if (points >= 3)
+		{
 			points -= 2;
 			updatePoints(points);
 
 			revealButton.setAttribute("disabled", "true");
 
-			if (flippedCards.length < 2 && isEasyClicked) {
+			if (flippedCards.length < 2 && isEasyClicked)
+			{
 				var unflippedCards = easyContainer.querySelectorAll(
 					".flip-card:not(.flipped)"
 				);
 
-				if (unflippedCards.length > 0) {
-					var correctCards = Array.from(unflippedCards).filter(function (card) {
+				if (unflippedCards.length > 0)
+				{
+					var correctCards = Array.from(unflippedCards).filter(function (card)
+					{
 						var cardId = card.querySelector(".flip-card-back").dataset.id;
 						return (
 							cardId == easyRandomSignToGuess[0].id ||
@@ -388,22 +450,28 @@ revealButtons.forEach(function (revealButton) {
 						);
 					});
 
-					if (correctCards.length > 0) {
-						correctCards.forEach(function (card) {
+					if (correctCards.length > 0)
+					{
+						correctCards.forEach(function (card)
+						{
 							card.classList.add("flipped");
-							setTimeout(function () {
+							setTimeout(function ()
+							{
 								card.classList.remove("flipped");
 							}, 2500);
 						});
 					}
 				}
-			} else if (flippedCards.length < 3 && isIntermediateClicked) {
+			} else if (flippedCards.length < 3 && isIntermediateClicked)
+			{
 				var unflippedCards = intermediateContainer.querySelectorAll(
 					".flip-card:not(.flipped)"
 				);
 
-				if (unflippedCards.length > 0) {
-					var correctCards = Array.from(unflippedCards).filter(function (card) {
+				if (unflippedCards.length > 0)
+				{
+					var correctCards = Array.from(unflippedCards).filter(function (card)
+					{
 						var cardId = card.querySelector(".flip-card-back").dataset.id;
 						return (
 							cardId == intermediateRandomSignToGuess[0].id ||
@@ -412,22 +480,28 @@ revealButtons.forEach(function (revealButton) {
 						);
 					});
 
-					if (correctCards.length > 0) {
-						correctCards.forEach(function (card) {
+					if (correctCards.length > 0)
+					{
+						correctCards.forEach(function (card)
+						{
 							card.classList.add("flipped");
-							setTimeout(function () {
+							setTimeout(function ()
+							{
 								card.classList.remove("flipped");
 							}, 2500);
 						});
 					}
 				}
-			} else if (flippedCards.length < 4 && isHardClicked) {
+			} else if (flippedCards.length < 4 && isHardClicked)
+			{
 				var unflippedCards = hardContainer.querySelectorAll(
 					".flip-card:not(.flipped)"
 				);
 
-				if (unflippedCards.length > 0) {
-					var correctCards = Array.from(unflippedCards).filter(function (card) {
+				if (unflippedCards.length > 0)
+				{
+					var correctCards = Array.from(unflippedCards).filter(function (card)
+					{
 						var cardId = card.querySelector(".flip-card-back").dataset.id;
 						return (
 							cardId == hardRandomSignToGuess[0].id ||
@@ -439,10 +513,13 @@ revealButtons.forEach(function (revealButton) {
 
 					console.log(correctCards);
 
-					if (correctCards.length > 0) {
-						correctCards.forEach(function (card) {
+					if (correctCards.length > 0)
+					{
+						correctCards.forEach(function (card)
+						{
 							card.classList.add("flipped");
-							setTimeout(function () {
+							setTimeout(function ()
+							{
 								card.classList.remove("flipped");
 							}, 2500);
 						});
@@ -450,26 +527,33 @@ revealButtons.forEach(function (revealButton) {
 				}
 			}
 
-			setTimeout(function () {
+			setTimeout(function ()
+			{
 				revealButton.removeAttribute("disabled"); // Enable the button after 2500ms
 			}, 2500);
-		} else {
+		} else
+		{
 			navigator.vibrate(500);
 		}
 	});
 });
 
-freezeButtons.forEach(function (freezeButton) {
-	freezeButton.addEventListener("click", function () {
-		if (points >= 2) {
+freezeButtons.forEach(function (freezeButton)
+{
+	freezeButton.addEventListener("click", function ()
+	{
+		if (points >= 2)
+		{
 			points -= 2;
 			updatePoints(points);
 
 			freezeButton.setAttribute("disabled", "true");
 
 			clearInterval(timerInterval);
-			setTimeout(() => {
-				timer.forEach(function (timerElement) {
+			setTimeout(() =>
+			{
+				timer.forEach(function (timerElement)
+				{
 					// Back to 0
 					timerElement.style.transition = "background-color 0.5s";
 					timerElement.style.backgroundColor = "";
@@ -477,16 +561,19 @@ freezeButtons.forEach(function (freezeButton) {
 				startTimer();
 			}, 4000);
 
-			timer.forEach(function (timerElement) {
+			timer.forEach(function (timerElement)
+			{
 				// Change timer background color to orange
 				timerElement.style.transition = "background-color 0.5s";
 				timerElement.style.backgroundColor = "orange";
 			});
-		} else {
+		} else
+		{
 			navigator.vibrate(500);
 		}
 
-		setTimeout(function () {
+		setTimeout(function ()
+		{
 			freezeButton.removeAttribute("disabled"); // Enable the button after 2500ms
 		}, 2500);
 	});
@@ -498,16 +585,21 @@ let hardSigns;
 let getRandomSign;
 
 // GAME LOGIC
-function fetchSigns() {
+function fetchSigns()
+{
 	fetch("js/data/signs.json") // Replace with the actual URL of the signs.json file
-		.then((response) => {
-			if (response.ok) {
+		.then((response) =>
+		{
+			if (response.ok)
+			{
 				return response.json();
-			} else {
+			} else
+			{
 				throw new Error("Failed to fetch signs.json");
 			}
 		})
-		.then((signsData) => {
+		.then((signsData) =>
+		{
 			console.log(signsData);
 
 			// EASY DIFFICULTY - GENERATES WORDS TO GUESS
@@ -546,12 +638,14 @@ function fetchSigns() {
 				[signsData[26], signsData[27], signsData[13], signsData[12]],
 			];
 
-			getRandomSign = function () {
+			getRandomSign = function ()
+			{
 				const randomIndex = Math.floor(Math.random() * signsData.length);
 				return signsData[randomIndex];
 			};
 		})
-		.catch((error) => {
+		.catch((error) =>
+		{
 			// Handle the error
 			console.error(error);
 		});
@@ -571,12 +665,15 @@ let easyCardContainer;
 let flippedCards;
 let signsUsed = [];
 let fastestRound;
+let bestSentence;
 
-function goToEasyRound(round) {
+function goToEasyRound(round)
+{
 	console.log(`Entering Round ${round}...`);
 
 	roundTime = 0;
-	if (round === 1) {
+	if (round === 1)
+	{
 		// Start the timer only at the beginning of the game
 		timeLeft = 60;
 		totalGameTime = 0;
@@ -606,7 +703,8 @@ function goToEasyRound(round) {
 
 	// GENERATES THE RANDOM SIGNS ON HTML
 	easyPhraseContainer.innerHTML = "";
-	for (var i = 0; i < easyRandomSignToGuess.length; i++) {
+	for (var i = 0; i < easyRandomSignToGuess.length; i++)
+	{
 		h3EasyElement = document.createElement("h3");
 		h3EasyElement.textContent = easyRandomSignToGuess[i]["sign-name"];
 		easyPhraseContainer.appendChild(h3EasyElement);
@@ -619,12 +717,14 @@ function goToEasyRound(round) {
 	flippedCards = [];
 
 	// Row Count
-	for (var j = 0; j < 2; j++) {
+	for (var j = 0; j < 2; j++)
+	{
 		var cardRow = document.createElement("div");
 		cardRow.className = "card-row";
 
 		// Design of each card in the row
-		for (var i = 0; i < 2; i++) {
+		for (var i = 0; i < 2; i++)
+		{
 			var flipCard = document.createElement("div");
 			flipCard.className = "flip-card";
 
@@ -649,18 +749,23 @@ function goToEasyRound(round) {
 			cardRow.appendChild(flipCard);
 
 			// Add event listener to each flip card
-			flipCard.addEventListener("click", function () {
+			flipCard.addEventListener("click", function ()
+			{
 				console.log(flipCard);
-				if (flippedCards.length < 2 && !this.classList.contains("flipped")) {
+				if (flippedCards.length < 2 && !this.classList.contains("flipped"))
+				{
 					this.classList.toggle("flipped");
-					if (this.classList.contains("flipped")) {
+					if (this.classList.contains("flipped"))
+					{
 						flippedCards.push(this);
-					} else {
+					} else
+					{
 						var index = flippedCards.indexOf(this);
 						flippedCards.splice(index, 1);
 					}
 
-					if (flippedCards.length === 2) {
+					if (flippedCards.length === 2)
+					{
 						var firstCardId =
 							flippedCards[0].querySelector(".flip-card-back").dataset.id;
 						var secondCardId =
@@ -669,7 +774,8 @@ function goToEasyRound(round) {
 						if (
 							firstCardId == easyRandomSignToGuess[0].id &&
 							secondCardId == easyRandomSignToGuess[1].id
-						) {
+						)
+						{
 							console.log("Correct");
 							round++;
 							const roundInfo = {
@@ -679,16 +785,19 @@ function goToEasyRound(round) {
 							};
 							roundTimes.push(roundInfo);
 							console.log("ROUND INFO:", roundInfo);
-							if (round <= 4) {
+							if (round <= 4)
+							{
 								points++;
 								updatePoints(points);
 								console.log(points);
 
 								updateRound(round);
-								setTimeout(function () {
+								setTimeout(function ()
+								{
 									goToEasyRound(round);
 								}, 2500);
-							} else if (round > 4) {
+							} else if (round > 4)
+							{
 								points++;
 								updatePoints(points);
 								console.log(points);
@@ -712,6 +821,8 @@ function goToEasyRound(round) {
 									(info) => info.time == fastestTime
 								);
 								console.log("Fastest Round:", fastestRound);
+								bestSentence = fastestRound.sign1 + " " + fastestRound.sign2;
+								console.log(bestSentence);
 
 								console.log("------------- FINISHED -------------");
 
@@ -719,18 +830,22 @@ function goToEasyRound(round) {
 								gameOverContainer.style.display = "flex";
 								clearInterval(timerInterval);
 								gameEndedComplete();
-							} else {
+							} else
+							{
 								console.log(
 									"---------------GAME OVER (OUT OF TIME)---------------"
 								);
 								gameOverText.innerHTML = "GAME OVER";
 								gameOverContainer.style.display = "flex";
 							}
-						} else {
+						} else
+						{
 							console.log("Wrong");
 							navigator.vibrate(500);
-							setTimeout(function () {
-								flippedCards.forEach(function (card) {
+							setTimeout(function ()
+							{
+								flippedCards.forEach(function (card)
+								{
 									card.classList.remove("flipped");
 								});
 								flippedCards = [];
@@ -757,11 +872,13 @@ let h3IntermediateElement;
 let intermediateCardContainer;
 let intermediateRandomSignsUsed = [];
 
-function goToIntermediateRound(round) {
+function goToIntermediateRound(round)
+{
 	console.log(`Entering Intermediate Round ${round}...`);
 
 	roundTime = 0;
-	if (round === 1) {
+	if (round === 1)
+	{
 		// Start the timer only at the beginning of the game
 		timeLeft = 90;
 		totalGameTime = 0;
@@ -791,7 +908,8 @@ function goToIntermediateRound(round) {
 
 	// GENERATES THE RANDOM SIGNS ON HTML
 	intermediatePhraseContainer.innerHTML = "";
-	for (var i = 0; i < intermediateRandomSignToGuess.length; i++) {
+	for (var i = 0; i < intermediateRandomSignToGuess.length; i++)
+	{
 		h3IntermediateElement = document.createElement("h3");
 		h3IntermediateElement.textContent =
 			intermediateRandomSignToGuess[i]["sign-name"];
@@ -807,12 +925,14 @@ function goToIntermediateRound(round) {
 	flippedCards = [];
 
 	// Row Count
-	for (var j = 0; j < 3; j++) {
+	for (var j = 0; j < 3; j++)
+	{
 		var cardRow = document.createElement("div");
 		cardRow.className = "card-row";
 
 		// Design of each card in the row
-		for (var i = 0; i < 2; i++) {
+		for (var i = 0; i < 2; i++)
+		{
 			var flipCard = document.createElement("div");
 			flipCard.className = "flip-card";
 
@@ -837,17 +957,22 @@ function goToIntermediateRound(round) {
 			cardRow.appendChild(flipCard);
 
 			// Add event listener to each flip card
-			flipCard.addEventListener("click", function () {
-				if (flippedCards.length < 3 && !this.classList.contains("flipped")) {
+			flipCard.addEventListener("click", function ()
+			{
+				if (flippedCards.length < 3 && !this.classList.contains("flipped"))
+				{
 					this.classList.toggle("flipped");
-					if (this.classList.contains("flipped")) {
+					if (this.classList.contains("flipped"))
+					{
 						flippedCards.push(this);
-					} else {
+					} else
+					{
 						var index = flippedCards.indexOf(this);
 						flippedCards.splice(index, 1);
 					}
 
-					if (flippedCards.length === 3) {
+					if (flippedCards.length === 3)
+					{
 						var firstCardId =
 							flippedCards[0].querySelector(".flip-card-back").dataset.id;
 						var secondCardId =
@@ -859,7 +984,8 @@ function goToIntermediateRound(round) {
 							firstCardId == intermediateRandomSignToGuess[0].id &&
 							secondCardId == intermediateRandomSignToGuess[1].id &&
 							thirdCardId == intermediateRandomSignToGuess[2].id
-						) {
+						)
+						{
 							console.log("Correct");
 							round++;
 							const roundInfo = {
@@ -870,16 +996,19 @@ function goToIntermediateRound(round) {
 							};
 							roundTimes.push(roundInfo);
 							console.log("ROUND INFO:", roundInfo);
-							if (round <= 4) {
+							if (round <= 4)
+							{
 								points += 2;
 								updatePoints(points);
 								console.log(points);
 
 								updateRound(round);
-								setTimeout(function () {
+								setTimeout(function ()
+								{
 									goToIntermediateRound(round);
 								}, 2500);
-							} else if (round > 4) {
+							} else if (round > 4)
+							{
 								points += 2;
 								updatePoints(points);
 								console.log(points);
@@ -903,6 +1032,8 @@ function goToIntermediateRound(round) {
 									(info) => info.time == fastestTime
 								);
 								console.log("Fastest Round:", fastestRound);
+								bestSentence = fastestRound.sign1 + " " + fastestRound.sign2 + " " + fastestRound.sign3;
+								console.log(bestSentence);
 
 								console.log("------------- FINISHED -------------");
 
@@ -910,18 +1041,22 @@ function goToIntermediateRound(round) {
 								gameOverContainer.style.display = "flex";
 								clearInterval(timerInterval);
 								gameEndedComplete();
-							} else {
+							} else
+							{
 								console.log(
 									"---------------GAME OVER (OUT OF TIME)---------------"
 								);
 								gameOverText.innerHTML = "GAME OVER";
 								gameOverContainer.style.display = "flex";
 							}
-						} else {
+						} else
+						{
 							console.log("Wrong");
 							navigator.vibrate(500);
-							setTimeout(function () {
-								flippedCards.forEach(function (card) {
+							setTimeout(function ()
+							{
+								flippedCards.forEach(function (card)
+								{
 									card.classList.remove("flipped");
 								});
 								flippedCards = [];
@@ -948,11 +1083,13 @@ let h3hardElement;
 let hardCardContainer;
 let hardRandomSignsUsed = [];
 
-function goToHardRound(round) {
+function goToHardRound(round)
+{
 	console.log(`Entering Hard Round ${round}...`);
 
 	roundTime = 0;
-	if (round === 1) {
+	if (round === 1)
+	{
 		// Start the timer only at the beginning of the game
 		timeLeft = 120;
 		totalGameTime = 0;
@@ -978,7 +1115,8 @@ function goToHardRound(round) {
 	// This adds an extra card because the cards to guess in Hard mode is 9.
 	let existingIds = signsOnHardCards.map((sign) => sign.id);
 
-	do {
+	do
+	{
 		randomSign = getRandomSign();
 	} while (existingIds.includes(randomSign.id));
 
@@ -991,7 +1129,8 @@ function goToHardRound(round) {
 
 	// GENERATES THE RANDOM SIGNS ON HTML
 	hardPhraseContainer.innerHTML = "";
-	for (var i = 0; i < hardRandomSignToGuess.length; i++) {
+	for (var i = 0; i < hardRandomSignToGuess.length; i++)
+	{
 		h3hardElement = document.createElement("h3");
 		h3hardElement.textContent = hardRandomSignToGuess[i]["sign-name"];
 		hardPhraseContainer.appendChild(h3hardElement);
@@ -1004,12 +1143,14 @@ function goToHardRound(round) {
 	flippedCards = [];
 
 	// Row Count
-	for (var j = 0; j < 3; j++) {
+	for (var j = 0; j < 3; j++)
+	{
 		var cardRow = document.createElement("div");
 		cardRow.className = "card-row";
 
 		// Design of each card in the row
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < 3; i++)
+		{
 			var flipCard = document.createElement("div");
 			flipCard.className = "flip-card";
 
@@ -1034,17 +1175,22 @@ function goToHardRound(round) {
 			cardRow.appendChild(flipCard);
 
 			// Add event listener to each flip card
-			flipCard.addEventListener("click", function () {
-				if (flippedCards.length < 4 && !this.classList.contains("flipped")) {
+			flipCard.addEventListener("click", function ()
+			{
+				if (flippedCards.length < 4 && !this.classList.contains("flipped"))
+				{
 					this.classList.toggle("flipped");
-					if (this.classList.contains("flipped")) {
+					if (this.classList.contains("flipped"))
+					{
 						flippedCards.push(this);
-					} else {
+					} else
+					{
 						var index = flippedCards.indexOf(this);
 						flippedCards.splice(index, 1);
 					}
 
-					if (flippedCards.length === 4) {
+					if (flippedCards.length === 4)
+					{
 						var firstCardId =
 							flippedCards[0].querySelector(".flip-card-back").dataset.id;
 						var secondCardId =
@@ -1059,7 +1205,8 @@ function goToHardRound(round) {
 							secondCardId == hardRandomSignToGuess[1].id &&
 							thirdCardId == hardRandomSignToGuess[2].id &&
 							fourthCardId == hardRandomSignToGuess[3].id
-						) {
+						)
+						{
 							console.log("Correct");
 							round++;
 							const roundInfo = {
@@ -1071,16 +1218,19 @@ function goToHardRound(round) {
 							};
 							roundTimes.push(roundInfo);
 							console.log("ROUND INFO:", roundInfo);
-							if (round <= 4) {
+							if (round <= 4)
+							{
 								points += 3;
 								updatePoints(points);
 								console.log(points);
 
 								updateRound(round);
-								setTimeout(function () {
+								setTimeout(function ()
+								{
 									goToHardRound(round);
 								}, 2500);
-							} else if (round > 4) {
+							} else if (round > 4)
+							{
 								points += 3;
 								updatePoints(points);
 								console.log(points);
@@ -1104,6 +1254,8 @@ function goToHardRound(round) {
 									(info) => info.time == fastestTime
 								);
 								console.log("Fastest Round:", fastestRound);
+								bestSentence = fastestRound.sign1 + " " + fastestRound.sign2 + " " + fastestRound.sign3 + " " + fastestRound.sign4;
+								console.log(bestSentence);
 
 								console.log("------------- FINISHED -------------");
 
@@ -1111,18 +1263,22 @@ function goToHardRound(round) {
 								gameOverContainer.style.display = "flex";
 								clearInterval(timerInterval);
 								gameEndedComplete();
-							} else {
+							} else
+							{
 								console.log(
 									"---------------GAME OVER (OUT OF TIME)---------------"
 								);
 								gameOverText.innerHTML = "GAME OVER";
 								gameOverContainer.style.display = "flex";
 							}
-						} else {
+						} else
+						{
 							console.log("Wrong");
 							navigator.vibrate(500);
-							setTimeout(function () {
-								flippedCards.forEach(function (card) {
+							setTimeout(function ()
+							{
+								flippedCards.forEach(function (card)
+								{
 									card.classList.remove("flipped");
 								});
 								flippedCards = [];
@@ -1140,19 +1296,24 @@ function goToHardRound(round) {
 fetchSigns();
 
 // Fisher-Yates shuffle algorithm
-function shuffleAlgorithm(cards) {
-	for (var i = cards.length - 1; i > 0; i--) {
+function shuffleAlgorithm(cards)
+{
+	for (var i = cards.length - 1; i > 0; i--)
+	{
 		var j = Math.floor(Math.random() * (i + 1));
 		[cards[i], cards[j]] = [cards[j], cards[i]];
 	}
 }
 
 // Randomizer
-function cardRandomizer(round, signs, signsUsed, signToGuess, signNotToGuess) {
-	if (round > 1) {
+function cardRandomizer(round, signs, signsUsed, signToGuess, signNotToGuess)
+{
+	if (round > 1)
+	{
 		// Generate a new easyRandomSignToGuess that is not repeated
 		var newRandomizer;
-		do {
+		do
+		{
 			newRandomizer = Math.floor(Math.random() * signs.length);
 			console.log("newRandomizer: ", newRandomizer);
 			console.log("signsUsed: ", signsUsed);
@@ -1166,7 +1327,8 @@ function cardRandomizer(round, signs, signsUsed, signToGuess, signNotToGuess) {
 
 		signToGuess = signs[newRandomizer];
 		console.log("SIGN TO GUESS:", signToGuess);
-	} else {
+	} else
+	{
 		// RANDOMIZER - SIGNS TO GUESS
 		easyRandomizer = Math.floor(Math.random() * signs.length);
 		signsUsed.push(easyRandomizer);
@@ -1180,7 +1342,8 @@ function cardRandomizer(round, signs, signsUsed, signToGuess, signNotToGuess) {
 	availableIndices.splice(easyRandomizer, 1);
 
 	// RANDOMIZER FOR SIGNS THAT ARE NOT TO GUESS
-	do {
+	do
+	{
 		easyRandomizer2 =
 			availableIndices[Math.floor(Math.random() * availableIndices.length)];
 	} while (
@@ -1210,9 +1373,11 @@ const nextButtons = document.querySelectorAll(".next-button");
 var currentStep = 0;
 
 // Function to show the current step
-function showStep(stepIndex) {
+function showStep(stepIndex)
+{
 	// Hide all the step containers
-	instructionContainers.forEach((container) => {
+	instructionContainers.forEach((container) =>
+	{
 		container.classList.remove("active");
 	});
 
@@ -1220,22 +1385,30 @@ function showStep(stepIndex) {
 	instructionContainers[stepIndex].classList.add("active");
 
 	// Disable/enable previous and next buttons based on the current step
-	if (stepIndex === 0) {
-		previousButtons.forEach((button) => {
+	if (stepIndex === 0)
+	{
+		previousButtons.forEach((button) =>
+		{
 			button.disabled = true;
 		});
-	} else {
-		previousButtons.forEach((button) => {
+	} else
+	{
+		previousButtons.forEach((button) =>
+		{
 			button.disabled = false;
 		});
 	}
 
-	if (stepIndex === instructionContainers.length - 1) {
-		nextButtons.forEach((button) => {
+	if (stepIndex === instructionContainers.length - 1)
+	{
+		nextButtons.forEach((button) =>
+		{
 			button.disabled = true;
 		});
-	} else {
-		nextButtons.forEach((button) => {
+	} else
+	{
+		nextButtons.forEach((button) =>
+		{
 			button.disabled = false;
 		});
 	}
@@ -1245,9 +1418,12 @@ function showStep(stepIndex) {
 showStep(currentStep);
 
 // Event listeners for the previous buttons
-previousButtons.forEach((button) => {
-	button.addEventListener("click", () => {
-		if (currentStep > 0) {
+previousButtons.forEach((button) =>
+{
+	button.addEventListener("click", () =>
+	{
+		if (currentStep > 0)
+		{
 			currentStep--;
 			showStep(currentStep);
 		}
@@ -1255,9 +1431,12 @@ previousButtons.forEach((button) => {
 });
 
 // Event listeners for the next buttons
-nextButtons.forEach((button) => {
-	button.addEventListener("click", () => {
-		if (currentStep < instructionContainers.length - 1) {
+nextButtons.forEach((button) =>
+{
+	button.addEventListener("click", () =>
+	{
+		if (currentStep < instructionContainers.length - 1)
+		{
 			currentStep++;
 			showStep(currentStep);
 		}
@@ -1266,8 +1445,10 @@ nextButtons.forEach((button) => {
 
 const homeButtons = document.querySelectorAll(".home-button");
 
-homeButtons.forEach(function (homeButton) {
-	homeButton.addEventListener("click", function () {
+homeButtons.forEach(function (homeButton)
+{
+	homeButton.addEventListener("click", function ()
+	{
 		instructionContainer.style.display = "none";
 		homeContainer.style.display = "flex";
 	});

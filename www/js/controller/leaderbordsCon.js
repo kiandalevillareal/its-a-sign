@@ -139,7 +139,6 @@ function refreshLeaderboard()
         });
 }
 
-
 function submitHighscore(event)
 {
     // event.preventDefault();
@@ -152,7 +151,7 @@ function submitHighscore(event)
     formData.append('user_id', jsonUserData.user_id);
     formData.append('difficulty', currentDifficulty);
     formData.append('score', timeLeft);
-    formData.append('sentence', fastestRound);
+    formData.append('sentence', bestSentence);
 
     // Make a POST request with the form data
     fetch('https://itsasign.000webhostapp.com/API/addScore.php', {
