@@ -974,7 +974,7 @@ a {
 /* #region LEADERBOARD */
 
 #mobile-logger {
-	/* display: none; */
+	display: none;
 	height: 30vw;
 	width: 100vw;
 	position: fixed;

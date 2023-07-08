@@ -20,17 +20,32 @@ function getSessions(user_id)
         });
 }
 
-// RESPONSE DATA EITHER:
+function getScoresByID(user_id)
+{
+    const formData = new FormData();
+    formData.append('user_id', user_id);
 
-// {
-//     "user_id": 171,
-//     "sessions_count": 10,
-//     "average_session": "18.1000",
-//     "total_sessions": "181",
-//     "min_session": 0,
-//     "max_session": 99
-// }
+    fetch('https://itsasign.000webhostapp.com/API/getScoresAnalyticsByID.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data =>
+        {
+            if (data == "empty")
+                console.log("the response is empty, no row retrieved");
+            else console.log(data);
+        })
+        .catch(error =>
+        {
+            console.log("Something went wrong. Please try again.");
+        });
+}
 
-// OR
 
-// empty
+    // "user_id": 173,
+    // "easy_highest_score": 37,
+    // "intermediate_highest_score": 45.150001525878906,
+    // "hard_highest_score": 42.369998931884766,
+    // "sentence": "[object Object]",
+    // "occurrence": 10
