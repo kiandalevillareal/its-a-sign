@@ -9,6 +9,11 @@ const avatarButton = document.getElementById('avatar-button');
 const avatarsContainer = document.getElementById('user-avatar-bg');
 const userAvatar = document.getElementById('user-avatar');
 
+
+const avatarProfileView = document.getElementById('avatar-profile-view');
+const usernameProfileView = document.getElementById('username-profile-view');
+const scoreProfileView = document.getElementById('score-profile-view');
+
 let jsonUserData = {
     avatar_id: '1'
 };
@@ -105,6 +110,10 @@ function accessAuthorized()
 
     profileButton.style.display = "flex";
     profileButton.setAttribute('src', "avatars/" + jsonUserData.avatar_id + ".png");
+
+    usernameProfileView.textContent = jsonUserData.username;
+    avatarProfileView.setAttribute('src', "avatars/" + jsonUserData.avatar_id + ".png");
+
 }
 
 // Checks if the user has already created and store an account in the device
